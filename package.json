@@ -3,14 +3,15 @@
     "private": true,
     "type": "module",
     "version": "0.1.0",
-    "description": "Interactive senior living community map — the SightMap replacement for the Seniors Places platform.",
+    "description": "Interactive senior living community map \u2014 the SightMap replacement for the Seniors Places platform.",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "demo:build": "node scripts/build-demo.mjs",
         "build:embed": "vite build -c vite.embed.config.js",
-        "test": "php tests/php/run.php && node scripts/smoke.mjs && node scripts/smoke-operator.mjs && node scripts/smoke-embed.mjs"
+        "test": "php tests/php/run.php && node scripts/smoke.mjs && node scripts/smoke-operator.mjs && node scripts/smoke-embed.mjs",
+        "demo:bundle": "vite build --base=./ && vite build -c vite.embed.config.js && node scripts/build-demo-bundle.mjs"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.2.2",

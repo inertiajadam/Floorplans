@@ -1,0 +1,517 @@
+<title>Community Map Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap">
+
+<style>
+    /* ---------------------------------------------------------------- tokens
+       Cool off-white with a green bias, taken from the product's own plan
+       paper rather than a generic cream. The accent is the exact green the
+       map paints an available suite. */
+    :root {
+        --paper:     #f1f4f2;
+        --surface:   #ffffff;
+        --raise:     #e9eeec;
+        --ink:       #141d19;
+        --ink-soft:  #566159;
+        --ink-faint: #7d8a83;
+        --line:      #d2dbd6;
+        --accent:    #2f6d55;
+        --accent-ink:#245442;
+        --flag:      #8a6410;
+        --flag-bg:   #f6e6c2;
+        --shadow:    0 1px 2px rgba(20, 29, 25, .05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            color-scheme: dark;
+            --paper:     #101614;
+            --surface:   #18211d;
+            --raise:     #1f2926;
+            --ink:       #e7ecea;
+            --ink-soft:  #9daba4;
+            --ink-faint: #76847d;
+            --line:      #2a3631;
+            --accent:    #74b89a;
+            --accent-ink:#9ad2b8;
+            --flag:      #d7ab54;
+            --flag-bg:   #2e2618;
+            --shadow:    0 1px 2px rgba(0, 0, 0, .3);
+        }
+    }
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:     #101614;
+        --surface:   #18211d;
+        --raise:     #1f2926;
+        --ink:       #e7ecea;
+        --ink-soft:  #9daba4;
+        --ink-faint: #76847d;
+        --line:      #2a3631;
+        --accent:    #74b89a;
+        --accent-ink:#9ad2b8;
+        --flag:      #d7ab54;
+        --flag-bg:   #2e2618;
+        --shadow:    0 1px 2px rgba(0, 0, 0, .3);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+        max-width: 1060px;
+        margin-inline: auto;
+        padding-inline: 20px;
+        padding-block: 40px 64px;
+    }
+
+    h1, h2, h3 {
+        font-family: Archivo, ui-sans-serif, system-ui, sans-serif;
+        text-wrap: balance;
+        margin: 0;
+    }
+
+    /* Mono for anything that is a measurement, a count or a label &#8212; the same
+       convention a floor plan uses for its dimension annotations. */
+    .mono {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .eyebrow {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+    }
+
+    /* ---------------------------------------------------------------- header */
+    header.masthead { display: flex; flex-direction: column; gap: 14px; }
+
+    h1 {
+        font-size: clamp(30px, 5.2vw, 46px);
+        font-weight: 700;
+        letter-spacing: -.02em;
+        line-height: 1.08;
+    }
+
+    .thesis {
+        max-width: 62ch;
+        font-size: clamp(16px, 2.2vw, 18.5px);
+        color: var(--ink-soft);
+        margin: 0;
+    }
+
+    /* A drafting-style dimension rule: a line with ticks at each end. */
+    .rule {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-block: 40px;
+    }
+    .rule::before, .rule::after {
+        content: "";
+        height: 1px;
+        background: var(--line);
+        flex: 1;
+    }
+    .rule span {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 11px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        white-space: nowrap;
+    }
+
+    .specline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        font-size: 12.5px;
+        color: var(--ink-faint);
+    }
+    .specline b { color: var(--ink-soft); font-weight: 500; }
+
+    /* ---------------------------------------------------------------- legend */
+    .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+    }
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+    }
+    .legend-item svg { display: block; border-radius: 2px; flex: none; }
+    .legend-note {
+        flex-basis: 100%;
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        margin: 0;
+        max-width: 68ch;
+    }
+
+    /* ----------------------------------------------------------------- cards */
+    .decks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+        gap: 16px;
+    }
+
+    a.deck {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 22px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow);
+        transition: border-color .15s ease, transform .15s ease;
+    }
+    a.deck:hover, a.deck:focus-visible {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
+    a.deck:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+        a.deck { transition: none; }
+        a.deck:hover, a.deck:focus-visible { transform: none; }
+    }
+
+    .deck h3 { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+    .deck p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+    .deck ul {
+        margin: 2px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .deck li {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        padding-left: 16px;
+        position: relative;
+    }
+    .deck li::before {
+        content: "";
+        position: absolute;
+        left: 0; top: .62em;
+        width: 7px; height: 1px;
+        background: var(--accent);
+    }
+
+    .open {
+        margin-top: auto;
+        padding-top: 12px;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--accent-ink);
+        letter-spacing: .02em;
+    }
+
+    /* ------------------------------------------------------------ verify bar */
+    .checks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .check {
+        background: var(--surface);
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    .check .n {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-variant-numeric: tabular-nums;
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--accent-ink);
+        line-height: 1.1;
+    }
+    .check .k { font-size: 13px; color: var(--ink-soft); }
+
+    /* --------------------------------------------------------------- caveats */
+    .caveats {
+        background: var(--raise);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 22px;
+    }
+    .caveats h2 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .caveats > p { margin: 0 0 14px; font-size: 14.5px; color: var(--ink-soft); max-width: 66ch; }
+    .caveats ol {
+        margin: 0;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .caveats li { font-size: 14.5px; color: var(--ink-soft); max-width: 70ch; }
+    .caveats li b { color: var(--ink); font-weight: 600; }
+
+    .tag {
+        display: inline-block;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 10.5px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--flag);
+        background: var(--flag-bg);
+        border-radius: 2px;
+        padding: 1px 6px;
+        vertical-align: 1px;
+    }
+
+    footer.foot {
+        margin-top: 44px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--ink-faint);
+        max-width: 70ch;
+    }
+    footer.foot code {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 12px;
+        background: var(--raise);
+        padding: 1px 5px;
+        border-radius: 2px;
+    }
+</style>
+
+<div class="wrap">
+
+    <header class="masthead">
+        <p class="eyebrow">Interactive availability maps for senior living</p>
+        <h1>Community Map Platform</h1>
+        <p class="thesis">
+            A replacement for the embedded third-party map on a client listing &#8212; built for how senior
+            living actually sells, and for the people who actually use it. Four working demos below.
+            Everything runs on real geometry and a real rent roll.
+        </p>
+        <p class="specline mono">
+            <span><b>61</b> suites</span>
+            <span><b>3</b> buildings</span>
+            <span><b>5</b> levels</span>
+            <span><b>7</b> availability states</span>
+            <span><b>156</b> automated checks passing</span>
+        </p>
+    </header>
+
+    <div class="rule"><span>Availability, as the map paints it</span></div>
+
+    <!--
+      The real hatch patterns from MapCanvas.vue, not an illustration of them.
+      Every status is a pattern as well as a colour: around 1 in 12 men are
+      colour blind and contrast sensitivity drops with age, so a map that says
+      "green means available" and nothing else fails a lot of this audience.
+    -->
+    <div class="legend">
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <defs>
+                <pattern id="h-av" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <rect width="8" height="8" fill="#cfe4da"/>
+                    <line x1="0" y1="0" x2="0" y2="8" stroke="#2f6d55" stroke-width="2.4" opacity=".5"/>
+                </pattern>
+                <pattern id="h-co" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+                    <rect width="9" height="9" fill="#f6e6c2"/>
+                    <line x1="0" y1="0" x2="0" y2="9" stroke="#8a6410" stroke-width="2.2" opacity=".5"/>
+                </pattern>
+                <pattern id="h-wa" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <rect width="10" height="10" fill="#f2e6cb"/>
+                    <circle cx="5" cy="5" r="1.7" fill="#6e530c" opacity=".55"/>
+                </pattern>
+                <pattern id="h-re" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <rect width="10" height="10" fill="#d6e6ee"/>
+                    <line x1="0" y1="5" x2="10" y2="5" stroke="#3f6f86" stroke-width="2" opacity=".45"/>
+                </pattern>
+                <pattern id="h-he" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <rect width="9" height="9" fill="#ece0d4"/>
+                    <line x1="0" y1="0" x2="0" y2="9" stroke="#7a5b3f" stroke-width="1.6" opacity=".5"/>
+                    <line x1="4.5" y1="0" x2="4.5" y2="9" stroke="#7a5b3f" stroke-width=".8" opacity=".35"/>
+                </pattern>
+                <pattern id="h-mo" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+                    <rect width="11" height="11" fill="#e2dfea"/>
+                    <path d="M0 5.5 L5.5 0 L11 5.5 L5.5 11 Z" fill="none" stroke="#5b5470" stroke-width="1.3" opacity=".45"/>
+                </pattern>
+            </defs>
+        </svg>
+
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-av)"/><rect width="19" height="19" fill="none" stroke="#2f6d55" stroke-width="1.6"/></svg> Available</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-co)"/><rect width="19" height="19" fill="none" stroke="#8a6410" stroke-width="1.6"/></svg> Coming available</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-wa)"/><rect width="19" height="19" fill="none" stroke="#6e530c" stroke-width="1.6"/></svg> Waitlist</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-re)"/><rect width="19" height="19" fill="none" stroke="#3f6f86" stroke-width="1.6"/></svg> Respite</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-he)"/><rect width="19" height="19" fill="none" stroke="#7a5b3f" stroke-width="1.6"/></svg> On hold</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="url(#h-mo)"/><rect width="19" height="19" fill="none" stroke="#5b5470" stroke-width="1.6"/></svg> Model suite</span>
+        <span class="legend-item"><svg width="19" height="19" viewBox="0 0 19 19"><rect width="19" height="19" fill="#eef1f3"/><rect width="19" height="19" fill="none" stroke="#8d9aa3" stroke-width="1.6"/></svg> Occupied</span>
+
+        <p class="legend-note">
+            Seven states, not two. A multifamily tool carries vacant and leased because an apartment is
+            either rentable or it is not &#8212; collapsing senior living to that is why families ring up to ask
+            a question the website should have answered. Each state is a pattern as well as a colour.
+        </p>
+    </div>
+
+    <div class="rule"><span>Four demos &#183; open in a new tab</span></div>
+
+    <!-- Labelled by audience, because that is what actually differs between
+         them &#8212; not a sequence, so no step numbering. -->
+    <div class="decks">
+
+        <a class="deck" href="./map.html" target="_blank" rel="noopener">
+            <span class="eyebrow">For families</span>
+            <h3>The availability map</h3>
+            <p>What a family sees on a listing. Real polygons, real rent roll, three building types.</p>
+            <ul>
+                <li>Open a suite &#8212; the price line says both &#8220;from $3,850&#8221; and what most residents actually pay with care</li>
+                <li>Move the level-of-care control and watch the monthly total change</li>
+                <li>Switch to The Grove and The Cottages &#8212; a memory care household and a site plan, same component</li>
+                <li>Tab into the plan and use the arrow keys: they move to the suite in that direction, not the next in the DOM</li>
+            </ul>
+            <span class="open">Open the map &#8594;</span>
+        </a>
+
+        <a class="deck" href="./client-site.html" target="_blank" rel="noopener">
+            <span class="eyebrow">For client websites</span>
+            <h3>The embed, on a hostile page</h3>
+            <p>One script tag on a client's own site. The host page here is deliberately awful.</p>
+            <ul>
+                <li>Pink Comic Sans, hotpink buttons with lime borders, every SVG stretched and rotated</li>
+                <li>None of it touches the map &#8212; and the map does not touch any of it</li>
+                <li>The map wears the operator's blue brand, not the page's pink</li>
+                <li>View source: the snippet is three lines and the loader is 3.4 kB</li>
+            </ul>
+            <span class="open">Open the client site &#8594;</span>
+        </a>
+
+        <a class="deck" href="./operator.html" target="_blank" rel="noopener">
+            <span class="eyebrow">For community operators</span>
+            <h3>The availability panel</h3>
+            <p>How a community keeps it true. Opens on the work, not the whole roster.</p>
+            <ul>
+                <li>6 of 61 suites need attention &#8212; bookable but not confirmed recently</li>
+                <li>&#8220;Everything here is still right&#8221; clears it in one click, because that is the usual answer</li>
+                <li>Set a suite to &#8220;coming available&#8221; &#8212; it will not save without a date</li>
+                <li>Tick &#8220;Inventory syncs from a PMS&#8221; to reveal the reconciliation screen and per-field locks</li>
+            </ul>
+            <span class="open">Open the panel &#8594;</span>
+        </a>
+
+        <a class="deck" href="./editor.html" target="_blank" rel="noopener">
+            <span class="eyebrow">For your team</span>
+            <h3>The plan tracer</h3>
+            <p>Trace a floor plan once and export the geometry. Changing a map is not a support ticket.</p>
+            <ul>
+                <li>Load a floor plan image, or press &#8220;+ Rectangle&#8221; to start without one</li>
+                <li>Click to drop points, Enter to close a suite, drag the handles to adjust</li>
+                <li>The export is the exact JSON the platform consumes &#8212; no conversion step</li>
+                <li>Re-tracing a floor later keeps every suite's availability, matched by number</li>
+            </ul>
+            <span class="open">Open the tracer &#8594;</span>
+        </a>
+
+    </div>
+
+    <div class="rule"><span>Verification</span></div>
+
+    <div class="checks">
+        <div class="check">
+            <span class="n">62</span>
+            <span class="k">Sync logic assertions</span>
+        </div>
+        <div class="check">
+            <span class="n">29</span>
+            <span class="k">Map browser checks</span>
+        </div>
+        <div class="check">
+            <span class="n">35</span>
+            <span class="k">Operator browser checks</span>
+        </div>
+        <div class="check">
+            <span class="n">30</span>
+            <span class="k">Embed isolation checks</span>
+        </div>
+    </div>
+
+    <div class="rule"><span>Honest state of play</span></div>
+
+    <div class="caveats">
+        <h2>What is not built yet</h2>
+        <p>
+            Everything above is real and runs. The client side is done; the server side of making this a
+            standalone platform is not. In the order I would do it:
+        </p>
+        <ol>
+            <li>
+                <b>The public API.</b> <span class="tag">blocking</span>
+                These demos read the map from a static file. The contract is fixed and exercised by the
+                test suite's mock server, but nothing real serves it yet.
+            </li>
+            <li>
+                <b>Domain allowlisting.</b> <span class="tag">blocking</span>
+                Without it, anyone can embed a map and any site can generate leads against one. The
+                refusal path and its wording already exist on the client side.
+            </li>
+            <li>
+                <b>Platform tenancy.</b> Its own accounts, communities and maps, replacing the coupling to
+                the Seniors Places listing database.
+            </li>
+            <li>
+                <b>Lead forwarding.</b> Capture, then deliver on to Seniors Places, an operator's CRM
+                webhook, or email.
+            </li>
+            <li>
+                <b>Floorplanner import.</b> You already produce the 3D renderings there, so the geometry
+                for real communities already exists &#8212; importing it removes tracing entirely for those.
+            </li>
+            <li>
+                <b>Scheduled PMS sync.</b> The adapter and reconciliation are built and tested; the nightly
+                job and its alarm are not. The alarm matters more than the job: a feed that stops
+                returning rows looks exactly like success while the map freezes on stale data.
+            </li>
+        </ol>
+    </div>
+
+    <footer class="foot">
+        Willow Creek Senior Living is a synthetic 61-unit campus generated by
+        <code>scripts/build-demo.mjs</code> &#8212; no real availability, rates or residents. Lead submission in
+        these demos is captured to the browser console instead of a server. The PointClickCare and
+        Floorplanner integrations are written against unverified API shapes, because both vendors'
+        documentation is unreachable from the build environment; every assumption is isolated in config
+        and flagged as such.
+    </footer>
+
+</div>
