@@ -65,6 +65,27 @@ const compareOpen = ref(false);
 const leadFor = ref(null);
 const leadIntent = ref('tour');
 const showFiltersOnPhone = ref(false);
+const rail = ref(null);   // the horizontal strip of matching suites
+
+/* Page the strip by most of its width, so the last card seen is still
+   visible after the move and nobody loses their place. */
+function railBy(direction) {
+    const el = rail.value;
+    if (!el) return;
+    el.scrollBy({ left: direction * Math.max(240, el.clientWidth * 0.8), behavior: 'smooth' });
+}
+
+/* Whatever is selected on the plan is brought into view in the strip. */
+watch(() => filters.ui.unitId, (id) => {
+    if (!id) return;
+    nextTick(() => {
+        const el = rail.value;
+        const card = el?.querySelector(`[data-unit="${CSS.escape(id)}"]`);
+        if (!el || !card) return;
+        const left = card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2;
+        el.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    });
+});
 
 const summary = computed(() => summarize(model.value, filters.results.value));
 const confirmedAge = computed(() => describeAge(model.value.confirmedAt));
@@ -133,17 +154,15 @@ function select(id) {
     const u = filters.selected.value;
     if (!u) return;
 
-    if (filters.ui.mode === 'map') {
-        /* On a desktop the drawer covers the right of the canvas, so centring
-           the suite in the full viewBox can park it underneath the panel.
-           Stretching the target box rightward by the drawer's share pushes the
-           centre right, which lands the suite in the visible left portion. */
-        const f = drawerFraction();
-        const box = f > 0 && f < 0.9
-            ? { ...u.bounds, width: u.bounds.width / (1 - f) }
-            : u.bounds;
-        view.flyTo(box, { padding: 1.3 });
-    }
+    /* On a desktop the drawer covers the right of the canvas, so centring
+       the suite in the full viewBox can park it underneath the panel.
+       Stretching the target box rightward by the drawer's share pushes the
+       centre right, which lands the suite in the visible left portion. */
+    const f = drawerFraction();
+    const box = f > 0 && f < 0.9
+        ? { ...u.bounds, width: u.bounds.width / (1 - f) }
+        : u.bounds;
+    view.flyTo(box, { padding: 1.3 });
     emit('select', u);
 }
 
@@ -151,10 +170,13 @@ function closeDetail() {
     filters.selectUnit(null, { push: false });
 }
 
-/** Picking from the list on a phone should show it on the plan, not just open the drawer. */
+/** Picking from the strip: same as picking on the plan, and the plan scrolls
+    back into view on a phone so the suite is actually seen. */
 function selectFromList(id) {
     select(id);
-    if (window.matchMedia('(max-width: 899px)').matches) filters.ui.mode = 'map';
+    if (window.matchMedia('(max-width: 899px)').matches) {
+        mapBox.value?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
 }
 
 function onCompare(id) {
@@ -192,7 +214,7 @@ function resetView() {
 </script>
 
 <template>
-    <div class="community-map" :class="{ 'community-map--list': filters.ui.mode === 'list' }">
+    <div class="community-map">
         <MapPatterns />
 
         <!-- one live region for the whole component -->
@@ -210,152 +232,149 @@ function resetView() {
                         · {{ totals.careLevels }} levels of care
                     </span>
                 </p>
-
-                <!--
-                  "Availability confirmed 2 days ago."
-                  Nothing else on a listing page tells a family whether what
-                  they are reading is current, and a community that keeps on
-                  top of its roster deserves the credit. Opt-in per community
-                  (the server sends null when it is switched off), so it is
-                  never an accidental admission that a map has rotted.
-                -->
-                <p v-if="confirmedAge" class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-brand-light px-2.5 py-1 text-[12.5px] font-semibold text-brand-dark">
-                    <span aria-hidden="true">✓</span>
-                    Availability confirmed {{ confirmedAge }}
-                </p>
             </div>
 
-            <!-- map / list, on phones only: both are first-class -->
-            <div class="cm-modes" role="group" aria-label="How to browse">
-                <button
-                    v-for="m in [{ k: 'map', l: 'Map' }, { k: 'list', l: 'List' }]"
-                    :key="m.k"
-                    type="button"
-                    class="tap-safe flex-1 rounded-brand px-4 py-2 text-[14px] transition-colors"
-                    :class="filters.ui.mode === m.k ? 'bg-brand-dark text-white font-semibold' : 'text-ink-mid hover:bg-warm'"
-                    :aria-pressed="String(filters.ui.mode === m.k)"
-                    @click="filters.ui.mode = m.k"
-                >{{ m.l }}</button>
-            </div>
+            <!--
+              "Availability confirmed 2 days ago."
+              Nothing else on a listing page tells a family whether what
+              they are reading is current, and a community that keeps on
+              top of its roster deserves the credit. Opt-in per community
+              (the server sends null when it is switched off), so it is
+              never an accidental admission that a map has rotted.
+            -->
+            <p v-if="confirmedAge" class="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-brand-light px-2.5 py-1 text-[12.5px] font-semibold text-brand-dark">
+                <span aria-hidden="true">✓</span>
+                Availability confirmed {{ confirmedAge }}
+            </p>
         </header>
 
-        <!-- ------------------------------------------------------- body -->
-        <div class="cm-body">
-            <!-- left: controls + results -->
-            <aside class="cm-side" aria-label="Filters and matching suites">
-                <button
-                    type="button"
-                    class="cm-filter-toggle tap-safe"
-                    :aria-expanded="String(showFiltersOnPhone)"
-                    aria-controls="cm-filters"
-                    @click="showFiltersOnPhone = !showFiltersOnPhone"
-                >
-                    {{ showFiltersOnPhone ? 'Hide filters' : 'Filters' }}
-                    <span v-if="filters.active.value" class="ml-1.5 rounded-full bg-brand px-2 py-0.5 text-[11.5px] font-bold text-white">on</span>
-                </button>
+        <!-- ---------------------------------------------------- filters -->
+        <div class="cm-filters-bar">
+            <button
+                type="button"
+                class="cm-filter-toggle tap-safe"
+                :aria-expanded="String(showFiltersOnPhone)"
+                aria-controls="cm-filters"
+                @click="showFiltersOnPhone = !showFiltersOnPhone"
+            >
+                {{ showFiltersOnPhone ? 'Hide filters' : 'Filters' }}
+                <span v-if="filters.active.value" class="ml-1.5 rounded-full bg-brand px-2 py-0.5 text-[11.5px] font-bold text-white">on</span>
+            </button>
 
-                <div id="cm-filters" class="cm-filters" :class="{ 'cm-filters--open': showFiltersOnPhone }">
-                    <FilterBar
-                        :facets="model.facets"
-                        :filters="filters.filters"
-                        :active="filters.active.value"
-                        :result-count="filters.results.value.length"
-                        @toggle="(k, v) => filters.toggle(k, v)"
-                        @clear="filters.clear(); announce('Filters cleared.')"
-                    />
-                </div>
-
-                <!-- results -->
-                <div class="cm-results">
-                    <h3 class="sr-only">Matching suites</h3>
-
-                    <p v-if="!filters.results.value.length" class="rounded-card border border-dashed border-hairline bg-white px-4 py-8 text-center text-[14px] text-ink-mid">
-                        No suites match what you've asked for.<br />
-                        <button type="button" class="mt-2 font-semibold text-brand underline" @click="filters.clear()">
-                            Clear the filters
-                        </button>
-                        and start again, or ask the community what's coming up.
-                    </p>
-
-                    <ul v-else class="flex flex-col gap-2.5">
-                        <UnitCard
-                            v-for="u in filters.results.value"
-                            :key="u.id"
-                            :unit="u"
-                            :selected="u.id === filters.ui.unitId"
-                            :comparing="compare.has(u.id)"
-                            :compare-disabled="compare.isFull.value"
-                            @select="selectFromList"
-                            @compare="onCompare"
-                            @hover="hoverId = $event"
-                        />
-                    </ul>
-                </div>
-            </aside>
-
-            <!-- right: the plan -->
-            <section class="cm-map" aria-label="Floor plan">
-                <div class="cm-map-controls">
-                    <LevelSwitcher
-                        :buildings="model.buildings"
-                        :level-id="filters.ui.levelId"
-                        :counts="filters.countsByLevel.value"
-                        :filtered="filters.active.value"
-                        @open="filters.openLevel($event)"
-                    />
-                </div>
-
-                <div ref="mapBox" class="cm-canvas">
-                    <MapCanvas
-                        ref="canvas"
-                        :level="filters.level.value"
-                        :units="filters.levelUnits.value"
-                        :selected-id="filters.ui.unitId"
-                        :compare-ids="compare.ids.value"
-                        :view="view"
-                        @select="select"
-                        @hover="hoverId = $event"
-                        @announce="announce"
-                    />
-
-                    <!-- zoom, as real buttons. Pinch is lovely; a button is reliable. -->
-                    <div class="cm-zoom" role="group" aria-label="Zoom">
-                        <button type="button" class="tap-safe" :disabled="!view.canZoomIn.value" @click="view.zoomIn()">
-                            <span aria-hidden="true">＋</span><span class="sr-only">Zoom in</span>
-                        </button>
-                        <button type="button" class="tap-safe" :disabled="!view.canZoomOut.value" @click="view.zoomOut()">
-                            <span aria-hidden="true">－</span><span class="sr-only">Zoom out</span>
-                        </button>
-                        <button type="button" class="tap-safe" @click="resetView">
-                            <span aria-hidden="true">⤢</span><span class="sr-only">Fit the whole floor</span>
-                        </button>
-                    </div>
-
-                    <p class="cm-hint">
-                        Drag to move · pinch or scroll to zoom · tap a suite for details
-                    </p>
-
-                    <UnitDetail
-                        :unit="filters.selected.value"
-                        :community="model"
-                        :comparing="filters.ui.unitId ? compare.has(filters.ui.unitId) : false"
-                        :compare-disabled="compare.isFull.value"
-                        :share-url="filters.shareUrl()"
-                        @close="closeDetail"
-                        @compare="onCompare"
-                        @enquire="openLead($event, 'tour')"
-                    />
-                </div>
-
-                <div class="cm-legend">
-                    <MapLegend
-                        :units="filters.levelUnits.value"
-                        :selected="filters.filters.status"
-                        @toggle="filters.toggle('status', $event)"
-                    />
-                </div>
-            </section>
+            <div id="cm-filters" class="cm-filters" :class="{ 'cm-filters--open': showFiltersOnPhone }">
+                <FilterBar
+                    :facets="model.facets"
+                    :filters="filters.filters"
+                    :active="filters.active.value"
+                    :result-count="filters.results.value.length"
+                    @toggle="(k, v) => filters.toggle(k, v)"
+                    @clear="filters.clear(); announce('Filters cleared.')"
+                />
+            </div>
         </div>
+
+        <!-- ------------------------------------------------------- plan -->
+        <section class="cm-map" aria-label="Floor plan">
+            <div class="cm-map-controls">
+                <LevelSwitcher
+                    :buildings="model.buildings"
+                    :level-id="filters.ui.levelId"
+                    :counts="filters.countsByLevel.value"
+                    :filtered="filters.active.value"
+                    @open="filters.openLevel($event)"
+                />
+            </div>
+
+            <div ref="mapBox" class="cm-canvas">
+                <MapCanvas
+                    ref="canvas"
+                    :level="filters.level.value"
+                    :units="filters.levelUnits.value"
+                    :selected-id="filters.ui.unitId"
+                    :compare-ids="compare.ids.value"
+                    :view="view"
+                    @select="select"
+                    @hover="hoverId = $event"
+                    @announce="announce"
+                />
+
+                <!-- zoom, as real buttons. Pinch is lovely; a button is reliable. -->
+                <div class="cm-zoom" role="group" aria-label="Zoom">
+                    <button type="button" class="tap-safe" :disabled="!view.canZoomIn.value" @click="view.zoomIn()">
+                        <span aria-hidden="true">＋</span><span class="sr-only">Zoom in</span>
+                    </button>
+                    <button type="button" class="tap-safe" :disabled="!view.canZoomOut.value" @click="view.zoomOut()">
+                        <span aria-hidden="true">－</span><span class="sr-only">Zoom out</span>
+                    </button>
+                    <button type="button" class="tap-safe" @click="resetView">
+                        <span aria-hidden="true">⤢</span><span class="sr-only">Fit the whole floor</span>
+                    </button>
+                </div>
+
+                <p class="cm-hint">
+                    Drag to move · pinch or scroll to zoom · tap a suite for details
+                </p>
+
+                <UnitDetail
+                    :unit="filters.selected.value"
+                    :community="model"
+                    :comparing="filters.ui.unitId ? compare.has(filters.ui.unitId) : false"
+                    :compare-disabled="compare.isFull.value"
+                    :share-url="filters.shareUrl()"
+                    @close="closeDetail"
+                    @compare="onCompare"
+                    @enquire="openLead($event, 'tour')"
+                />
+            </div>
+
+            <div class="cm-legend">
+                <MapLegend
+                    :units="filters.levelUnits.value"
+                    :selected="filters.filters.status"
+                    @toggle="filters.toggle('status', $event)"
+                />
+            </div>
+        </section>
+
+        <!-- ----------------------------------------------------- suites -->
+        <section class="cm-results" aria-label="Matching suites">
+            <div class="cm-results-head">
+                <h3 class="font-serif text-[18px] font-bold text-ink">
+                    {{ filters.results.value.length }} {{ filters.results.value.length === 1 ? 'suite' : 'suites' }}
+                    <span class="font-sans text-[14px] font-normal text-ink-mid">{{ filters.active.value ? 'match your filters' : 'across the community' }}</span>
+                </h3>
+                <div v-if="filters.results.value.length > 1" class="cm-results-nav" role="group" aria-label="Scroll the suites">
+                    <button type="button" class="tap-safe" @click="railBy(-1)">
+                        <span aria-hidden="true">‹</span><span class="sr-only">Earlier suites</span>
+                    </button>
+                    <button type="button" class="tap-safe" @click="railBy(1)">
+                        <span aria-hidden="true">›</span><span class="sr-only">Later suites</span>
+                    </button>
+                </div>
+            </div>
+
+            <p v-if="!filters.results.value.length" class="rounded-card border border-dashed border-hairline bg-white px-4 py-8 text-center text-[14px] text-ink-mid">
+                No suites match what you've asked for.<br />
+                <button type="button" class="mt-2 font-semibold text-brand underline" @click="filters.clear()">
+                    Clear the filters
+                </button>
+                and start again, or ask the community what's coming up.
+            </p>
+
+            <ul v-else ref="rail" class="cm-rail">
+                <UnitCard
+                    v-for="u in filters.results.value"
+                    :key="u.id"
+                    :unit="u"
+                    :selected="u.id === filters.ui.unitId"
+                    :comparing="compare.has(u.id)"
+                    :compare-disabled="compare.isFull.value"
+                    @select="selectFromList"
+                    @compare="onCompare"
+                    @hover="hoverId = $event"
+                />
+            </ul>
+        </section>
 
         <!-- ---------------------------------------------------- compare -->
         <CompareTray
@@ -395,30 +414,14 @@ function resetView() {
 .cm-header {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     padding: 1rem;
     background: #fff;
     border-bottom: 1px solid var(--color-hairline);
 }
 
-.cm-modes {
-    display: flex;
-    gap: 0.25rem;
-    padding: 0.25rem;
-    background: var(--color-warm);
-    border-radius: var(--radius-brand);
-}
-
-.cm-body { display: flex; flex-direction: column; }
-
-.cm-side {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1rem;
-    min-width: 0;
-}
-
+/* ---- filters, on top ---- */
+.cm-filters-bar { padding: 0.75rem 1rem 0; }
 .cm-filter-toggle {
     display: flex;
     align-items: center;
@@ -432,14 +435,12 @@ function resetView() {
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-brand);
 }
-
 .cm-filters { display: none; }
-.cm-filters--open { display: block; }
+.cm-filters--open { display: block; margin-top: 0.5rem; }
 
-.cm-results { min-width: 0; }
-
+/* ---- the plan ---- */
 .cm-map { display: flex; flex-direction: column; min-width: 0; }
-.cm-map-controls { padding: 0 1rem 0.75rem; }
+.cm-map-controls { padding: 0.75rem 1rem; }
 
 .cm-canvas {
     position: relative;
@@ -488,35 +489,66 @@ function resetView() {
 /* The hint is for pointer users; it just clutters a small screen. */
 @media (max-width: 640px) { .cm-hint { display: none; } }
 
-.cm-legend { padding: 0.75rem 1rem 1rem; }
+.cm-legend { padding: 0.75rem 1rem 0.25rem; }
 
-/* On a phone the two modes are exclusive. */
-@media (max-width: 899px) {
-    .community-map:not(.community-map--list) .cm-results { display: none; }
-    .community-map--list .cm-map { display: none; }
+/* ---- the suites, as a strip under the plan ----
+   A horizontal rail: every matching suite side by side, scrolled by touch,
+   wheel, the arrow buttons, or Tab (each card is a button, and the browser
+   keeps the focused one in view). Cards are a fixed width so the strip
+   reads as a row of equals; the selected one is scrolled to the centre. */
+.cm-results { padding: 0.75rem 0 1rem; }
+.cm-results-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 1rem 0.625rem;
+}
+.cm-results-nav { display: flex; gap: 0.375rem; }
+.cm-results-nav button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--color-ink);
+    background: #fff;
+    border: 1px solid var(--color-hairline);
+    border-radius: 999px;
+}
+.cm-results-nav button:hover { background: var(--color-warm); border-color: var(--color-brand-mid); }
+.cm-results > p { margin: 0 1rem; }
+
+.cm-rail {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.25rem 1rem 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-plan-wall) transparent;
+}
+.cm-rail :deep(li) {
+    flex: 0 0 min(300px, 82vw);
+    scroll-snap-align: start;
 }
 
-/* Desktop: side by side, both always visible, so the modes stop mattering. */
+/* Desktop: everything gets the full width. */
 @media (min-width: 900px) {
     .cm-header { flex-direction: row; align-items: flex-start; justify-content: space-between; padding: 1.25rem 1.5rem; }
-    .cm-modes { display: none; }
-
-    .cm-body { flex-direction: row; align-items: stretch; }
-
-    .cm-side {
-        width: 380px;
-        flex: 0 0 380px;
-        border-right: 1px solid var(--color-hairline);
-        max-height: 78vh;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-    }
+    .cm-filters-bar { padding: 1rem 1.5rem 0; }
     .cm-filter-toggle { display: none; }
     .cm-filters { display: block; }
-
-    .cm-map { flex: 1 1 auto; }
-    .cm-map-controls { padding: 1rem 1.25rem 0.75rem; }
-    .cm-canvas { aspect-ratio: auto; flex: 1 1 auto; min-height: 520px; }
-    .cm-legend { padding: 0.75rem 1.25rem 1rem; }
+    .cm-map-controls { padding: 1rem 1.5rem 0.75rem; }
+    .cm-canvas { aspect-ratio: 16 / 9; min-height: 480px; max-height: 72vh; }
+    .cm-legend { padding: 0.75rem 1.5rem 0.25rem; }
+    .cm-results-head { padding: 0 1.5rem 0.625rem; }
+    .cm-results > p { margin: 0 1.5rem; }
+    .cm-rail { padding: 0.25rem 1.5rem 0.75rem; scroll-padding-inline: 1.5rem; }
+    .cm-rail :deep(li) { flex-basis: 320px; }
 }
 </style>

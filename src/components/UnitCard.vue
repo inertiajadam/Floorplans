@@ -24,18 +24,25 @@ const props = defineProps({
 });
 const emit = defineEmits(['select', 'compare', 'hover']);
 
-const specs = computed(() => [
-    props.unit.typeLabel,
-    props.unit.sqft ? `${Number(props.unit.sqft).toLocaleString()} sq ft` : null,
-    props.unit.bedrooms !== null ? (Number(props.unit.bedrooms) === 0 ? 'Studio' : `${Number(props.unit.bedrooms)} bed`) : null,
-    props.unit.bathrooms ? `${Number(props.unit.bathrooms)} bath` : null,
-].filter(Boolean).join(' · '));
+/* "Studio · 380 sq ft · 1 bath", not "Studio · 380 sq ft · Studio · 1 bath":
+   the bedroom count is dropped when the layout's own label already says it. */
+const specs = computed(() => {
+    const beds = props.unit.bedrooms !== null ? (Number(props.unit.bedrooms) === 0 ? 'Studio' : `${Number(props.unit.bedrooms)} bed`) : null;
+    const type = props.unit.typeLabel;
+    return [
+        type,
+        props.unit.sqft ? `${Number(props.unit.sqft).toLocaleString()} sq ft` : null,
+        beds && !(type && type.toLowerCase().includes(beds.toLowerCase().replace(' bed', ' bed'))) ? beds : null,
+        props.unit.bathrooms ? `${Number(props.unit.bathrooms)} bath` : null,
+    ].filter(Boolean).join(' · ');
+});
 
 const where = computed(() => [props.unit.buildingName, props.unit.levelName].filter(Boolean).join(' · '));
 </script>
 
 <template>
     <li
+        :data-unit="unit.id"
         class="relative rounded-card border bg-white transition-colors"
         :class="selected ? 'border-brand-dark ring-2 ring-brand-dark/25' : 'border-hairline hover:border-brand-mid'"
         @mouseenter="emit('hover', unit.id)"

@@ -206,11 +206,15 @@ try {
     await page.waitForTimeout(400);
     const hScroll = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     check('no horizontal scroll on a phone', !hScroll);
-    check('map/list switch shows on a phone', await page.locator('.cm-modes').isVisible());
+    check('filters fold away on a phone', await page.locator('.cm-filter-toggle').isVisible() && !(await page.locator('#cm-filters').isVisible()));
+    check('the suite strip scrolls sideways, not the page', await page.evaluate(() => {
+        const rail = document.querySelector('.cm-rail');
+        return !!rail && rail.scrollWidth > rail.clientWidth && getComputedStyle(rail).overflowX === 'auto';
+    }));
 
     const smallTargets = await page.evaluate(() => {
         const bad = [];
-        for (const b of document.querySelectorAll('.cm-header button, .cm-side button, .cm-zoom button')) {
+        for (const b of document.querySelectorAll('.cm-header button, .cm-filters-bar button, .cm-results button, .cm-zoom button')) {
             const r = b.getBoundingClientRect();
             if (r.width > 0 && (r.height < 40 || r.width < 32)) bad.push(`${(b.textContent || '').trim().slice(0, 18)} ${Math.round(r.width)}x${Math.round(r.height)}`);
         }
