@@ -6,7 +6,7 @@
  | Everything positional here was read off the client's current SightMap
  | (the Engrain site plan): the site frame, the two streets, the drive loop
  | and parking, the building outline, and every suite and named room on
- | floor 1. Coordinates are in the screenshot's pixel space, doubled, with
+ | both floors. Coordinates are in the screenshot's pixel space, doubled, with
  | the map's top-left as the origin. The screenshot is 905 × 790 px, so the
  | plan is 1810 × 1580.
  |
@@ -19,7 +19,11 @@
  |   - the view names, exactly as their filter lists them
  |   - the room and amenity names on the plan
  |   - three rates: 101 studio $3,410, 102 studio $3,825, 103/106 1 bed $5,295
- |   - 101, 102, 103, 104 and 106 are available now
+ |   - 101, 102, 103, 104 and 106 are available now; floor 2: 201 $3,410,
+ |     202 $3,825, 203 $5,295, and 201–204 available now
+ |   - floor 2 is assisted living only: the memory care household is
+ |     single-storey (roof above its ring), the Meridian row and the
+ |     commons carry a second floor
  |   - the memory care deluxe plan drawing and its square footage, from the
  |     client's Floorplanner export (demo/data/plans/tcom-mc-deluxe.plan.svg)
  |   - street names and that north points to the RIGHT of the plan
@@ -31,8 +35,6 @@
  |   - which layout each suite has (assigned by the size drawn on the plan)
  |   - square footage other than the deluxe plan's
  |   - availability of every suite not listed above
- |   - floor 2: it exists (their floor picker shows it) but we have no
- |     picture of it yet, so it is left out rather than invented
  |
  | Run: node scripts/build-commons.mjs
  */
@@ -79,8 +81,8 @@ const RATES = {
     'al-studio': 3410, 'al-1br': 5295, 'al-2br': 6450,
     'mc-studio': 5850, 'mc-deluxe': 6650, 'mc-1br': 7100, 'mc-companion': 4650,
 };
-const KNOWN_RATES = { 101: 3410, 102: 3825, 103: 5295, 106: 5295 };
-const KNOWN_AVAILABLE = new Set(['101', '102', '103', '104', '106']);
+const KNOWN_RATES = { 101: 3410, 102: 3825, 103: 5295, 106: 5295, 201: 3410, 202: 3825, 203: 5295 };
+const KNOWN_AVAILABLE = new Set(['101', '102', '103', '104', '106', '201', '202', '203', '204']);
 
 /* Their Views filter, verbatim. North is to the right of the plan, so:
    top = west (Meridian), right = north (86th), bottom = east, left = south. */
@@ -168,6 +170,29 @@ const deluxeSvg = readFileSync(DELUXE_PLAN, 'utf8');
 const DELUXE_SQFT = 1102;
 const deluxeImage = `data:image/svg+xml;base64,${Buffer.from(deluxeSvg).toString('base64')}`;
 
+/* ------------------------------------------------------------- the site */
+
+/** The ground every floor sits on: lawn, the two streets, drives, parking. */
+function site(ordinal) {
+    const id = (k) => `s${ordinal}-${k}`;
+    return [
+        /* Ground first: everything else sits on it. */
+        { id: id('lawn'),       kind: 'lawn',    label: '', shape: R(433, 178, 1338, 968) },
+        { id: id('meridian'),   kind: 'road',    label: 'N Meridian Street', shape: R(433, 178, 1338, 240) },
+        { id: id('86th'),       kind: 'road',    label: 'E 86th Street',     shape: R(1275, 178, 1338, 968) },
+        { id: id('entry-w'),    kind: 'road',    label: '', shape: R(470, 240, 520, 300) },
+        { id: id('entry-n'),    kind: 'road',    label: '', shape: R(1035, 240, 1080, 300) },
+        { id: id('drive-top'),  kind: 'road',    label: '', shape: R(470, 300, 1200, 345) },
+        { id: id('drive-e'),    kind: 'road',    label: '', shape: R(1150, 300, 1200, 900) },
+        { id: id('drive-s'),    kind: 'road',    label: '', shape: R(1050, 855, 1275, 900) },
+        { id: id('drive-bldg'), kind: 'road',    label: '', shape: R(1105, 345, 1150, 505) },
+        { id: id('park-1'),     kind: 'parking', label: 'Parking', shape: R(520, 352, 765, 388) },
+        { id: id('park-2'),     kind: 'parking', label: '', shape: R(900, 352, 1000, 388) },
+        { id: id('park-3'),     kind: 'parking', label: 'Parking', shape: R(1108, 505, 1145, 625) },
+        { id: id('park-4'),     kind: 'parking', label: 'Overflow parking', shape: R(1108, 660, 1148, 790) },
+    ];
+}
+
 /* ------------------------------------------------------------- floor one */
 
 function floorOne() {
@@ -254,24 +279,10 @@ function floorOne() {
         unit('117', 'al-2br',    R(1005, 755, 1045, 797), 'east'),
     );
 
-    /* ---- The site and the building ---------------------------------- */
+    /* ---- The building ------------------------------------------------ */
 
     const features = [
-        /* Ground first: everything else sits on it. */
-        { id: 's-lawn',       kind: 'lawn',    label: '', shape: R(433, 178, 1338, 968) },
-        { id: 's-meridian',   kind: 'road',    label: 'N Meridian Street', shape: R(433, 178, 1338, 240) },
-        { id: 's-86th',       kind: 'road',    label: 'E 86th Street',     shape: R(1275, 178, 1338, 968) },
-        { id: 's-entry-w',    kind: 'road',    label: '', shape: R(470, 240, 520, 300) },
-        { id: 's-entry-n',    kind: 'road',    label: '', shape: R(1035, 240, 1080, 300) },
-        { id: 's-drive-top',  kind: 'road',    label: '', shape: R(470, 300, 1200, 345) },
-        { id: 's-drive-e',    kind: 'road',    label: '', shape: R(1150, 300, 1200, 900) },
-        { id: 's-drive-s',    kind: 'road',    label: '', shape: R(1050, 855, 1275, 900) },
-        { id: 's-drive-bldg', kind: 'road',    label: '', shape: R(1105, 345, 1150, 505) },
-        { id: 's-park-1',     kind: 'parking', label: 'Parking', shape: R(520, 352, 765, 388) },
-        { id: 's-park-2',     kind: 'parking', label: '', shape: R(900, 352, 1000, 388) },
-        { id: 's-park-3',     kind: 'parking', label: 'Parking', shape: R(1108, 505, 1145, 625) },
-        { id: 's-park-4',     kind: 'parking', label: 'Overflow parking', shape: R(1108, 660, 1148, 790) },
-
+        ...site(1),
         /* The building: one outline so the wings read as one place. */
         { id: 'b-outline', kind: 'building', label: '', shape: P(
             [595, 395], [1090, 395], [1090, 465], [1105, 465], [1105, 800],
@@ -327,6 +338,112 @@ function floorOne() {
     };
 }
 
+
+/* ------------------------------------------------------------- floor two */
+
+/**
+ * Assisted living only. The memory care household is single-storey (its
+ * ring is roof up here), but the row along Meridian and the commons carry a
+ * second floor, so floor 2 wraps around the memory care courtyard from
+ * above and runs down the 86th Street wing.
+ */
+function floorTwo() {
+    const units = [];
+
+    /* Row along Meridian. */
+    units.push(
+        unit('231', 'al-2br',    R(650, 400, 700, 440), 'west'),
+        unit('229', 'al-studio', R(700, 400, 735, 436), 'west'),
+        unit('227', 'al-1br',    R(735, 400, 770, 436), 'west'),
+        unit('225', 'al-1br',    R(770, 400, 805, 436), 'west'),
+        unit('223', 'al-studio', R(805, 400, 840, 436), 'west'),
+        unit('222', 'al-studio', R(840, 400, 870, 436), 'west'),
+        unit('220', 'al-1br',    R(870, 400, 905, 436), 'west'),
+        unit('218', 'al-1br',    R(920, 400, 952, 436), 'west'),
+        unit('217', 'al-studio', R(952, 400, 985, 436), 'west'),
+        unit('216', 'al-1br',    R(985, 400, 1015, 436), 'west'),
+    );
+    /* Second row, over the memory care courtyard. */
+    units.push(
+        unit('239', 'al-1br',    R(637, 450, 672, 490), 'courtyard'),
+        unit('230', 'al-studio', R(672, 450, 708, 490), 'courtyard'),
+        unit('228', 'al-1br',    R(708, 450, 745, 490), 'courtyard'),
+        unit('226', 'al-studio', R(745, 450, 780, 490), 'courtyard'),
+        unit('224', 'al-1br',    R(780, 450, 825, 480), 'courtyard'),
+    );
+    /* Two columns either side of the hall above the memory care living rooms. */
+    units.push(
+        unit('232', 'al-studio', R(795, 480, 830, 515), 'courtyard'),
+        unit('234', 'al-studio', R(795, 520, 830, 552), 'courtyard'),
+        unit('236', 'al-studio', R(795, 555, 830, 590), 'courtyard'),
+        unit('238', 'al-1br',    R(795, 590, 830, 630), 'courtyard'),
+        unit('233', 'al-1br',    R(845, 500, 885, 535), 'courtyard'),
+        unit('235', 'al-1br',    R(845, 540, 885, 575), 'courtyard'),
+        unit('237', 'al-studio', R(845, 580, 885, 615), 'courtyard'),
+        unit('221', 'al-studio', R(880, 445, 915, 480), 'courtyard'),
+        unit('219', 'al-studio', R(920, 465, 955, 500), 'courtyard'),
+    );
+    /* 86th Street wing. */
+    units.push(
+        unit('201', 'al-studio', R(1058, 475, 1095, 505), 'north'),
+        unit('202', 'al-studio', R(1058, 505, 1095, 533), 'north'),
+        unit('203', 'al-1br',    R(1058, 535, 1095, 566), 'north'),
+        unit('204', 'al-1br',    R(1058, 570, 1095, 600), 'north'),
+        unit('206', 'al-1br',    R(1058, 605, 1095, 640), 'north'),
+        unit('210', 'al-1br',    R(1058, 650, 1095, 688), 'north'),
+        unit('212', 'al-1br',    R(1058, 700, 1095, 740), 'north'),
+        unit('214', 'al-2br',    R(1058, 745, 1095, 795), 'east'),
+        unit('205', 'al-studio', R(1005, 565, 1042, 598), 'courtyard'),
+        unit('207', 'al-1br',    R(1005, 600, 1042, 640), 'courtyard'),
+        unit('209', 'al-studio', R(1005, 645, 1042, 680), 'courtyard'),
+        unit('211', 'al-studio', R(1005, 685, 1042, 716), 'courtyard'),
+        unit('213', 'al-studio', R(1005, 720, 1042, 750), 'courtyard'),
+        unit('215', 'al-2br',    R(995, 755, 1042, 797), 'east'),
+    );
+
+    const features = [
+        ...site(2),
+
+        /* What is below: the memory care household's roof, and the courtyard
+           it opens onto, seen from above. */
+        { id: 'b2-outline', kind: 'building', label: '', shape: P(
+            [637, 395], [1090, 395], [1090, 465], [1100, 465], [1100, 800],
+            [995, 800], [995, 630], [795, 630], [795, 495], [637, 495],
+        ) },
+        { id: 'f2-roof-mc',    kind: 'roof',    label: 'Roof',  shape: P([575, 440], [637, 440], [637, 495], [795, 495], [795, 640], [575, 640]) },
+        { id: 'f2-roof-mid',   kind: 'roof',    label: 'Roof',  shape: R(890, 515, 1000, 565) },
+        { id: 'f2-courtyard',  kind: 'outdoor', label: 'Memory care courtyard', shape: R(688, 494, 795, 548) },
+
+        /* Halls. */
+        { id: 'f2-hall-top',   kind: 'corridor', label: '', shape: R(650, 436, 1040, 450) },
+        { id: 'f2-hall-mid',   kind: 'corridor', label: '', shape: R(830, 480, 845, 630) },
+        { id: 'f2-hall-al',    kind: 'corridor', label: '', shape: R(1042, 475, 1058, 800) },
+
+        /* The commons, upstairs. */
+        { id: 'f2-nurses',     kind: 'staff',    label: 'Nurses station', shape: R(845, 450, 890, 470) },
+        { id: 'f2-spa',        kind: 'amenity',  label: 'Spa',            shape: R(845, 470, 870, 490) },
+        { id: 'f2-laundry',    kind: 'staff',    label: 'Laundry',        shape: R(870, 480, 890, 500) },
+        { id: 'f2-theater',    kind: 'amenity',  label: 'Theater',        shape: R(955, 450, 1000, 495) },
+        { id: 'f2-activities', kind: 'amenity',  label: 'Activities',     shape: R(960, 495, 1005, 520) },
+        { id: 'f2-balcony',    kind: 'outdoor',  label: 'Balcony',        shape: R(1005, 450, 1040, 478) },
+        { id: 'f2-salon',      kind: 'amenity',  label: 'Salon',          shape: R(1005, 480, 1040, 515) },
+        { id: 'f2-library',    kind: 'amenity',  label: 'Library',        shape: R(1005, 535, 1042, 565) },
+        { id: 'f2-lift',       kind: 'vertical', label: 'Elevator',       shape: R(940, 445, 955, 465) },
+        { id: 'f2-stairs-w',   kind: 'vertical', label: 'Stairs',         shape: R(845, 615, 885, 630) },
+        { id: 'f2-stairs-e',   kind: 'vertical', label: 'Stairs',         shape: R(1042, 760, 1058, 797) },
+    ];
+
+    return {
+        id: 'tcom-l2',
+        name: 'Floor 2',
+        ordinal: 2,
+        plan: { image: null, width: W, height: H },
+        north: 'right',
+        units,
+        features,
+    };
+}
+
 /* ------------------------------------------------------------ community */
 
 const community = {
@@ -365,12 +482,12 @@ const community = {
         name: 'The Commons on Meridian',
         shortName: 'Commons',
         blurb: 'One building, two wings: a secured memory care household around its own courtyard, and assisted living along 86th Street, joined by the dining rooms, bistro and salon.',
-        levels: [floorOne()],
+        levels: [floorOne(), floorTwo()],
     }],
     legalNote: 'Rates shown are a starting point and change with availability. The care charge is set by a nurse assessment before move-in.',
     confirmedAt: '2026-09-23T00:00:00.000Z',
     placeholder: {
-        note: 'Geometry, suite numbers, care levels, layout and view names, amenity names and five listed availabilities are from the community’s current map. Rates other than 101/102/103/106, care charges, fees, per-suite layouts and other availabilities are placeholders. Floor 2 is not yet drawn.',
+        note: 'Geometry, suite numbers, care levels, layout and view names, amenity names and nine listed availabilities are from the community’s current map. Rates other than 101/102/103/106/201/202/203, care charges, fees, per-suite layouts and other availabilities are placeholders.',
     },
 };
 

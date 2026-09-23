@@ -92,6 +92,7 @@
     --color-plan-road:     #d3d8d6;
     --color-plan-parking:  #e6e9e8;
     --color-plan-building: #ffffff;
+    --color-plan-roof:     #e9ecea;
 
     --shadow-map-panel: 0 8px 40px rgba(31, 42, 51, 0.14);
 }

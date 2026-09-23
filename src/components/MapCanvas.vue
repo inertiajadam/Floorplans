@@ -320,6 +320,7 @@ defineExpose({ focusUnit });
 .feature--road     { fill: var(--color-plan-road); stroke: none; }
 .feature--parking  { fill: var(--color-plan-parking); stroke: none; }
 .feature--building { fill: var(--color-plan-building); }
+.feature--roof     { fill: var(--color-plan-roof); }
 .feature-label {
     fill: var(--color-ink-light);
     font-family: var(--font-sans);

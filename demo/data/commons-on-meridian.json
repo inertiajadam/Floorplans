@@ -1864,7 +1864,7 @@
           ],
           "features": [
             {
-              "id": "s-lawn",
+              "id": "s1-lawn",
               "kind": "lawn",
               "label": "",
               "shape": [
@@ -1879,7 +1879,7 @@
               ]
             },
             {
-              "id": "s-meridian",
+              "id": "s1-meridian",
               "kind": "road",
               "label": "N Meridian Street",
               "shape": [
@@ -1894,7 +1894,7 @@
               ]
             },
             {
-              "id": "s-86th",
+              "id": "s1-86th",
               "kind": "road",
               "label": "E 86th Street",
               "shape": [
@@ -1909,7 +1909,7 @@
               ]
             },
             {
-              "id": "s-entry-w",
+              "id": "s1-entry-w",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1924,7 +1924,7 @@
               ]
             },
             {
-              "id": "s-entry-n",
+              "id": "s1-entry-n",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1939,7 +1939,7 @@
               ]
             },
             {
-              "id": "s-drive-top",
+              "id": "s1-drive-top",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1954,7 +1954,7 @@
               ]
             },
             {
-              "id": "s-drive-e",
+              "id": "s1-drive-e",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1969,7 +1969,7 @@
               ]
             },
             {
-              "id": "s-drive-s",
+              "id": "s1-drive-s",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1984,7 +1984,7 @@
               ]
             },
             {
-              "id": "s-drive-bldg",
+              "id": "s1-drive-bldg",
               "kind": "road",
               "label": "",
               "shape": [
@@ -1999,7 +1999,7 @@
               ]
             },
             {
-              "id": "s-park-1",
+              "id": "s1-park-1",
               "kind": "parking",
               "label": "Parking",
               "shape": [
@@ -2014,7 +2014,7 @@
               ]
             },
             {
-              "id": "s-park-2",
+              "id": "s1-park-2",
               "kind": "parking",
               "label": "",
               "shape": [
@@ -2029,7 +2029,7 @@
               ]
             },
             {
-              "id": "s-park-3",
+              "id": "s1-park-3",
               "kind": "parking",
               "label": "Parking",
               "shape": [
@@ -2044,7 +2044,7 @@
               ]
             },
             {
-              "id": "s-park-4",
+              "id": "s1-park-4",
               "kind": "parking",
               "label": "Overflow parking",
               "shape": [
@@ -2540,6 +2540,1731 @@
               ]
             }
           ]
+        },
+        {
+          "id": "tcom-l2",
+          "name": "Floor 2",
+          "ordinal": 2,
+          "plan": {
+            "image": null,
+            "width": 1810,
+            "height": 1580
+          },
+          "north": "right",
+          "units": [
+            {
+              "id": "tcom-231",
+              "number": "231",
+              "layoutId": "al-2br",
+              "shape": [
+                434,
+                444,
+                534,
+                444,
+                534,
+                524,
+                434,
+                524
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 6450,
+              "sqft": 860,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-11-13"
+            },
+            {
+              "id": "tcom-229",
+              "number": "229",
+              "layoutId": "al-studio",
+              "shape": [
+                534,
+                444,
+                604,
+                444,
+                604,
+                516,
+                534,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-11-07"
+            },
+            {
+              "id": "tcom-227",
+              "number": "227",
+              "layoutId": "al-1br",
+              "shape": [
+                604,
+                444,
+                674,
+                444,
+                674,
+                516,
+                604,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "held",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-225",
+              "number": "225",
+              "layoutId": "al-1br",
+              "shape": [
+                674,
+                444,
+                744,
+                444,
+                744,
+                516,
+                674,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-223",
+              "number": "223",
+              "layoutId": "al-studio",
+              "shape": [
+                744,
+                444,
+                814,
+                444,
+                814,
+                516,
+                744,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-222",
+              "number": "222",
+              "layoutId": "al-studio",
+              "shape": [
+                814,
+                444,
+                874,
+                444,
+                874,
+                516,
+                814,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-220",
+              "number": "220",
+              "layoutId": "al-1br",
+              "shape": [
+                874,
+                444,
+                944,
+                444,
+                944,
+                516,
+                874,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-218",
+              "number": "218",
+              "layoutId": "al-1br",
+              "shape": [
+                974,
+                444,
+                1038,
+                444,
+                1038,
+                516,
+                974,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-217",
+              "number": "217",
+              "layoutId": "al-studio",
+              "shape": [
+                1038,
+                444,
+                1104,
+                444,
+                1104,
+                516,
+                1038,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-216",
+              "number": "216",
+              "layoutId": "al-1br",
+              "shape": [
+                1104,
+                444,
+                1164,
+                444,
+                1164,
+                516,
+                1104,
+                516
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-10-25"
+            },
+            {
+              "id": "tcom-239",
+              "number": "239",
+              "layoutId": "al-1br",
+              "shape": [
+                408,
+                544,
+                478,
+                544,
+                478,
+                624,
+                408,
+                624
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-11-18"
+            },
+            {
+              "id": "tcom-230",
+              "number": "230",
+              "layoutId": "al-studio",
+              "shape": [
+                478,
+                544,
+                550,
+                544,
+                550,
+                624,
+                478,
+                624
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-228",
+              "number": "228",
+              "layoutId": "al-1br",
+              "shape": [
+                550,
+                544,
+                624,
+                544,
+                624,
+                624,
+                550,
+                624
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-226",
+              "number": "226",
+              "layoutId": "al-studio",
+              "shape": [
+                624,
+                544,
+                694,
+                544,
+                694,
+                624,
+                624,
+                624
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-224",
+              "number": "224",
+              "layoutId": "al-1br",
+              "shape": [
+                694,
+                544,
+                784,
+                544,
+                784,
+                604,
+                694,
+                604
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-232",
+              "number": "232",
+              "layoutId": "al-studio",
+              "shape": [
+                724,
+                604,
+                794,
+                604,
+                794,
+                674,
+                724,
+                674
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-234",
+              "number": "234",
+              "layoutId": "al-studio",
+              "shape": [
+                724,
+                684,
+                794,
+                684,
+                794,
+                748,
+                724,
+                748
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-236",
+              "number": "236",
+              "layoutId": "al-studio",
+              "shape": [
+                724,
+                754,
+                794,
+                754,
+                794,
+                824,
+                724,
+                824
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-238",
+              "number": "238",
+              "layoutId": "al-1br",
+              "shape": [
+                724,
+                824,
+                794,
+                824,
+                794,
+                904,
+                724,
+                904
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-233",
+              "number": "233",
+              "layoutId": "al-1br",
+              "shape": [
+                824,
+                644,
+                904,
+                644,
+                904,
+                714,
+                824,
+                714
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-235",
+              "number": "235",
+              "layoutId": "al-1br",
+              "shape": [
+                824,
+                724,
+                904,
+                724,
+                904,
+                794,
+                824,
+                794
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-237",
+              "number": "237",
+              "layoutId": "al-studio",
+              "shape": [
+                824,
+                804,
+                904,
+                804,
+                904,
+                874,
+                824,
+                874
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "held",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-221",
+              "number": "221",
+              "layoutId": "al-studio",
+              "shape": [
+                894,
+                534,
+                964,
+                534,
+                964,
+                604,
+                894,
+                604
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-219",
+              "number": "219",
+              "layoutId": "al-studio",
+              "shape": [
+                974,
+                574,
+                1044,
+                574,
+                1044,
+                644,
+                974,
+                644
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-201",
+              "number": "201",
+              "layoutId": "al-studio",
+              "shape": [
+                1250,
+                594,
+                1324,
+                594,
+                1324,
+                654,
+                1250,
+                654
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-202",
+              "number": "202",
+              "layoutId": "al-studio",
+              "shape": [
+                1250,
+                654,
+                1324,
+                654,
+                1324,
+                710,
+                1250,
+                710
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3825,
+              "sqft": 380,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-203",
+              "number": "203",
+              "layoutId": "al-1br",
+              "shape": [
+                1250,
+                714,
+                1324,
+                714,
+                1324,
+                776,
+                1250,
+                776
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-204",
+              "number": "204",
+              "layoutId": "al-1br",
+              "shape": [
+                1250,
+                784,
+                1324,
+                784,
+                1324,
+                844,
+                1250,
+                844
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-206",
+              "number": "206",
+              "layoutId": "al-1br",
+              "shape": [
+                1250,
+                854,
+                1324,
+                854,
+                1324,
+                924,
+                1250,
+                924
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "waitlist",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "waitlistCount": 3
+            },
+            {
+              "id": "tcom-210",
+              "number": "210",
+              "layoutId": "al-1br",
+              "shape": [
+                1250,
+                944,
+                1324,
+                944,
+                1324,
+                1020,
+                1250,
+                1020
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-212",
+              "number": "212",
+              "layoutId": "al-1br",
+              "shape": [
+                1250,
+                1044,
+                1324,
+                1044,
+                1324,
+                1124,
+                1250,
+                1124
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "North/86th Street View",
+              "features": [
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-214",
+              "number": "214",
+              "layoutId": "al-2br",
+              "shape": [
+                1250,
+                1134,
+                1324,
+                1134,
+                1324,
+                1234,
+                1250,
+                1234
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 6450,
+              "sqft": 860,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-205",
+              "number": "205",
+              "layoutId": "al-studio",
+              "shape": [
+                1144,
+                774,
+                1218,
+                774,
+                1218,
+                840,
+                1144,
+                840
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-207",
+              "number": "207",
+              "layoutId": "al-1br",
+              "shape": [
+                1144,
+                844,
+                1218,
+                844,
+                1218,
+                924,
+                1144,
+                924
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-209",
+              "number": "209",
+              "layoutId": "al-studio",
+              "shape": [
+                1144,
+                934,
+                1218,
+                934,
+                1218,
+                1004,
+                1144,
+                1004
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-211",
+              "number": "211",
+              "layoutId": "al-studio",
+              "shape": [
+                1144,
+                1014,
+                1218,
+                1014,
+                1218,
+                1076,
+                1144,
+                1076
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-10-16"
+            },
+            {
+              "id": "tcom-213",
+              "number": "213",
+              "layoutId": "al-studio",
+              "shape": [
+                1144,
+                1084,
+                1218,
+                1084,
+                1218,
+                1144,
+                1144,
+                1144
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-215",
+              "number": "215",
+              "layoutId": "al-2br",
+              "shape": [
+                1124,
+                1154,
+                1218,
+                1154,
+                1218,
+                1238,
+                1124,
+                1238
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 6450,
+              "sqft": 860,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            }
+          ],
+          "features": [
+            {
+              "id": "s2-lawn",
+              "kind": "lawn",
+              "label": "",
+              "shape": [
+                0,
+                0,
+                1810,
+                0,
+                1810,
+                1580,
+                0,
+                1580
+              ]
+            },
+            {
+              "id": "s2-meridian",
+              "kind": "road",
+              "label": "N Meridian Street",
+              "shape": [
+                0,
+                0,
+                1810,
+                0,
+                1810,
+                124,
+                0,
+                124
+              ]
+            },
+            {
+              "id": "s2-86th",
+              "kind": "road",
+              "label": "E 86th Street",
+              "shape": [
+                1684,
+                0,
+                1810,
+                0,
+                1810,
+                1580,
+                1684,
+                1580
+              ]
+            },
+            {
+              "id": "s2-entry-w",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                74,
+                124,
+                174,
+                124,
+                174,
+                244,
+                74,
+                244
+              ]
+            },
+            {
+              "id": "s2-entry-n",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1204,
+                124,
+                1294,
+                124,
+                1294,
+                244,
+                1204,
+                244
+              ]
+            },
+            {
+              "id": "s2-drive-top",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                74,
+                244,
+                1534,
+                244,
+                1534,
+                334,
+                74,
+                334
+              ]
+            },
+            {
+              "id": "s2-drive-e",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1434,
+                244,
+                1534,
+                244,
+                1534,
+                1444,
+                1434,
+                1444
+              ]
+            },
+            {
+              "id": "s2-drive-s",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1234,
+                1354,
+                1684,
+                1354,
+                1684,
+                1444,
+                1234,
+                1444
+              ]
+            },
+            {
+              "id": "s2-drive-bldg",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1344,
+                334,
+                1434,
+                334,
+                1434,
+                654,
+                1344,
+                654
+              ]
+            },
+            {
+              "id": "s2-park-1",
+              "kind": "parking",
+              "label": "Parking",
+              "shape": [
+                174,
+                348,
+                664,
+                348,
+                664,
+                420,
+                174,
+                420
+              ]
+            },
+            {
+              "id": "s2-park-2",
+              "kind": "parking",
+              "label": "",
+              "shape": [
+                934,
+                348,
+                1134,
+                348,
+                1134,
+                420,
+                934,
+                420
+              ]
+            },
+            {
+              "id": "s2-park-3",
+              "kind": "parking",
+              "label": "Parking",
+              "shape": [
+                1350,
+                654,
+                1424,
+                654,
+                1424,
+                894,
+                1350,
+                894
+              ]
+            },
+            {
+              "id": "s2-park-4",
+              "kind": "parking",
+              "label": "Overflow parking",
+              "shape": [
+                1350,
+                964,
+                1430,
+                964,
+                1430,
+                1224,
+                1350,
+                1224
+              ]
+            },
+            {
+              "id": "b2-outline",
+              "kind": "building",
+              "label": "",
+              "shape": [
+                408,
+                434,
+                1314,
+                434,
+                1314,
+                574,
+                1334,
+                574,
+                1334,
+                1244,
+                1124,
+                1244,
+                1124,
+                904,
+                724,
+                904,
+                724,
+                634,
+                408,
+                634
+              ]
+            },
+            {
+              "id": "f2-roof-mc",
+              "kind": "roof",
+              "label": "Roof",
+              "shape": [
+                284,
+                524,
+                408,
+                524,
+                408,
+                634,
+                724,
+                634,
+                724,
+                924,
+                284,
+                924
+              ]
+            },
+            {
+              "id": "f2-roof-mid",
+              "kind": "roof",
+              "label": "Roof",
+              "shape": [
+                914,
+                674,
+                1134,
+                674,
+                1134,
+                774,
+                914,
+                774
+              ]
+            },
+            {
+              "id": "f2-courtyard",
+              "kind": "outdoor",
+              "label": "Memory care courtyard",
+              "shape": [
+                510,
+                632,
+                724,
+                632,
+                724,
+                740,
+                510,
+                740
+              ]
+            },
+            {
+              "id": "f2-hall-top",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                434,
+                516,
+                1214,
+                516,
+                1214,
+                544,
+                434,
+                544
+              ]
+            },
+            {
+              "id": "f2-hall-mid",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                794,
+                604,
+                824,
+                604,
+                824,
+                904,
+                794,
+                904
+              ]
+            },
+            {
+              "id": "f2-hall-al",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                1218,
+                594,
+                1250,
+                594,
+                1250,
+                1244,
+                1218,
+                1244
+              ]
+            },
+            {
+              "id": "f2-nurses",
+              "kind": "staff",
+              "label": "Nurses station",
+              "shape": [
+                824,
+                544,
+                914,
+                544,
+                914,
+                584,
+                824,
+                584
+              ]
+            },
+            {
+              "id": "f2-spa",
+              "kind": "amenity",
+              "label": "Spa",
+              "shape": [
+                824,
+                584,
+                874,
+                584,
+                874,
+                624,
+                824,
+                624
+              ]
+            },
+            {
+              "id": "f2-laundry",
+              "kind": "staff",
+              "label": "Laundry",
+              "shape": [
+                874,
+                604,
+                914,
+                604,
+                914,
+                644,
+                874,
+                644
+              ]
+            },
+            {
+              "id": "f2-theater",
+              "kind": "amenity",
+              "label": "Theater",
+              "shape": [
+                1044,
+                544,
+                1134,
+                544,
+                1134,
+                634,
+                1044,
+                634
+              ]
+            },
+            {
+              "id": "f2-activities",
+              "kind": "amenity",
+              "label": "Activities",
+              "shape": [
+                1054,
+                634,
+                1144,
+                634,
+                1144,
+                684,
+                1054,
+                684
+              ]
+            },
+            {
+              "id": "f2-balcony",
+              "kind": "outdoor",
+              "label": "Balcony",
+              "shape": [
+                1144,
+                544,
+                1214,
+                544,
+                1214,
+                600,
+                1144,
+                600
+              ]
+            },
+            {
+              "id": "f2-salon",
+              "kind": "amenity",
+              "label": "Salon",
+              "shape": [
+                1144,
+                604,
+                1214,
+                604,
+                1214,
+                674,
+                1144,
+                674
+              ]
+            },
+            {
+              "id": "f2-library",
+              "kind": "amenity",
+              "label": "Library",
+              "shape": [
+                1144,
+                714,
+                1218,
+                714,
+                1218,
+                774,
+                1144,
+                774
+              ]
+            },
+            {
+              "id": "f2-lift",
+              "kind": "vertical",
+              "label": "Elevator",
+              "shape": [
+                1014,
+                534,
+                1044,
+                534,
+                1044,
+                574,
+                1014,
+                574
+              ]
+            },
+            {
+              "id": "f2-stairs-w",
+              "kind": "vertical",
+              "label": "Stairs",
+              "shape": [
+                824,
+                874,
+                904,
+                874,
+                904,
+                904,
+                824,
+                904
+              ]
+            },
+            {
+              "id": "f2-stairs-e",
+              "kind": "vertical",
+              "label": "Stairs",
+              "shape": [
+                1218,
+                1164,
+                1250,
+                1164,
+                1250,
+                1238,
+                1218,
+                1238
+              ]
+            }
+          ]
         }
       ]
     }
@@ -2547,6 +4272,6 @@
   "legalNote": "Rates shown are a starting point and change with availability. The care charge is set by a nurse assessment before move-in.",
   "confirmedAt": "2026-09-23T00:00:00.000Z",
   "placeholder": {
-    "note": "Geometry, suite numbers, care levels, layout and view names, amenity names and five listed availabilities are from the community’s current map. Rates other than 101/102/103/106, care charges, fees, per-suite layouts and other availabilities are placeholders. Floor 2 is not yet drawn."
+    "note": "Geometry, suite numbers, care levels, layout and view names, amenity names and nine listed availabilities are from the community’s current map. Rates other than 101/102/103/106/201/202/203, care charges, fees, per-suite layouts and other availabilities are placeholders."
   }
 }
