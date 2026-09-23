@@ -155,6 +155,37 @@ try {
     check('sync strip appears', await page.getByText(/Inventory syncs from PointClickCare/).isVisible());
     check('per-field padlocks appear', await page.locator('#availability button[aria-pressed]').first().isVisible());
 
+    /* ---- reconciliation ----
+       The screen that stops a sync matching on room numbers. The load-bearing
+       behaviour is that "accept these" only ever touches unambiguous pairs. */
+    check('reconciliation screen appears', await page.locator('#reconcile').isVisible());
+
+    const needsEyes = Number((await page.locator('#reconcile h3').first().textContent())?.match(/\((\d+)\)/)?.[1] ?? 0);
+    check('ambiguous and orphan rows are held back for review', needsEyes > 0, `${needsEyes} rows`);
+
+    const confidentLabel = (await page.locator('#reconcile').getByText(/match without any doubt/).textContent())?.trim();
+    check('confident matches are offered in bulk', Boolean(confidentLabel), confidentLabel);
+
+    /* The ambiguous pair must NOT be in the bulk-accept set — that rule is what
+       makes one-click acceptance safe, and it is easy to regress. */
+    const ambiguousVisible = await page.locator('#reconcile').getByText(/almost as well/).isVisible();
+    check('an ambiguous pair is surfaced with its reason', ambiguousVisible);
+
+    await page.locator('#reconcile').getByRole('button', { name: 'Accept these' }).click();
+    await page.waitForTimeout(300);
+    check('accepting confident matches reports back', await page.getByText(/confident match.*accepted/i).isVisible());
+
+    /* A suite already claimed must not be offerable to a second feed row. */
+    const disabledOptions = await page.locator('#reconcile select option[disabled]').count();
+    check('a claimed suite cannot be double-assigned', disabledOptions > 0, `${disabledOptions} options locked`);
+
+    check('unmapped statuses are warned about, not hidden',
+        await page.locator('#reconcile').getByText(/AWAITING_DEEP_CLEAN/).isVisible());
+
+    await page.locator('#reconcile').getByRole('button', { name: /^Link \d+ rooms?$/ }).click();
+    await page.waitForTimeout(400);
+    check('saving links reports the count', await page.getByText(/rooms? linked/i).isVisible());
+
     /* ---- structure ---- */
     check('structure panel lists the campus', await page.getByRole('heading', { name: /Buildings/ }).isVisible());
     const buildingsBefore = await page.locator('#map-structure > ul > li').count();

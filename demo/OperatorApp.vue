@@ -16,6 +16,7 @@ import { computed, ref } from 'vue';
 import AvailabilityPanel from '../src/operator/AvailabilityPanel.vue';
 import PricingPanel from '../src/operator/PricingPanel.vue';
 import StructurePanel from '../src/operator/StructurePanel.vue';
+import ReconcilePanel from '../src/operator/ReconcilePanel.vue';
 import raw from './data/willow-creek.json';
 
 /* ------------------------------------------------------- build the roster */
@@ -146,6 +147,57 @@ const map = computed(() => ({
     settings: { ...settings.value, inventory_source: syncMode.value ? 'pms' : 'manual', pms_provider: syncMode.value ? 'PointClickCare' : null, last_sync_at: syncMode.value ? daysAgo(0) : null },
 }));
 
+/*
+ | A mock reconciliation payload, shaped exactly like
+ | App\Support\Inventory\Reconciliation::preview(). Built from the real roster
+ | so the pairings are recognisable, and seeded with the three cases that
+ | matter: clean matches, an ambiguous one, and rooms on each side the other
+ | does not know about.
+ */
+const reconcile = computed(() => {
+    const suites = units.value.slice(0, 14);
+    const pairs = suites.slice(0, 10).map((u, i) => ({
+        externalId: `PCC-${1000 + i}`,
+        feedLabel: i % 4 === 3 ? `${u.number}-A` : u.number,
+        feedBuilding: u.building,
+        unitId: u.id,
+        unitNumber: u.number,
+        unitBuilding: u.building,
+        unitLevel: u.level,
+        score: i === 6 ? 0.93 : 1,
+        confidence: i === 6 ? 'low' : 'high',
+        ambiguous: i === 6,
+        reason: i === 6
+            ? 'Exact number, but another suite matches almost as well — check this one'
+            : 'Exact number, same building',
+    }));
+
+    return {
+        provider: 'pointclickcare',
+        providerLabel: 'PointClickCare',
+        feedCount: 12,
+        suiteCount: units.value.length,
+        unreadable: 1,
+        unknownStatuses: ['AWAITING_DEEP_CLEAN'],
+        pairs,
+        unmatchedFeed: [
+            { externalId: 'PCC-2001', label: 'Annexe Suite 9001', building: 'Annexe', floor: '1' },
+            { externalId: 'PCC-2002', label: 'Rm 77', building: null, floor: null },
+        ],
+        unmatchedSuites: suites.slice(10, 14).map((u) => ({
+            unitId: u.id, number: u.number, building: u.building, level: u.level,
+        })),
+        counts: {
+            high: pairs.filter((p) => p.confidence === 'high').length,
+            medium: 0,
+            low: pairs.filter((p) => p.confidence === 'low').length,
+            confirmed: 0,
+            unmatchedFeed: 2,
+            unmatchedSuites: 4,
+        },
+    };
+});
+
 const log = ref([]);
 
 /* ----------------------------------------------------------- the contract */
@@ -225,6 +277,13 @@ async function submit(action, payload) {
             if (b) b.levels.push({ id: `${b.id}-${b.levels.length + 1}`, name: payload.name, ordinal: payload.ordinal ?? b.levels.length + 1, units: 0 });
             break;
         }
+        case 'reconcile.save': {
+            const linked = Object.values(payload.links).filter((v) => v !== null && v !== '').length;
+            if (linked === 0) throw new Error('Nothing is linked yet, so there would be nothing to sync.');
+            break;
+        }
+        case 'reconcile.refresh':
+            break;
         case 'level.import': {
             let parsed;
             try {
@@ -267,6 +326,7 @@ async function submit(action, payload) {
             </header>
 
             <div class="space-y-5">
+                <ReconcilePanel v-if="syncMode" :reconcile="reconcile" :submit="submit" />
                 <AvailabilityPanel :map="map" :community-id="1" :submit="submit" />
                 <PricingPanel :map="map" :submit="submit" />
                 <StructurePanel :map="map" :submit="submit" tracer-url="/editor.html" />
