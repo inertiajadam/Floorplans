@@ -15,6 +15,11 @@
 <template>
     <svg aria-hidden="true" focusable="false" class="absolute h-0 w-0 overflow-hidden" style="position:absolute">
         <defs>
+            <!-- The building sits a hair above the site: a soft, cool shadow
+                 so the plan is read as an object on the ground. -->
+            <filter id="plan-lift" x="-5%" y="-5%" width="110%" height="115%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#2b3a44" flood-opacity="0.16" />
+            </filter>
             <!-- Rising diagonal, densest of the set: available, the state we most want to read at a glance. -->
             <pattern id="hatch-available" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <rect width="8" height="8" fill="var(--color-status-available-fill)" />

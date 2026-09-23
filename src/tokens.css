@@ -51,8 +51,12 @@
     --color-terra:       #4f8e78;
     --color-terra-light: #e6f2ed;
 
-    --font-sans:  "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    --font-serif: "Recoleta", Georgia, "Times New Roman", serif;
+    /* Source Sans 3 and Source Serif 4 — Adobe Originals (Paul D. Hunt;
+       Frank Grießhammer), open licence, served from Google Fonts so they
+       work anywhere the map does. Chosen for older readers: open apertures,
+       a generous x-height, tabular figures for suite numbers and rates. */
+    --font-sans:  "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
     --radius-brand: 10px;
     --radius-card:  20px;
@@ -82,17 +86,17 @@
     --color-status-occupied-fill:  #eef1f3;
 
     /* Non-unit areas on the plan. */
-    --color-plan-corridor: #f1f4f3;
-    --color-plan-amenity:  #e4ece8;
-    --color-plan-outdoor:  #e3efe0;
-    --color-plan-staff:    #eceff1;
-    --color-plan-wall:     #c3cdc9;
+    --color-plan-corridor: #f6f5f1;
+    --color-plan-amenity:  #ebeee7;
+    --color-plan-outdoor:  #dfe9d5;
+    --color-plan-staff:    #eeecea;
+    --color-plan-wall:     #b9c2bd;
     /* Site plans. */
-    --color-plan-lawn:     #dfe9d8;
-    --color-plan-road:     #d3d8d6;
-    --color-plan-parking:  #e6e9e8;
-    --color-plan-building: #ffffff;
-    --color-plan-roof:     #e9ecea;
+    --color-plan-lawn:     #e1e8d6;
+    --color-plan-road:     #cfd3cf;
+    --color-plan-parking:  #dfe2df;
+    --color-plan-building: #fdfdfb;
+    --color-plan-roof:     #ecebe7;
 
     --shadow-map-panel: 0 8px 40px rgba(31, 42, 51, 0.14);
 }

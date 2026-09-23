@@ -136,7 +136,7 @@ export function parseFloorplannerSvg(svg, { keepDimensions = false } = {}) {
 function buildCleanSvg({ viewBox, rooms, walls, openingsGroup, dimensionsGroup }) {
     const vb = `${n(viewBox.x)} ${n(viewBox.y)} ${n(viewBox.width)} ${n(viewBox.height)}`;
     const roomsMarkup = rooms.flatMap((r) => r.parts.map((pts) =>
-        `<polygon points="${toPoints(pts)}" fill="var(--plan-room, #eef1f3)" stroke="none"/>`)).join('');
+        `<polygon points="${toPoints(pts)}" fill="var(--plan-room, #f3f2ee)" stroke="none"/>`)).join('');
     const wallsMarkup = walls.map((w) =>
         `<polygon points="${toPoints(w)}" fill="var(--plan-wall, #2b3a44)" stroke="none"/>`).join('');
 
@@ -145,7 +145,7 @@ function buildCleanSvg({ viewBox, rooms, walls, openingsGroup, dimensionsGroup }
        wall rather than vanishing into it. */
     const openings = (openingsGroup ?? '')
         .replace(/\sfill="[^"]*"/g, ' fill="var(--plan-opening, #ffffff)"')
-        .replace(/\sstroke="[^"]*"/g, ' stroke="var(--plan-wall, #2b3a44)"');
+        .replace(/\sstroke="[^"]*"/g, ' stroke="var(--plan-wall, #3a4750)"');
 
     return [
         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" role="img" aria-label="Floor plan">`,

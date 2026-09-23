@@ -58,6 +58,24 @@ const labelSize = computed(() => {
     return Math.max(8, Math.min(s, 34));
 });
 const showLabels = computed(() => props.view.zoom.value > 1.25 || props.units.length <= 20);
+/* Room names are wayfinding, not content: a steady ~11 px on screen at any
+   zoom, never the size of the room they sit in. */
+const featureLabelSize = computed(() => Math.max(3, Math.min(11 * props.view.inverseScale.value, 22)));
+
+/* Site plans are drawn the way the community draws them, which is rarely
+   north-up. A small needle in the corner says which way is which. */
+const NORTH = { up: 0, right: 90, down: 180, left: 270 };
+const north = computed(() => {
+    const n = props.level.north;
+    if (n == null) return null;
+    const deg = typeof n === 'number' ? n : NORTH[n];
+    return Number.isFinite(deg) ? { deg } : null;
+});
+const compassSize = computed(() => Math.max(10, Math.min(planWidth.value, planHeight.value) * 0.018));
+const compassAt = computed(() => ({
+    x: planWidth.value - compassSize.value * 3.2,
+    y: planHeight.value - compassSize.value * 3.2,
+}));
 const showDetail = computed(() => props.view.zoom.value > 2.4);
 
 function pts(shape) {
@@ -213,12 +231,17 @@ defineExpose({ focusUnit });
         <!-- 2. the building itself: corridors, shared rooms, gardens -->
         <g class="features" aria-hidden="true">
             <template v-for="f in level.features" :key="f.id">
-                <polygon :points="pts(f.shape)" :class="`feature feature--${f.kind}`" :stroke-width="hair" />
+                <polygon
+                    :points="pts(f.shape)"
+                    :class="`feature feature--${f.kind}`"
+                    :stroke-width="hair"
+                    :filter="f.kind === 'building' ? 'url(#plan-lift)' : undefined"
+                />
                 <text
                     v-if="f.label && showLabels"
                     :x="f.centroid.x" :y="f.centroid.y"
                     class="feature-label"
-                    :font-size="labelSize * 0.82"
+                    :font-size="featureLabelSize"
                     text-anchor="middle" dominant-baseline="middle"
                 >{{ f.label }}</text>
             </template>
@@ -249,7 +272,7 @@ defineExpose({ focusUnit });
                     class="unit__hatch"
                     :fill="`url(#hatch-${rec.unit.status})`"
                 />
-                <polygon :points="pts(rec.unit.shape)" class="unit__stroke" :stroke-width="hair * 1.6" />
+                <polygon :points="pts(rec.unit.shape)" class="unit__stroke" :stroke-width="hair * 1.1" />
 
                 <!-- selection ring, drawn inside so it never overlaps a neighbour -->
                 <polygon
@@ -291,6 +314,13 @@ defineExpose({ focusUnit });
                 </g>
             </g>
         </g>
+
+        <!-- 4. which way is north, when the plan says -->
+        <g v-if="north" class="compass" aria-hidden="true" :transform="`translate(${compassAt.x} ${compassAt.y}) rotate(${north.deg})`">
+            <circle r="0" />
+            <path :d="`M 0 ${-compassSize} L ${compassSize * 0.36} ${compassSize * 0.5} L 0 ${compassSize * 0.2} L ${-compassSize * 0.36} ${compassSize * 0.5} Z`" class="compass__needle" />
+            <text :y="-compassSize * 1.35" :font-size="compassSize * 0.9" text-anchor="middle" dominant-baseline="middle" class="compass__n" :transform="`rotate(${-north.deg} 0 ${-compassSize * 1.35})`">N</text>
+        </g>
     </svg>
 </template>
 
@@ -307,27 +337,35 @@ defineExpose({ focusUnit });
 }
 .map-canvas--panning { cursor: grabbing; }
 
-/* ---- the building ---- */
-.feature { stroke: var(--color-plan-wall); }
+/* ---- the building ----
+   Rooms are told apart by tone, not by outline: one hairline around the
+   building and none inside it, so the plan reads as a drawing rather than
+   a grid. Tones sit within a few points of each other on purpose — the
+   suites carry the colour, everything else recedes. */
+.feature { stroke: none; stroke-linejoin: round; }
 .feature--corridor { fill: var(--color-plan-corridor); }
 .feature--amenity  { fill: var(--color-plan-amenity); }
 .feature--outdoor  { fill: var(--color-plan-outdoor); }
 .feature--staff    { fill: var(--color-plan-staff); }
 .feature--vertical { fill: var(--color-plan-staff); }
-/* Site plans: the ground the building sits on. No hairline on the ground
-   itself, or the whole map gets an outline. */
-.feature--lawn     { fill: var(--color-plan-lawn); stroke: none; }
-.feature--road     { fill: var(--color-plan-road); stroke: none; }
-.feature--parking  { fill: var(--color-plan-parking); stroke: none; }
-.feature--building { fill: var(--color-plan-building); }
+.feature--lawn     { fill: var(--color-plan-lawn); }
+.feature--road     { fill: var(--color-plan-road); }
+.feature--parking  { fill: var(--color-plan-parking); }
+.feature--building { fill: var(--color-plan-building); stroke: var(--color-plan-wall); }
 .feature--roof     { fill: var(--color-plan-roof); }
 .feature-label {
     fill: var(--color-ink-light);
     font-family: var(--font-sans);
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     pointer-events: none;
 }
+.feature--road + .feature-label { fill: #fff; }
+
+/* ---- north ---- */
+.compass__needle { fill: var(--color-ink-light); }
+.compass__n { fill: var(--color-ink-light); font-family: var(--font-sans); font-weight: 700; letter-spacing: 0.04em; }
 
 /* ---- suites ---- */
 .unit { outline: none; }
@@ -336,7 +374,7 @@ defineExpose({ focusUnit });
 
 .unit__fill, .unit__hatch, .unit__stroke, .unit__ring { transition: opacity 140ms ease, fill 140ms ease; }
 .unit__hatch { pointer-events: none; }
-.unit__stroke { fill: none; stroke: var(--color-plan-wall); pointer-events: none; }
+.unit__stroke { fill: none; stroke: var(--color-plan-wall); stroke-linejoin: round; pointer-events: none; }
 .unit__ring { fill: none; stroke: var(--color-brand-dark); pointer-events: none; }
 .unit__compare { fill: var(--color-brand-dark); stroke: #fff; stroke-width: 1.5; pointer-events: none; }
 

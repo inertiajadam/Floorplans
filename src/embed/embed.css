@@ -78,17 +78,17 @@
     --color-status-occupied:       #8d9aa3;
     --color-status-occupied-fill:  #eef1f3;
 
-    --color-plan-corridor: #f1f4f3;
-    --color-plan-amenity:  #e4ece8;
-    --color-plan-outdoor:  #e3efe0;
-    --color-plan-staff:    #eceff1;
-    --color-plan-wall:     #c3cdc9;
+    --color-plan-corridor: #f6f5f1;
+    --color-plan-amenity:  #ebeee7;
+    --color-plan-outdoor:  #dfe9d5;
+    --color-plan-staff:    #eeecea;
+    --color-plan-wall:     #b9c2bd;
     /* Site plans. */
-    --color-plan-lawn:     #dfe9d8;
-    --color-plan-road:     #d3d8d6;
-    --color-plan-parking:  #e6e9e8;
-    --color-plan-building: #ffffff;
-    --color-plan-roof:     #e9ecea;
+    --color-plan-lawn:     #e1e8d6;
+    --color-plan-road:     #cfd3cf;
+    --color-plan-parking:  #dfe2df;
+    --color-plan-building: #fdfdfb;
+    --color-plan-roof:     #ecebe7;
 
     /*
      | Fonts: inherit from the host page by default.

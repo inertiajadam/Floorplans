@@ -104,6 +104,8 @@ export function normalize(raw) {
                 ordinal: lv.ordinal ?? 0,
                 buildingId: b.id,
                 plan: lv.plan ?? { image: null, width: 1000, height: 700 },
+                /* 'up' | 'right' | 'down' | 'left' | degrees clockwise from up; null = not stated */
+                north: lv.north ?? null,
                 features,
                 units: levelUnits,
                 /*
