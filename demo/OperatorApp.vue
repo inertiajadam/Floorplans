@@ -3,7 +3,7 @@
  | Demo harness for the operator panels.
  |
  | Stands in for the listing edit page in seniorsplaces-platform. It builds a
- | portalPayload-shaped object from the same Willow Creek dataset the public
+ | portalPayload-shaped object from the same Commons on Meridian dataset the public
  | map uses, and implements the `submit` contract against local state instead
  | of Inertia — so the panels are fully drivable (and browser-testable) with no
  | Laravel behind them.
@@ -17,7 +17,7 @@ import AvailabilityPanel from '../src/operator/AvailabilityPanel.vue';
 import PricingPanel from '../src/operator/PricingPanel.vue';
 import StructurePanel from '../src/operator/StructurePanel.vue';
 import ReconcilePanel from '../src/operator/ReconcilePanel.vue';
-import raw from './data/willow-creek.json';
+import raw from './data/commons-on-meridian.json';
 
 /* ------------------------------------------------------- build the roster */
 
@@ -308,7 +308,7 @@ async function submit(action, payload) {
                 <h1 class="mt-1 font-serif text-[30px] font-bold leading-tight sm:text-[34px]">Your community map</h1>
                 <p class="mt-1.5 max-w-[64ch] text-[15px] leading-relaxed text-ink-mid">
                     What a community operator sees on their listing edit page. Changing a suite saves straight away.
-                    The dataset is the same Willow Creek campus the public map uses, with confirmation dates spread
+                    The dataset is the same Commons on Meridian plan the public map uses, with confirmation dates spread
                     across fresh, ageing and stale so the reminder has something to say.
                 </p>
 

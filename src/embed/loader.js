@@ -2,7 +2,7 @@
  | The snippet a client pastes into their website.
  |
  |   <script type="module" src="https://maps.example.com/v1/embed.js"
- |           data-map="willow-creek-senior-living"></script>
+ |           data-map="the-commons-on-meridian"></script>
  |
  | Everything below is written to one standard: THIS CODE RUNS ON SOMEBODY
  | ELSE'S PAGE. It must be small, it must never block, and it must never throw.
@@ -156,7 +156,7 @@ function boot() {
 
         /* Markup-first alternative, for CMSs that strip script attributes or
            where the map belongs somewhere the snippet cannot sit:
-             <div data-community-map="willow-creek" data-height="700"></div> */
+             <div data-community-map="the-commons-on-meridian" data-height="700"></div> */
         for (const host of document.querySelectorAll('[data-community-map]:not(script)')) {
             if (host.dataset.mounted === '1') continue;
             host.dataset.mounted = '1';

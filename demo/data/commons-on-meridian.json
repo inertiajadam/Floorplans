@@ -1,0 +1,2552 @@
+{
+  "id": 2,
+  "slug": "the-commons-on-meridian",
+  "name": "The Commons on Meridian",
+  "city": "Indianapolis",
+  "state": "IN",
+  "pricingPublic": true,
+  "careLevels": [
+    {
+      "key": "al"
+    },
+    {
+      "key": "mc"
+    }
+  ],
+  "careTiers": [
+    {
+      "key": "al-1",
+      "label": "Level 1",
+      "monthly": 650,
+      "careLevels": [
+        "al"
+      ],
+      "description": "A hand with medication and one or two daily tasks."
+    },
+    {
+      "key": "al-2",
+      "label": "Level 2",
+      "monthly": 1200,
+      "careLevels": [
+        "al"
+      ],
+      "description": "Daily help with dressing, bathing and getting about."
+    },
+    {
+      "key": "al-3",
+      "label": "Level 3",
+      "monthly": 1850,
+      "careLevels": [
+        "al"
+      ],
+      "description": "Substantial help with most activities, several times a day."
+    },
+    {
+      "key": "al-4",
+      "label": "Level 4",
+      "monthly": 2500,
+      "careLevels": [
+        "al"
+      ],
+      "description": "Two-person assistance and full support with daily living."
+    },
+    {
+      "key": "mc-all",
+      "label": "All-inclusive",
+      "monthly": 0,
+      "careLevels": [
+        "mc"
+      ],
+      "description": "Memory care is priced all-in — no separate care levels."
+    }
+  ],
+  "addOns": [
+    {
+      "key": "pet",
+      "label": "Pet rent",
+      "monthly": 50
+    },
+    {
+      "key": "salon",
+      "label": "Salon plan",
+      "monthly": 65
+    },
+    {
+      "key": "transport",
+      "label": "Extra transport",
+      "monthly": 95
+    }
+  ],
+  "fees": {
+    "community": 3500,
+    "secondPerson": 1200,
+    "petDeposit": 500
+  },
+  "layouts": [
+    {
+      "id": "al-studio",
+      "name": "Assisted Living – Studio",
+      "roomType": "studio",
+      "typeLabel": "Studio",
+      "sqft": 380,
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "description": "A single room with a kitchenette, a walk-in shower and a window seat.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    },
+    {
+      "id": "al-1br",
+      "name": "Assisted Living – 1 Bedroom",
+      "roomType": "one-bedroom",
+      "typeLabel": "One bedroom",
+      "sqft": 560,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "description": "A separate bedroom with a door, a living room and a kitchenette.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    },
+    {
+      "id": "al-2br",
+      "name": "Assisted Living – 2 Bedroom",
+      "roomType": "two-bedroom",
+      "typeLabel": "Two bedroom",
+      "sqft": 860,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "description": "Two bedrooms and two bathrooms — for couples, or a second room for family to stay.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    },
+    {
+      "id": "mc-studio",
+      "name": "Memory Care – Studio",
+      "roomType": "memory-care-suite",
+      "typeLabel": "Studio",
+      "sqft": 320,
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "description": "A private room and bathroom off the memory care household.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    },
+    {
+      "id": "mc-deluxe",
+      "name": "Memory Care – Studio Deluxe",
+      "roomType": "memory-care-suite-deluxe",
+      "typeLabel": "Studio deluxe",
+      "sqft": 1102,
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "description": "A larger private suite with a separate sitting area and its own bathroom.",
+      "image2d": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0zMDggLTIzNi4zNCAxODQ3Ljk1IDEyNjYuMiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJGbG9vciBwbGFuIj48ZyBpZD0icm9vbXMiPjxwb2x5Z29uIHBvaW50cz0iMzk1LjY2LC00MS4wNCAzOTUuNjcsNC4yNiA0MDEuMTMsNDY3LjU4IDQwNC4wMSw3MTEuNTUgNDEyLjksNzExLjU1IDQ0Ni4yOCw3MTEuNTUgNTkxLjg2LDcxMS41NSA1OTEuODYsNjg1LjE5IDg4OS40NCw2ODUuMTkgODg5LjQ0LDU1MS4xNyA4ODkuNDQsMzgxLjYyIDg4OS40NCwtNDEuMDQiIGZpbGw9InZhcigtLXBsYW4tcm9vbSwgI2VlZjFmMykiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iNDEzLjY5LDQ3NS4yMyAzOTYuNTgsNDc1LjE4IDM5Ni42Miw0NjAuMTggNDEzLjY2LDQ2MC4yMyIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI0NjUuMzMsNDc0LjgyIDQxMy42OSw0NzUuMjMgNDEzLjY2LDQ2MC4yMyA0NjUuMjEsNDU5LjgyIiBmaWxsPSJ2YXIoLS1wbGFuLXJvb20sICNlZWYxZjMpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjQzOC4xNiw0NTkuOTIgNDY1LjI0LDQ1OS44MiA0NjUuMjksNDc0LjgyIDQzOC4yMiw0NzQuOTIiIGZpbGw9InZhcigtLXBsYW4tcm9vbSwgI2VlZjFmMykiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iLTc4LjgzLDExLjg5IC03OC43OCwzMzguNDEgLTc4Ljc1LDQ1OS45MiAxMzkuMTksNDU5LjkyIDEzOS4xOSw2OTIuNjkgMTM5LjE5LDc4NC41NyAyOTcuNzksNzg0LjU3IDM4OS43OSw3ODQuNTcgMzg5LjEsNzE5LjEzIDM4Ni4yMiw0NzUuMTUgMzg2LjA0LDQ2MC4xNSAzODAuNzYsMTEuOCIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzODYuMjIsNDc1LjE1IDI0MS4zMSw0NzQuNyAyNDEuMzYsNDU5LjcgMzg2LjA0LDQ2MC4xNSIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5MDQuNDQsMzc0LjEyIDEwNzYuNDYsMzc0LjEyIDEzMDUuNDYsMzc0LjEyIDEzMDUuNDYsLTQxLjA0IDkwNC40NCwtNDEuMDQiIGZpbGw9InZhcigtLXBsYW4tcm9vbSwgI2VlZjFmMykiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iMTAwNi41LDU1OC42NyAxMDA2LjUsNzI2LjkgMTMwNS40Niw3MjYuOSAxMzA1LjQ2LDM4OS4xMiAxMDgzLjk2LDM4OS4xMiAxMDgzLjk2LDU1OC42NyIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSItMTIzLjUsNzg0LjU3IDEyNC4xOSw3ODQuNTcgMTI0LjE5LDY5Mi42OSAxMjQuMTksNDc0LjkyIC04Ni4yNSw0NzQuOTIgLTEyMy41LDQ3NC45MiIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5MDQuNDQsNTQzLjY3IDk5OSw1NDMuNjcgMTA2OC45Niw1NDMuNjcgMTA2OC45NiwzODkuMTIgOTA0LjQ0LDM4OS4xMiIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5MDQuNDQsNzI2LjkgOTkxLjUsNzI2LjkgOTkxLjUsNTU4LjY3IDkwNC40NCw1NTguNjcgOTA0LjQ0LDY5Mi42OSIgZmlsbD0idmFyKC0tcGxhbi1yb29tLCAjZWVmMWYzKSIgc3Ryb2tlPSJub25lIi8+PC9nPjxnIGlkPSJ3YWxscyI+PHBvbHlnb24gcG9pbnRzPSIxMDc2LjQ2LDM4MS42MiAxMDgzLjk2LDM4OS4xMiAxMDgzLjk2LDU1OC42NyAxMDc2LjQ2LDU1MS4xNyAxMDY4Ljk2LDU0My42NyAxMDY4Ljk2LDM4OS4xMiAxMDc2LjQ2LDM4MS42MiIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5OTksNzM0LjQgOTk5LDc0MS45IDg4OS40NCw3NDEuOSA4OTYuOTQsNzM0LjQgOTA0LjQ0LDcyNi45IDk5MS41LDcyNi45IDk5OSw3MzQuNCIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5OTksNTUxLjE3IDk5OSw1NDMuNjcgMTA2OC45Niw1NDMuNjcgMTA3Ni40Niw1NTEuMTcgMTA4My45Niw1NTguNjcgMTAwNi41LDU1OC42NyA5OTksNTUxLjE3IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ijk5OSw1NTEuMTcgMTAwNi41LDU1OC42NyAxMDA2LjUsNzI2LjkgOTk5LDczNC40IDk5MS41LDcyNi45IDk5MS41LDU1OC42NyA5OTksNTUxLjE3IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ijg5Ni45NCw2OTIuNjkgOTA0LjQ0LDY5Mi42OSA5MDQuNDQsNzI2LjkgODk2Ljk0LDczNC40IDg4OS40NCw3NDEuOSA4ODkuNDQsNzAwLjE5IDg5Ni45NCw2OTIuNjkiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iOTk5LDczNC40IDEwMDYuNSw3MjYuOSAxMzA1LjQ2LDcyNi45IDEzMTIuOTYsNzM0LjQgMTMyMC40Niw3NDEuOSA5OTksNzQxLjkgOTk5LDczNC40IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjEzMTIuOTYsMzgxLjYyIDEzMjAuNDYsMzgxLjYyIDEzMjAuNDYsNzQxLjkgMTMxMi45Niw3MzQuNCAxMzA1LjQ2LDcyNi45IDEzMDUuNDYsMzg5LjEyIDEzMTIuOTYsMzgxLjYyIiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjEwNzYuNDYsMzgxLjYyIDEwNzYuNDYsMzc0LjEyIDEzMDUuNDYsMzc0LjEyIDEzMTIuOTYsMzgxLjYyIDEzMDUuNDYsMzg5LjEyIDEwODMuOTYsMzg5LjEyIDEwNzYuNDYsMzgxLjYyIiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ijg5Ni45NCwzODEuNjIgOTA0LjQ0LDM3NC4xMiAxMDc2LjQ2LDM3NC4xMiAxMDc2LjQ2LDM4MS42MiAxMDY4Ljk2LDM4OS4xMiA5MDQuNDQsMzg5LjEyIDg5Ni45NCwzODEuNjIiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iODk2Ljk0LDM4MS42MiA5MDQuNDQsMzg5LjEyIDkwNC40NCw1NDMuNjcgODk2Ljk0LDU1MS4xNyA4ODkuNDQsNTUxLjE3IDg4OS40NCwzODEuNjIgODk2Ljk0LDM4MS42MiIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI4OTYuOTQsNTUxLjE3IDkwNC40NCw1NDMuNjcgOTk5LDU0My42NyA5OTksNTUxLjE3IDk5MS41LDU1OC42NyA5MDQuNDQsNTU4LjY3IDg5Ni45NCw1NTEuMTciIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iODk2Ljk0LDY5Mi42OSA4ODkuNDQsNjg1LjE5IDg4OS40NCw1NTEuMTcgODk2Ljk0LDU1MS4xNyA5MDQuNDQsNTU4LjY3IDkwNC40NCw2OTIuNjkgODk2Ljk0LDY5Mi42OSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI1OTkuMzYsNjkyLjY5IDU5MS44Niw2ODUuMTkgODg5LjQ0LDY4NS4xOSA4OTYuOTQsNjkyLjY5IDg4OS40NCw3MDAuMTkgNjA2Ljg2LDcwMC4xOSA1OTkuMzYsNjkyLjY5IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjU5OS4zNiw3MTkuMDUgNTkxLjg2LDcxMS41NSA1OTEuODYsNjg1LjE5IDU5OS4zNiw2OTIuNjkgNjA2Ljg2LDcwMC4xOSA2MDYuODYsNzI2LjU1IDU5OS4zNiw3MTkuMDUiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iLTg2LjI1LDQ2Ny40MiAtODYuMjUsNDc0LjkyIC0xMjMuNSw0NzQuOTIgLTEzMSw0NjcuNDIgLTEzOC41LDQ1OS45MiAtOTMuNzUsNDU5LjkyIC04Ni4yNSw0NjcuNDIiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iLTg2LjI4LDMzOC40MSAtNzguNzgsMzM4LjQxIC03OC43NSw0NTkuOTIgLTg2LjI1LDQ2Ny40MiAtOTMuNzUsNDU5LjkyIC05My43OCwzMzguNDEgLTg2LjI4LDMzOC40MSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIxMzEuNjksNDY3LjQyIDEyNC4xOSw0NzQuOTIgLTg2LjI1LDQ3NC45MiAtODYuMjUsNDY3LjQyIC03OC43NSw0NTkuOTIgMTM5LjE5LDQ1OS45MiAxMzEuNjksNDY3LjQyIiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ii0xMzEsNzkyLjA3IC0xMzguNSw3OTkuNTcgLTEzOC41LDQ1OS45MiAtMTMxLDQ2Ny40MiAtMTIzLjUsNDc0LjkyIC0xMjMuNSw3ODQuNTcgLTEzMSw3OTIuMDciIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iMTMxLjY5LDY5Mi42OSAxMjQuMTksNjkyLjY5IDEyNC4xOSw0NzQuOTIgMTMxLjY5LDQ2Ny40MiAxMzkuMTksNDU5LjkyIDEzOS4xOSw2OTIuNjkgMTMxLjY5LDY5Mi42OSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzOTMuNjMsNDY3LjY3IDM4Ni4yMiw0NzUuMTUgMjQxLjMxLDQ3NC43IDI0MS4zMyw0NjcuMiAyNDEuMzYsNDU5LjcgMzg2LjA0LDQ2MC4xNSAzOTMuNjMsNDY3LjY3IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjM5Ni42LDcxOS4wNSAzODkuMSw3MTkuMTMgMzg2LjIyLDQ3NS4xNSAzOTMuNjMsNDY3LjY3IDQwMS4xMyw0NjcuNTggNDA0LjAxLDcxMS41NSAzOTYuNiw3MTkuMDUiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iNDEzLjY3LDQ2Ny43MyA0MTMuNjksNDc1LjIzIDM5Ni41OCw0NzUuMTggMzk2LjYsNDY3LjY4IDM5Ni42Miw0NjAuMTggNDEzLjY2LDQ2MC4yMyA0MTMuNjcsNDY3LjczIiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjQ2NS4yNyw0NjcuMzIgNDY1LjMzLDQ3NC44MiA0MTMuNjksNDc1LjIzIDQxMy42Nyw0NjcuNzMgNDEzLjY2LDQ2MC4yMyA0NjUuMjEsNDU5LjgyIDQ2NS4yNyw0NjcuMzIiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iNDM4LjE5LDQ2Ny40MiA0MzguMTYsNDU5LjkyIDQ2NS4yNCw0NTkuODIgNDY1LjI3LDQ2Ny4zMiA0NjUuMjksNDc0LjgyIDQzOC4yMiw0NzQuOTIgNDM4LjE5LDQ2Ny40MiIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzOTcuMzcsNzkyLjA3IDQwNC45NSw3OTkuNTcgMjk3Ljc5LDc5OS41NyAyOTcuNzksNzkyLjA3IDI5Ny43OSw3ODQuNTcgMzg5Ljc5LDc4NC41NyAzOTcuMzcsNzkyLjA3IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjEzMS42OSw3OTIuMDcgMTI0LjE5LDc4NC41NyAxMjQuMTksNjkyLjY5IDEzMS42OSw2OTIuNjkgMTM5LjE5LDY5Mi42OSAxMzkuMTksNzg0LjU3IDEzMS42OSw3OTIuMDciIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iMjk3Ljc5LDc5Mi4wNyAyOTcuNzksNzk5LjU3IDEzMS42OSw3OTkuNTcgMTMxLjY5LDc5Mi4wNyAxMzkuMTksNzg0LjU3IDI5Ny43OSw3ODQuNTcgMjk3Ljc5LDc5Mi4wNyIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIxMzEuNjksNzkyLjA3IDEzMS42OSw3OTkuNTcgLTEzOC41LDc5OS41NyAtMTMxLDc5Mi4wNyAtMTIzLjUsNzg0LjU3IDEyNC4xOSw3ODQuNTcgMTMxLjY5LDc5Mi4wNyIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzOTcuMzcsNzkyLjA3IDM4OS43OSw3ODQuNTcgMzg5LjEsNzE5LjEzIDM5Ni42LDcxOS4wNSA0MDQuMTgsNzI2LjU1IDQwNC45NSw3OTkuNTcgMzk3LjM3LDc5Mi4wNyIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzOTMuNjMsNDY3LjY3IDM4Ni4wNCw0NjAuMTUgMzgwLjc2LDExLjggMzg4LjE3LDQuMyAzOTUuNjcsNC4yNiA0MDEuMTMsNDY3LjU4IDM5My42Myw0NjcuNjciIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iMzg4LjE3LDQuMyAzODAuNzYsMTEuOCAtNzguODMsMTEuODkgLTg2LjM0LDQuMzkgLTkzLjg0LC0zLjExIDM4MC42NywtMy4yIDM4OC4xNyw0LjMiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iLTg2LjM0LDQuMzkgLTc4LjgzLDExLjg5IC03OC43OCwzMzguNDEgLTg2LjI4LDMzOC40MSAtOTMuNzgsMzM4LjQxIC05My44NCwtMy4xMSAtODYuMzQsNC4zOSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI0NDYuMjgsNzE5LjA1IDQ0Ni4yOCw3MTEuNTUgNTkxLjg2LDcxMS41NSA1OTkuMzYsNzE5LjA1IDYwNi44Niw3MjYuNTUgNDQ2LjI4LDcyNi41NSA0NDYuMjgsNzE5LjA1IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjQxMi45LDcxOS4wNSA0MTIuOSw3MTEuNTUgNDQ2LjI4LDcxMS41NSA0NDYuMjgsNzE5LjA1IDQ0Ni4yOCw3MjYuNTUgNDEyLjksNzI2LjU1IDQxMi45LDcxOS4wNSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzOTYuNiw3MTkuMDUgNDA0LjAxLDcxMS41NSA0MTIuOSw3MTEuNTUgNDEyLjksNzE5LjA1IDQxMi45LDcyNi41NSA0MDQuMTgsNzI2LjU1IDM5Ni42LDcxOS4wNSIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzODguMTcsNC4zIDM4MC42NywtMy4yIDM4MC42NiwtNTYuMDQgMzg4LjE2LC00OC41NCAzOTUuNjYsLTQxLjA0IDM5NS42Nyw0LjI2IDM4OC4xNyw0LjMiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iODk2Ljk0LC00OC41NCA5MDQuNDQsLTQxLjA0IDkwNC40NCwzNzQuMTIgODk2Ljk0LDM4MS42MiA4ODkuNDQsMzgxLjYyIDg4OS40NCwtNDEuMDQgODk2Ljk0LC00OC41NCIgZmlsbD0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSIzODguMTYsLTQ4LjU0IDM4MC42NiwtNTYuMDQgODk2Ljk0LC01Ni4wNCA4OTYuOTQsLTQ4LjU0IDg4OS40NCwtNDEuMDQgMzk1LjY2LC00MS4wNCAzODguMTYsLTQ4LjU0IiBmaWxsPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2U9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ijg5Ni45NCwtNDguNTQgODk2Ljk0LC01Ni4wNCAxMzIwLjQ2LC01Ni4wNCAxMzEyLjk2LC00OC41NCAxMzA1LjQ2LC00MS4wNCA5MDQuNDQsLTQxLjA0IDg5Ni45NCwtNDguNTQiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iMTMxMi45NiwtNDguNTQgMTMyMC40NiwtNTYuMDQgMTMyMC40NiwzODEuNjIgMTMxMi45NiwzODEuNjIgMTMwNS40NiwzNzQuMTIgMTMwNS40NiwtNDEuMDQgMTMxMi45NiwtNDguNTQiIGZpbGw9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZT0ibm9uZSIvPjwvZz48ZyBpZD0ib3BlbmluZ3MiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwNzYuNDYwMDM4NzY0MDY5NCwgNDc1LjA3MzcxNjE0ODA5NDA0KSAgcm90YXRlKDkwLjAwMDAwMDAwMDAwMDE3KSBzY2FsZSgxLCAtMSkiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cmVjdCB4PSItNDIuMzQzMTI5NjAzOTc1MzQiIHk9Ii03Ljc1IiB3aWR0aD0iODQuNjg2MjU5MjA3OTUwNjgiIGhlaWdodD0iMTUuNSIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSI+PC9yZWN0PjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItNCIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iLTQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5MT0iLTEuNiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iLTEuNiIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSIxLjU5OTk5OTk5OTk5OTk5OTYiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjEuNTk5OTk5OTk5OTk5OTk5NiIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSI0IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSI0IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PHBhdGggZD0iTSAzNC4zNDMxMjk2MDM5NzUzNCAwIEEgNjguNjg2MjU5MjA3OTUwNjggNjguNjg2MjU5MjA3OTUwNjggMCAwIDAgLTM0LjM0MzEyOTYwMzk3NTMzNSAtNjguNjg2MjU5MjA3OTUwNjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjIsMiI+PC9wYXRoPjxsaW5lIHgxPSItMzQuMzQzMTI5NjAzOTc1MzQiIHkxPSIwIiB4Mj0iMzQuMzQzMTI5NjAzOTc1MzQiIHkyPSIwIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsIC0zNC4zNDMxMjk2MDM5NzUzNCwgMCkiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48cmVjdCB4PSItNDIuMzQzMTI5NjAzOTc1MzQiIHk9Ii00IiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L3JlY3Q+PHJlY3QgeD0iMzQuMzQzMTI5NjAzOTc1MzQiIHk9Ii00IiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L3JlY3Q+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTQxLjI5MTMwODg2NjY1NzMsIDM4MS42MTkxNjExMTIzNjM3KSAgcm90YXRlKC00LjQzNDQwODM0MjkwMjI1OGUtMTIpIHNjYWxlKDEsIC0xKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTcuNzUiIHdpZHRoPSI4NC42ODYyNTkyMDc5NTA2OCIgaGVpZ2h0PSIxNS41IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIj48L3JlY3Q+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii00IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItMS42IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItMS42IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjEuNTk5OTk5OTk5OTk5OTk5NiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iMS41OTk5OTk5OTk5OTk5OTk2IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48cGF0aCBkPSJNIDM0LjM0MzEyOTYwMzk3NTM0IDAgQSA2OC42ODYyNTkyMDc5NTA2OCA2OC42ODYyNTkyMDc5NTA2OCAwIDAgMCAtMzQuMzQzMTI5NjAzOTc1MzM1IC02OC42ODYyNTkyMDc5NTA2OCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIj48L3BhdGg+PGxpbmUgeDE9Ii0zNC4zNDMxMjk2MDM5NzUzNCIgeTE9IjAiIHgyPSIzNC4zNDMxMjk2MDM5NzUzNCIgeTI9IjAiIHRyYW5zZm9ybT0icm90YXRlKC05MCwgLTM0LjM0MzEyOTYwMzk3NTM0LCAwKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSIzNC4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg5Ni45Mzg2MjY0NjY4NDg0LCA2MjIuMDA4NDI1ODAxNzM0MykgIHJvdGF0ZSgtODkuOTk5OTk5OTk5OTc5MDUpIHNjYWxlKDEsIC0xKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTcuNzUiIHdpZHRoPSI4NC42ODYyNTkyMDc5NTA2OCIgaGVpZ2h0PSIxNS41IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIj48L3JlY3Q+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii00IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItMS42IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItMS42IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjEuNTk5OTk5OTk5OTk5OTk5NiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iMS41OTk5OTk5OTk5OTk5OTk2IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48cGF0aCBkPSJNIDM0LjM0MzEyOTYwMzk3NTM0IDAgQSA2OC42ODYyNTkyMDc5NTA2OCA2OC42ODYyNTkyMDc5NTA2OCAwIDAgMCAtMzQuMzQzMTI5NjAzOTc1MzM1IC02OC42ODYyNTkyMDc5NTA2OCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIj48L3BhdGg+PGxpbmUgeDE9Ii0zNC4zNDMxMjk2MDM5NzUzNCIgeTE9IjAiIHgyPSIzNC4zNDMxMjk2MDM5NzUzNCIgeTI9IjAiIHRyYW5zZm9ybT0icm90YXRlKC05MCwgLTM0LjM0MzEyOTYwMzk3NTM0LCAwKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSIzNC4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc0NC4xNjM1NjI5NDkyMjQ1LCA2OTIuNjg3NTI4NjAyNjkxNykgIHJvdGF0ZSgtMi4xODg5NDM0MDQwNTk0MjMzZS0xNCkgc2NhbGUoMSwgMSkiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cmVjdCB4PSItNDkiIHk9Ii03Ljc1IiB3aWR0aD0iOTgiIGhlaWdodD0iMTUuNSIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAsMTAiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzMS42ODYzMjEwMTY3NzIyLCA2MDMuNTMxOTE1MjUxODY3NSkgIHJvdGF0ZSgtOTAuMDAwMDAwMDAwMDAxNjYpIHNjYWxlKDEsIC0xKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTcuNzUiIHdpZHRoPSI4NC42ODYyNTkyMDc5NTA2OCIgaGVpZ2h0PSIxNS41IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIj48L3JlY3Q+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii00IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItMS42IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItMS42IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjEuNTk5OTk5OTk5OTk5OTk5NiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iMS41OTk5OTk5OTk5OTk5OTk2IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48cGF0aCBkPSJNIDM0LjM0MzEyOTYwMzk3NTM0IDAgQSA2OC42ODYyNTkyMDc5NTA2OCA2OC42ODYyNTkyMDc5NTA2OCAwIDAgMCAtMzQuMzQzMTI5NjAzOTc1MzM1IC02OC42ODYyNTkyMDc5NTA2OCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIj48L3BhdGg+PGxpbmUgeDE9Ii0zNC4zNDMxMjk2MDM5NzUzNCIgeTE9IjAiIHgyPSIzNC4zNDMxMjk2MDM5NzUzNCIgeTI9IjAiIHRyYW5zZm9ybT0icm90YXRlKC05MCwgLTM0LjM0MzEyOTYwMzk3NTM0LCAwKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSIzNC4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE4OC4zNzA3MjM3MTc4MzgxNiwgNzkyLjA2NjA4NTc2MDc2MDIpICByb3RhdGUoMTc5Ljk5OTk5OTk5OTk5OTk3KSBzY2FsZSgtMSwgLTEpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PHJlY3QgeD0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5PSItNy43NSIgd2lkdGg9Ijg0LjY4NjI1OTIwNzk1MDY4IiBoZWlnaHQ9IjE1LjUiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiPjwvcmVjdD48bGluZSB4MT0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5MT0iLTQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9Ii00IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii0xLjYiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9Ii0xLjYiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5MT0iMS41OTk5OTk5OTk5OTk5OTk2IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSIxLjU5OTk5OTk5OTk5OTk5OTYiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5MT0iNCIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxwYXRoIGQ9Ik0gMzQuMzQzMTI5NjAzOTc1MzQgMCBBIDY4LjY4NjI1OTIwNzk1MDY4IDY4LjY4NjI1OTIwNzk1MDY4IDAgMCAwIC0zNC4zNDMxMjk2MDM5NzUzMzUgLTY4LjY4NjI1OTIwNzk1MDY4IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtZGFzaGFycmF5PSIyLDIiPjwvcGF0aD48bGluZSB4MT0iLTM0LjM0MzEyOTYwMzk3NTM0IiB5MT0iMCIgeDI9IjM0LjM0MzEyOTYwMzk3NTM0IiB5Mj0iMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwLCAtMzQuMzQzMTI5NjAzOTc1MzQsIDApIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PHJlY3QgeD0iLTQyLjM0MzEyOTYwMzk3NTM0IiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjxyZWN0IHg9IjM0LjM0MzEyOTYwMzk3NTM0IiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzkyLjg3MDU5MzUzNzkwMzgsIDQwMi45ODQwNDg4OTcwNzAzNSkgIHJvdGF0ZSgtOTAuNjc1Njk5OTEyNzM2MzMpIHNjYWxlKDEsIC0xKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTcuNzUiIHdpZHRoPSI4NC42ODYyNTkyMDc5NTA2OCIgaGVpZ2h0PSIxNS41IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIj48L3JlY3Q+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii00IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItMS42IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItMS42IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjEuNTk5OTk5OTk5OTk5OTk5NiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iMS41OTk5OTk5OTk5OTk5OTk2IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48cGF0aCBkPSJNIDM0LjM0MzEyOTYwMzk3NTM0IDAgQSA2OC42ODYyNTkyMDc5NTA2OCA2OC42ODYyNTkyMDc5NTA2OCAwIDAgMCAtMzQuMzQzMTI5NjAzOTc1MzM1IC02OC42ODYyNTkyMDc5NTA2OCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIj48L3BhdGg+PGxpbmUgeDE9Ii0zNC4zNDMxMjk2MDM5NzUzNCIgeTE9IjAiIHgyPSIzNC4zNDMxMjk2MDM5NzUzNCIgeTI9IjAiIHRyYW5zZm9ybT0icm90YXRlKC05MCwgLTM0LjM0MzEyOTYwMzk3NTM0LCAwKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSIzNC4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1MC4wNjczMDIwNjE2ODEzNywgNC4zNDYyNzU1OTMwNjQxODY1KSAgcm90YXRlKDE3OS45ODk3MzAzODIyNjYyNikgc2NhbGUoMSwgMSkiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cmVjdCB4PSItOTYuOTc2OTk0NTg0NDIwMDEiIHk9Ii03Ljc1IiB3aWR0aD0iMTkzLjk1Mzk4OTE2ODg0MDAyIiBoZWlnaHQ9IjE1LjUiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiPjwvcmVjdD48bGluZSB4MT0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5MT0iLTQiIHgyPSI5Ni45NzY5OTQ1ODQ0MjAwMSIgeTI9Ii00IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii05Ni45NzY5OTQ1ODQ0MjAwMSIgeTE9Ii0xLjM1OTk5OTk5OTk5OTk5OTkiIHgyPSI5Ni45NzY5OTQ1ODQ0MjAwMSIgeTI9Ii0xLjM1OTk5OTk5OTk5OTk5OTkiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5MT0iMS4yODAwMDAwMDAwMDAwMDAyIiB4Mj0iOTYuOTc2OTk0NTg0NDIwMDEiIHkyPSIxLjI4MDAwMDAwMDAwMDAwMDIiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5MT0iNCIgeDI9Ijk2Ljk3Njk5NDU4NDQyMDAxIiB5Mj0iNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxyZWN0IHg9Ii00IiB5PSItNCIgd2lkdGg9IjUiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjxyZWN0IHg9Ii05Ni45NzY5OTQ1ODQ0MjAwMSIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSI4OC45NzY5OTQ1ODQ0MjAwMSIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg5Ni45Mzg2MjY0NjY5MDcyLCAzMjMuODYwOTMwMTA2NDY1MTYpICByb3RhdGUoOTAuMDAwMDAwMDAwMDAwNDgpIHNjYWxlKDEsIC0xKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTcuNzUiIHdpZHRoPSI4NC42ODYyNTkyMDc5NTA2OCIgaGVpZ2h0PSIxNS41IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIj48L3JlY3Q+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9Ii00IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItNCIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItNDIuMzQzMTI5NjAzOTc1MzQiIHkxPSItMS42IiB4Mj0iNDIuMzQzMTI5NjAzOTc1MzQiIHkyPSItMS42IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjEuNTk5OTk5OTk5OTk5OTk5NiIgeDI9IjQyLjM0MzEyOTYwMzk3NTM0IiB5Mj0iMS41OTk5OTk5OTk5OTk5OTk2IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PGxpbmUgeDE9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeTE9IjQiIHgyPSI0Mi4zNDMxMjk2MDM5NzUzNCIgeTI9IjQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48cGF0aCBkPSJNIDM0LjM0MzEyOTYwMzk3NTM0IDAgQSA2OC42ODYyNTkyMDc5NTA2OCA2OC42ODYyNTkyMDc5NTA2OCAwIDAgMCAtMzQuMzQzMTI5NjAzOTc1MzM1IC02OC42ODYyNTkyMDc5NTA2OCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIj48L3BhdGg+PGxpbmUgeDE9Ii0zNC4zNDMxMjk2MDM5NzUzNCIgeTE9IjAiIHgyPSIzNC4zNDMxMjk2MDM5NzUzNCIgeTI9IjAiIHRyYW5zZm9ybT0icm90YXRlKC05MCwgLTM0LjM0MzEyOTYwMzk3NTM0LCAwKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxyZWN0IHg9Ii00Mi4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48cmVjdCB4PSIzNC4zNDMxMjk2MDM5NzUzNCIgeT0iLTQiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9InZhcigtLXBsYW4tb3BlbmluZywgI2ZmZmZmZikiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvcmVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0My4xNzA2MTg3NTg4MjUxLCAtNDguNTQyOTY1MjU0Njk2ODc0KSAgcm90YXRlKC0zLjIxNjY5MDk2NDY3NjczMjRlLTEzKSBzY2FsZSgxLCAxKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii05Ni45NzY5OTQ1ODQ0MjAwMSIgeT0iLTcuNzUiIHdpZHRoPSIxOTMuOTUzOTg5MTY4ODQwMDIiIGhlaWdodD0iMTUuNSIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSI+PC9yZWN0PjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSItNCIgeDI9Ijk2Ljk3Njk5NDU4NDQyMDAxIiB5Mj0iLTQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5MT0iLTEuMzU5OTk5OTk5OTk5OTk5OSIgeDI9Ijk2Ljk3Njk5NDU4NDQyMDAxIiB5Mj0iLTEuMzU5OTk5OTk5OTk5OTk5OSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSIxLjI4MDAwMDAwMDAwMDAwMDIiIHgyPSI5Ni45NzY5OTQ1ODQ0MjAwMSIgeTI9IjEuMjgwMDAwMDAwMDAwMDAwMiIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSI0IiB4Mj0iOTYuOTc2OTk0NTg0NDIwMDEiIHkyPSI0IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PHJlY3QgeD0iLTQiIHk9Ii00IiB3aWR0aD0iNSIgaGVpZ2h0PSI4IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L3JlY3Q+PHJlY3QgeD0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjxyZWN0IHg9Ijg4Ljk3Njk5NDU4NDQyMDAxIiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEwOC4yMzI2NjM1MDc2LCAtNDguNTQyOTY1MjU0Njk2NzkpICByb3RhdGUoNC4wNjExNTc4NzA0NTk0NThlLTEzKSBzY2FsZSgxLCAxKSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxyZWN0IHg9Ii05Ni45NzY5OTQ1ODQ0MjAwMSIgeT0iLTcuNzUiIHdpZHRoPSIxOTMuOTUzOTg5MTY4ODQwMDIiIGhlaWdodD0iMTUuNSIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSI+PC9yZWN0PjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSItNCIgeDI9Ijk2Ljk3Njk5NDU4NDQyMDAxIiB5Mj0iLTQiIHN0cm9rZT0idmFyKC0tcGxhbi13YWxsLCAjMmIzYTQ0KSIgc3Ryb2tlLXdpZHRoPSIwLjUiPjwvbGluZT48bGluZSB4MT0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5MT0iLTEuMzU5OTk5OTk5OTk5OTk5OSIgeDI9Ijk2Ljk3Njk5NDU4NDQyMDAxIiB5Mj0iLTEuMzU5OTk5OTk5OTk5OTk5OSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSIxLjI4MDAwMDAwMDAwMDAwMDIiIHgyPSI5Ni45NzY5OTQ1ODQ0MjAwMSIgeTI9IjEuMjgwMDAwMDAwMDAwMDAwMiIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9saW5lPjxsaW5lIHgxPSItOTYuOTc2OTk0NTg0NDIwMDEiIHkxPSI0IiB4Mj0iOTYuOTc2OTk0NTg0NDIwMDEiIHkyPSI0IiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L2xpbmU+PHJlY3QgeD0iLTQiIHk9Ii00IiB3aWR0aD0iNSIgaGVpZ2h0PSI4IiBmaWxsPSJ2YXIoLS1wbGFuLW9wZW5pbmcsICNmZmZmZmYpIiBzdHJva2U9InZhcigtLXBsYW4td2FsbCwgIzJiM2E0NCkiIHN0cm9rZS13aWR0aD0iMC41Ij48L3JlY3Q+PHJlY3QgeD0iLTk2Ljk3Njk5NDU4NDQyMDAxIiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjxyZWN0IHg9Ijg4Ljk3Njk5NDU4NDQyMDAxIiB5PSItNCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0idmFyKC0tcGxhbi1vcGVuaW5nLCAjZmZmZmZmKSIgc3Ryb2tlPSJ2YXIoLS1wbGFuLXdhbGwsICMyYjNhNDQpIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9yZWN0PjwvZz48L2c+PC9nPjwvc3ZnPg==",
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": "floorplanner:tcom_mc_deluxe_first_floor_first_design"
+    },
+    {
+      "id": "mc-1br",
+      "name": "Memory Care – 1 Bedroom",
+      "roomType": "one-bedroom",
+      "typeLabel": "One bedroom",
+      "sqft": 480,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "description": "A bedroom with a door and a sitting room, inside the secured household.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    },
+    {
+      "id": "mc-companion",
+      "name": "Memory Care – Companion Suite",
+      "roomType": "companion-suite",
+      "typeLabel": "Companion suite",
+      "sqft": 420,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "description": "A shared suite: two private sleeping areas and one bathroom. Each half is listed on its own.",
+      "image2d": null,
+      "image3d": null,
+      "tourUrl": null,
+      "planSource": null
+    }
+  ],
+  "buildings": [
+    {
+      "id": "tcom",
+      "name": "The Commons on Meridian",
+      "shortName": "Commons",
+      "blurb": "One building, two wings: a secured memory care household around its own courtyard, and assisted living along 86th Street, joined by the dining rooms, bistro and salon.",
+      "levels": [
+        {
+          "id": "tcom-l1",
+          "name": "Floor 1",
+          "ordinal": 1,
+          "plan": {
+            "image": null,
+            "width": 1810,
+            "height": 1580
+          },
+          "north": "right",
+          "units": [
+            {
+              "id": "tcom-309",
+              "number": "309",
+              "layoutId": "mc-1br",
+              "shape": [
+                324,
+                444,
+                378,
+                444,
+                378,
+                516,
+                324,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 7100,
+              "sqft": 480,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-308a",
+              "number": "308A",
+              "layoutId": "mc-companion",
+              "shape": [
+                378,
+                444,
+                424,
+                444,
+                424,
+                516,
+                378,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "308"
+            },
+            {
+              "id": "tcom-308b",
+              "number": "308B",
+              "layoutId": "mc-companion",
+              "shape": [
+                424,
+                444,
+                470,
+                444,
+                470,
+                516,
+                424,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "waitlist",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "308",
+              "waitlistCount": 1
+            },
+            {
+              "id": "tcom-307",
+              "number": "307",
+              "layoutId": "mc-1br",
+              "shape": [
+                470,
+                444,
+                530,
+                444,
+                530,
+                516,
+                470,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 7100,
+              "sqft": 480,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-305",
+              "number": "305",
+              "layoutId": "mc-1br",
+              "shape": [
+                560,
+                444,
+                624,
+                444,
+                624,
+                516,
+                560,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "respite",
+              "baseRate": 7100,
+              "sqft": 480,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "respiteNightlyRate": 242
+            },
+            {
+              "id": "tcom-303a",
+              "number": "303A",
+              "layoutId": "mc-companion",
+              "shape": [
+                624,
+                444,
+                670,
+                444,
+                670,
+                516,
+                624,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "303"
+            },
+            {
+              "id": "tcom-303b",
+              "number": "303B",
+              "layoutId": "mc-companion",
+              "shape": [
+                670,
+                444,
+                714,
+                444,
+                714,
+                516,
+                670,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "West/Meridian View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "303"
+            },
+            {
+              "id": "tcom-301",
+              "number": "301",
+              "layoutId": "mc-1br",
+              "shape": [
+                714,
+                444,
+                766,
+                444,
+                766,
+                516,
+                714,
+                516
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 7100,
+              "sqft": 480,
+              "accessible": true,
+              "view": "West/Meridian View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-306",
+              "number": "306",
+              "layoutId": "mc-deluxe",
+              "shape": [
+                514,
+                544,
+                570,
+                544,
+                570,
+                628,
+                514,
+                628
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 6650,
+              "sqft": 1102,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-304",
+              "number": "304",
+              "layoutId": "mc-deluxe",
+              "shape": [
+                570,
+                544,
+                630,
+                544,
+                630,
+                628,
+                570,
+                628
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 6650,
+              "sqft": 1102,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-302b",
+              "number": "302B",
+              "layoutId": "mc-companion",
+              "shape": [
+                630,
+                544,
+                678,
+                544,
+                678,
+                628,
+                630,
+                628
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "302"
+            },
+            {
+              "id": "tcom-302a",
+              "number": "302A",
+              "layoutId": "mc-companion",
+              "shape": [
+                678,
+                544,
+                726,
+                544,
+                726,
+                628,
+                678,
+                628
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "302"
+            },
+            {
+              "id": "tcom-311",
+              "number": "311",
+              "layoutId": "mc-studio",
+              "shape": [
+                330,
+                548,
+                398,
+                548,
+                398,
+                600,
+                330,
+                600
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "coming_available",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-11-06"
+            },
+            {
+              "id": "tcom-313",
+              "number": "313",
+              "layoutId": "mc-studio",
+              "shape": [
+                330,
+                600,
+                398,
+                600,
+                398,
+                654,
+                330,
+                654
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-315",
+              "number": "315",
+              "layoutId": "mc-studio",
+              "shape": [
+                330,
+                654,
+                398,
+                654,
+                398,
+                704,
+                330,
+                704
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "coming_available",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-11-16"
+            },
+            {
+              "id": "tcom-316",
+              "number": "316",
+              "layoutId": "mc-studio",
+              "shape": [
+                330,
+                704,
+                398,
+                704,
+                398,
+                758,
+                330,
+                758
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-317",
+              "number": "317",
+              "layoutId": "mc-studio",
+              "shape": [
+                330,
+                758,
+                398,
+                758,
+                398,
+                820,
+                330,
+                820
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "waitlist",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": true,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "waitlistCount": 2
+            },
+            {
+              "id": "tcom-310",
+              "number": "310",
+              "layoutId": "mc-studio",
+              "shape": [
+                424,
+                584,
+                484,
+                584,
+                484,
+                636,
+                424,
+                636
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-312",
+              "number": "312",
+              "layoutId": "mc-studio",
+              "shape": [
+                424,
+                636,
+                484,
+                636,
+                484,
+                686,
+                424,
+                686
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-314",
+              "number": "314",
+              "layoutId": "mc-studio",
+              "shape": [
+                424,
+                686,
+                484,
+                686,
+                484,
+                736,
+                424,
+                736
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-320",
+              "number": "320",
+              "layoutId": "mc-studio",
+              "shape": [
+                470,
+                740,
+                520,
+                740,
+                520,
+                804,
+                470,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-322",
+              "number": "322",
+              "layoutId": "mc-studio",
+              "shape": [
+                520,
+                740,
+                566,
+                740,
+                566,
+                804,
+                520,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-324",
+              "number": "324",
+              "layoutId": "mc-studio",
+              "shape": [
+                566,
+                740,
+                616,
+                740,
+                616,
+                804,
+                566,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-326",
+              "number": "326",
+              "layoutId": "mc-studio",
+              "shape": [
+                616,
+                740,
+                664,
+                740,
+                664,
+                804,
+                616,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-328",
+              "number": "328",
+              "layoutId": "mc-studio",
+              "shape": [
+                664,
+                740,
+                714,
+                740,
+                714,
+                804,
+                664,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-330",
+              "number": "330",
+              "layoutId": "mc-studio",
+              "shape": [
+                714,
+                740,
+                766,
+                740,
+                766,
+                804,
+                714,
+                804
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-318",
+              "number": "318",
+              "layoutId": "mc-studio",
+              "shape": [
+                290,
+                854,
+                344,
+                854,
+                344,
+                918,
+                290,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 5850,
+              "sqft": 320,
+              "accessible": true,
+              "view": "South/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-319",
+              "number": "319",
+              "layoutId": "mc-1br",
+              "shape": [
+                344,
+                834,
+                430,
+                834,
+                430,
+                918,
+                344,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 7100,
+              "sqft": 480,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-321",
+              "number": "321",
+              "layoutId": "mc-deluxe",
+              "shape": [
+                430,
+                834,
+                494,
+                834,
+                494,
+                918,
+                430,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "respite",
+              "baseRate": 6650,
+              "sqft": 1102,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "respiteNightlyRate": 223
+            },
+            {
+              "id": "tcom-323b",
+              "number": "323B",
+              "layoutId": "mc-companion",
+              "shape": [
+                494,
+                834,
+                538,
+                834,
+                538,
+                918,
+                494,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "323"
+            },
+            {
+              "id": "tcom-323a",
+              "number": "323A",
+              "layoutId": "mc-companion",
+              "shape": [
+                538,
+                834,
+                578,
+                834,
+                578,
+                918,
+                538,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "coming_available",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "323",
+              "availableOn": "2026-10-19"
+            },
+            {
+              "id": "tcom-325b",
+              "number": "325B",
+              "layoutId": "mc-companion",
+              "shape": [
+                578,
+                834,
+                618,
+                834,
+                618,
+                918,
+                578,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "325"
+            },
+            {
+              "id": "tcom-325a",
+              "number": "325A",
+              "layoutId": "mc-companion",
+              "shape": [
+                618,
+                834,
+                660,
+                834,
+                660,
+                918,
+                618,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "325"
+            },
+            {
+              "id": "tcom-327",
+              "number": "327",
+              "layoutId": "mc-deluxe",
+              "shape": [
+                660,
+                834,
+                714,
+                834,
+                714,
+                918,
+                660,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "coming_available",
+              "baseRate": 6650,
+              "sqft": 1102,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Memory box at the door",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-10-04"
+            },
+            {
+              "id": "tcom-329b",
+              "number": "329B",
+              "layoutId": "mc-companion",
+              "shape": [
+                714,
+                834,
+                754,
+                834,
+                754,
+                918,
+                714,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "occupied",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "329"
+            },
+            {
+              "id": "tcom-329a",
+              "number": "329A",
+              "layoutId": "mc-companion",
+              "shape": [
+                754,
+                834,
+                798,
+                834,
+                798,
+                918,
+                754,
+                918
+              ],
+              "careLevels": [
+                "mc"
+              ],
+              "status": "available",
+              "baseRate": 4650,
+              "sqft": 420,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Shared bathroom",
+                "Memory box at the door"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "companionOf": "329"
+            },
+            {
+              "id": "tcom-101",
+              "number": "101",
+              "layoutId": "al-studio",
+              "shape": [
+                1264,
+                584,
+                1338,
+                584,
+                1338,
+                648,
+                1264,
+                648
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-102",
+              "number": "102",
+              "layoutId": "al-studio",
+              "shape": [
+                1264,
+                648,
+                1338,
+                648,
+                1338,
+                712,
+                1264,
+                712
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3825,
+              "sqft": 380,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-103",
+              "number": "103",
+              "layoutId": "al-1br",
+              "shape": [
+                1264,
+                716,
+                1338,
+                716,
+                1338,
+                780,
+                1264,
+                780
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-105",
+              "number": "105",
+              "layoutId": "al-1br",
+              "shape": [
+                1264,
+                784,
+                1338,
+                784,
+                1338,
+                848,
+                1264,
+                848
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-107",
+              "number": "107",
+              "layoutId": "al-1br",
+              "shape": [
+                1264,
+                854,
+                1338,
+                854,
+                1338,
+                924,
+                1264,
+                924
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-111",
+              "number": "111",
+              "layoutId": "al-1br",
+              "shape": [
+                1264,
+                944,
+                1338,
+                944,
+                1338,
+                1018,
+                1264,
+                1018
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-113",
+              "number": "113",
+              "layoutId": "al-1br",
+              "shape": [
+                1264,
+                1054,
+                1338,
+                1054,
+                1338,
+                1124,
+                1264,
+                1124
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": false,
+              "view": "North/86th Street View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-116",
+              "number": "116",
+              "layoutId": "al-2br",
+              "shape": [
+                1264,
+                1134,
+                1338,
+                1134,
+                1338,
+                1234,
+                1264,
+                1234
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "waitlist",
+              "baseRate": 6450,
+              "sqft": 860,
+              "accessible": true,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "waitlistCount": 1
+            },
+            {
+              "id": "tcom-104",
+              "number": "104",
+              "layoutId": "al-studio",
+              "shape": [
+                1170,
+                724,
+                1234,
+                724,
+                1234,
+                784,
+                1170,
+                784
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-106",
+              "number": "106",
+              "layoutId": "al-1br",
+              "shape": [
+                1170,
+                784,
+                1234,
+                784,
+                1234,
+                848,
+                1170,
+                848
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "available",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": false,
+                "status": false,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-108",
+              "number": "108",
+              "layoutId": "al-studio",
+              "shape": [
+                1170,
+                854,
+                1234,
+                854,
+                1234,
+                924,
+                1170,
+                924
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-110",
+              "number": "110",
+              "layoutId": "al-studio",
+              "shape": [
+                1170,
+                934,
+                1234,
+                934,
+                1234,
+                1004,
+                1170,
+                1004
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-112",
+              "number": "112",
+              "layoutId": "al-studio",
+              "shape": [
+                1170,
+                1014,
+                1234,
+                1014,
+                1234,
+                1076,
+                1170,
+                1076
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "coming_available",
+              "baseRate": 3410,
+              "sqft": 380,
+              "accessible": false,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              },
+              "availableOn": "2026-10-30"
+            },
+            {
+              "id": "tcom-114",
+              "number": "114",
+              "layoutId": "al-1br",
+              "shape": [
+                1170,
+                1084,
+                1234,
+                1084,
+                1234,
+                1144,
+                1170,
+                1144
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 5295,
+              "sqft": 560,
+              "accessible": true,
+              "view": "Courtyard View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            },
+            {
+              "id": "tcom-117",
+              "number": "117",
+              "layoutId": "al-2br",
+              "shape": [
+                1144,
+                1154,
+                1224,
+                1154,
+                1224,
+                1238,
+                1144,
+                1238
+              ],
+              "careLevels": [
+                "al"
+              ],
+              "status": "occupied",
+              "baseRate": 6450,
+              "sqft": 860,
+              "accessible": false,
+              "view": "East/Residential Neighborhood View",
+              "features": [
+                "Kitchenette",
+                "Walk-in shower",
+                "Emergency pendant"
+              ],
+              "placeholder": {
+                "rate": true,
+                "status": true,
+                "layout": true
+              }
+            }
+          ],
+          "features": [
+            {
+              "id": "s-lawn",
+              "kind": "lawn",
+              "label": "",
+              "shape": [
+                0,
+                0,
+                1810,
+                0,
+                1810,
+                1580,
+                0,
+                1580
+              ]
+            },
+            {
+              "id": "s-meridian",
+              "kind": "road",
+              "label": "N Meridian Street",
+              "shape": [
+                0,
+                0,
+                1810,
+                0,
+                1810,
+                124,
+                0,
+                124
+              ]
+            },
+            {
+              "id": "s-86th",
+              "kind": "road",
+              "label": "E 86th Street",
+              "shape": [
+                1684,
+                0,
+                1810,
+                0,
+                1810,
+                1580,
+                1684,
+                1580
+              ]
+            },
+            {
+              "id": "s-entry-w",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                74,
+                124,
+                174,
+                124,
+                174,
+                244,
+                74,
+                244
+              ]
+            },
+            {
+              "id": "s-entry-n",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1204,
+                124,
+                1294,
+                124,
+                1294,
+                244,
+                1204,
+                244
+              ]
+            },
+            {
+              "id": "s-drive-top",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                74,
+                244,
+                1534,
+                244,
+                1534,
+                334,
+                74,
+                334
+              ]
+            },
+            {
+              "id": "s-drive-e",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1434,
+                244,
+                1534,
+                244,
+                1534,
+                1444,
+                1434,
+                1444
+              ]
+            },
+            {
+              "id": "s-drive-s",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1234,
+                1354,
+                1684,
+                1354,
+                1684,
+                1444,
+                1234,
+                1444
+              ]
+            },
+            {
+              "id": "s-drive-bldg",
+              "kind": "road",
+              "label": "",
+              "shape": [
+                1344,
+                334,
+                1434,
+                334,
+                1434,
+                654,
+                1344,
+                654
+              ]
+            },
+            {
+              "id": "s-park-1",
+              "kind": "parking",
+              "label": "Parking",
+              "shape": [
+                174,
+                348,
+                664,
+                348,
+                664,
+                420,
+                174,
+                420
+              ]
+            },
+            {
+              "id": "s-park-2",
+              "kind": "parking",
+              "label": "",
+              "shape": [
+                934,
+                348,
+                1134,
+                348,
+                1134,
+                420,
+                934,
+                420
+              ]
+            },
+            {
+              "id": "s-park-3",
+              "kind": "parking",
+              "label": "Parking",
+              "shape": [
+                1350,
+                654,
+                1424,
+                654,
+                1424,
+                894,
+                1350,
+                894
+              ]
+            },
+            {
+              "id": "s-park-4",
+              "kind": "parking",
+              "label": "Overflow parking",
+              "shape": [
+                1350,
+                964,
+                1430,
+                964,
+                1430,
+                1224,
+                1350,
+                1224
+              ]
+            },
+            {
+              "id": "b-outline",
+              "kind": "building",
+              "label": "",
+              "shape": [
+                324,
+                434,
+                1314,
+                434,
+                1314,
+                574,
+                1344,
+                574,
+                1344,
+                1244,
+                1134,
+                1244,
+                1134,
+                894,
+                804,
+                894,
+                804,
+                924,
+                284,
+                924,
+                284,
+                834,
+                324,
+                834
+              ]
+            },
+            {
+              "id": "f-mc-hall-top",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                324,
+                516,
+                804,
+                516,
+                804,
+                544,
+                324,
+                544
+              ]
+            },
+            {
+              "id": "f-mc-hall-left",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                398,
+                544,
+                424,
+                544,
+                424,
+                834,
+                398,
+                834
+              ]
+            },
+            {
+              "id": "f-mc-hall-bottom",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                284,
+                804,
+                804,
+                804,
+                804,
+                834,
+                284,
+                834
+              ]
+            },
+            {
+              "id": "f-mc-hall-right",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                738,
+                544,
+                770,
+                544,
+                770,
+                804,
+                738,
+                804
+              ]
+            },
+            {
+              "id": "f-mc-courtyard",
+              "kind": "outdoor",
+              "label": "Memory care courtyard",
+              "shape": [
+                510,
+                632,
+                738,
+                632,
+                738,
+                740,
+                510,
+                740
+              ]
+            },
+            {
+              "id": "f-mc-private-dining",
+              "kind": "amenity",
+              "label": "Private dining",
+              "shape": [
+                726,
+                544,
+                770,
+                544,
+                770,
+                628,
+                726,
+                628
+              ]
+            },
+            {
+              "id": "f-mc-dining",
+              "kind": "amenity",
+              "label": "Memory care dining",
+              "shape": [
+                770,
+                534,
+                898,
+                534,
+                898,
+                640,
+                770,
+                640
+              ]
+            },
+            {
+              "id": "f-mc-living",
+              "kind": "amenity",
+              "label": "Memory care living",
+              "shape": [
+                770,
+                640,
+                898,
+                640,
+                898,
+                740,
+                770,
+                740
+              ]
+            },
+            {
+              "id": "f-spa",
+              "kind": "amenity",
+              "label": "Spa",
+              "shape": [
+                424,
+                736,
+                484,
+                736,
+                484,
+                776,
+                424,
+                776
+              ]
+            },
+            {
+              "id": "f-laundry",
+              "kind": "staff",
+              "label": "Resident laundry",
+              "shape": [
+                424,
+                776,
+                484,
+                776,
+                484,
+                820,
+                424,
+                820
+              ]
+            },
+            {
+              "id": "f-mc-utility",
+              "kind": "staff",
+              "label": "",
+              "shape": [
+                530,
+                444,
+                560,
+                444,
+                560,
+                516,
+                530,
+                516
+              ]
+            },
+            {
+              "id": "f-office",
+              "kind": "staff",
+              "label": "Office",
+              "shape": [
+                798,
+                444,
+                854,
+                444,
+                854,
+                508,
+                798,
+                508
+              ]
+            },
+            {
+              "id": "f-salon",
+              "kind": "amenity",
+              "label": "Salon",
+              "shape": [
+                854,
+                444,
+                904,
+                444,
+                904,
+                508,
+                854,
+                508
+              ]
+            },
+            {
+              "id": "f-fitness",
+              "kind": "amenity",
+              "label": "Fitness & wellness",
+              "shape": [
+                904,
+                434,
+                984,
+                434,
+                984,
+                528,
+                904,
+                528
+              ]
+            },
+            {
+              "id": "f-offices",
+              "kind": "staff",
+              "label": "Offices",
+              "shape": [
+                984,
+                434,
+                1134,
+                434,
+                1134,
+                528,
+                984,
+                528
+              ]
+            },
+            {
+              "id": "f-welcome",
+              "kind": "amenity",
+              "label": "Welcome center",
+              "shape": [
+                1134,
+                444,
+                1214,
+                444,
+                1214,
+                508,
+                1134,
+                508
+              ]
+            },
+            {
+              "id": "f-kitchen",
+              "kind": "staff",
+              "label": "Kitchen",
+              "shape": [
+                904,
+                544,
+                1004,
+                544,
+                1004,
+                704,
+                904,
+                704
+              ]
+            },
+            {
+              "id": "f-al-dining",
+              "kind": "amenity",
+              "label": "Assisted living dining",
+              "shape": [
+                1004,
+                534,
+                1134,
+                534,
+                1134,
+                704,
+                1004,
+                704
+              ]
+            },
+            {
+              "id": "f-private-dining",
+              "kind": "amenity",
+              "label": "Private dining",
+              "shape": [
+                1134,
+                534,
+                1194,
+                534,
+                1194,
+                584,
+                1134,
+                584
+              ]
+            },
+            {
+              "id": "f-reception",
+              "kind": "amenity",
+              "label": "Reception",
+              "shape": [
+                1204,
+                524,
+                1314,
+                524,
+                1314,
+                608,
+                1204,
+                608
+              ]
+            },
+            {
+              "id": "f-bistro",
+              "kind": "amenity",
+              "label": "Bistro",
+              "shape": [
+                1134,
+                608,
+                1258,
+                608,
+                1258,
+                684,
+                1134,
+                684
+              ]
+            },
+            {
+              "id": "f-living-room",
+              "kind": "amenity",
+              "label": "Living room",
+              "shape": [
+                1104,
+                684,
+                1214,
+                684,
+                1214,
+                764,
+                1104,
+                764
+              ]
+            },
+            {
+              "id": "f-service",
+              "kind": "staff",
+              "label": "Service",
+              "shape": [
+                798,
+                764,
+                904,
+                764,
+                904,
+                894,
+                798,
+                894
+              ]
+            },
+            {
+              "id": "f-lift",
+              "kind": "vertical",
+              "label": "Elevator",
+              "shape": [
+                1214,
+                644,
+                1250,
+                644,
+                1250,
+                684,
+                1214,
+                684
+              ]
+            },
+            {
+              "id": "f-al-hall",
+              "kind": "corridor",
+              "label": "",
+              "shape": [
+                1234,
+                584,
+                1264,
+                584,
+                1264,
+                1244,
+                1234,
+                1244
+              ]
+            },
+            {
+              "id": "f-al-stairs",
+              "kind": "vertical",
+              "label": "Stairs",
+              "shape": [
+                1224,
+                1164,
+                1264,
+                1164,
+                1264,
+                1238,
+                1224,
+                1238
+              ]
+            },
+            {
+              "id": "f-al-courtyard",
+              "kind": "outdoor",
+              "label": "Assisted living courtyard & patio",
+              "shape": [
+                994,
+                764,
+                1134,
+                764,
+                1134,
+                874,
+                994,
+                874
+              ]
+            },
+            {
+              "id": "f-putting",
+              "kind": "outdoor",
+              "label": "Putting green",
+              "shape": [
+                974,
+                944,
+                1104,
+                944,
+                1104,
+                1044,
+                974,
+                1044
+              ]
+            },
+            {
+              "id": "f-patio",
+              "kind": "outdoor",
+              "label": "Patio",
+              "shape": [
+                1054,
+                1044,
+                1134,
+                1044,
+                1134,
+                1124,
+                1054,
+                1124
+              ]
+            },
+            {
+              "id": "f-dog-park",
+              "kind": "outdoor",
+              "label": "Dog park",
+              "shape": [
+                994,
+                1094,
+                1118,
+                1094,
+                1118,
+                1200,
+                994,
+                1200
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "legalNote": "Rates shown are a starting point and change with availability. The care charge is set by a nurse assessment before move-in.",
+  "confirmedAt": "2026-09-23T00:00:00.000Z",
+  "placeholder": {
+    "note": "Geometry, suite numbers, care levels, layout and view names, amenity names and five listed availabilities are from the community’s current map. Rates other than 101/102/103/106, care charges, fees, per-suite layouts and other availabilities are placeholders. Floor 2 is not yet drawn."
+  }
+}

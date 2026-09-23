@@ -15,7 +15,7 @@
  */
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { defineCommunityMap } from '../src/embed/element.js';
-import raw from './data/willow-creek.json';
+import raw from './data/commons-on-meridian.json';
 
 const slot = ref(null);
 let el = null;
@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
 <template>
     <div class="hostile">
         <header class="hostile-header">
-            <h1>Willow Creek Senior Living</h1>
+            <h1>The Commons on Meridian</h1>
         </header>
 
         <div class="hostile-lede">
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
 
         <div class="hostile-slot" ref="slot"></div>
 
-        <p class="hostile-footer">Willow Creek is a fictional community used for testing.</p>
+        <p class="hostile-footer">Placeholder rates and availability — a test page, not the community&#8217;s site.</p>
     </div>
 </template>
 

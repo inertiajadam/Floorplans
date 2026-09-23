@@ -9,7 +9,7 @@
  */
 import { ref } from 'vue';
 import CommunityMap from '../src/components/CommunityMap.vue';
-import raw from './data/willow-creek.json';
+import raw from './data/commons-on-meridian.json';
 
 const submitting = ref(false);
 const sent = ref(false);

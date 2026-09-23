@@ -129,9 +129,15 @@ try {
     const firstUnit = page.locator('.map-canvas .units > g[tabindex="0"]').first();
     await firstUnit.focus();
     const focusedBefore = await page.evaluate(() => document.activeElement?.getAttribute('data-unit'));
-    await page.keyboard.press('ArrowRight');
-    await page.waitForTimeout(250);
-    const focusedAfter = await page.evaluate(() => document.activeElement?.getAttribute('data-unit'));
+    /* The first suite may sit on an edge of the plan, so try each direction
+       until one has a neighbour. */
+    let focusedAfter = focusedBefore;
+    for (const key of ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp']) {
+        await page.keyboard.press(key);
+        await page.waitForTimeout(250);
+        focusedAfter = await page.evaluate(() => document.activeElement?.getAttribute('data-unit'));
+        if (focusedAfter !== focusedBefore) break;
+    }
     check('arrow key moves between suites', Boolean(focusedBefore) && focusedBefore !== focusedAfter, `${focusedBefore} -> ${focusedAfter}`);
 
     await page.keyboard.press('Enter');

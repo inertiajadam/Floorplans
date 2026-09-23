@@ -87,6 +87,11 @@
     --color-plan-outdoor:  #e3efe0;
     --color-plan-staff:    #eceff1;
     --color-plan-wall:     #c3cdc9;
+    /* Site plans. */
+    --color-plan-lawn:     #dfe9d8;
+    --color-plan-road:     #d3d8d6;
+    --color-plan-parking:  #e6e9e8;
+    --color-plan-building: #ffffff;
 
     --shadow-map-panel: 0 8px 40px rgba(31, 42, 51, 0.14);
 }

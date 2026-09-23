@@ -5,7 +5,7 @@ One map, on somebody else's website.
 ```html
 <script type="module"
         src="https://maps.seniorsplaces.com/v1/embed.js"
-        data-map="willow-creek-senior-living"></script>
+        data-map="the-commons-on-meridian"></script>
 ```
 
 That is the whole snippet. It renders the map where the tag sits.
@@ -27,7 +27,7 @@ That is the whole snippet. It renders the map where the tag sits.
 Markup-first alternative, for CMSs that strip attributes from script tags:
 
 ```html
-<div data-community-map="willow-creek-senior-living" data-height="720"></div>
+<div data-community-map="the-commons-on-meridian" data-height="720"></div>
 <script type="module" src="https://maps.seniorsplaces.com/v1/embed.js"></script>
 ```
 
@@ -149,7 +149,7 @@ document.addEventListener('map:error',  (e) => console.warn(e.detail.message));
 And a programmatic handle for maps rendered into modals or single-page apps:
 
 ```js
-window.CommunityMap.render('#slot', { map: 'willow-creek', height: 700 });
+window.CommunityMap.render('#slot', { map: 'the-commons-on-meridian', height: 700 });
 window.CommunityMapLoader.scan();   // re-scan after adding containers
 ```
 

@@ -30,7 +30,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 
-const community = JSON.parse(await readFile(join(ROOT, 'demo/data/willow-creek.json'), 'utf8'));
+const community = JSON.parse(await readFile(join(ROOT, 'demo/data/commons-on-meridian.json'), 'utf8'));
 
 /* An operator-set theme, delivered with the payload. Deliberately nothing like
    the host page's pink so a leak in either direction is obvious. */
@@ -318,7 +318,7 @@ try {
         }
         /* Force a fresh element so map:loaded fires again. */
         const el = document.createElement('community-map');
-        el.setAttribute('map', 'willow-creek-senior-living');
+        el.setAttribute('map', 'the-commons-on-meridian');
         el.setAttribute('api', '/');
         el.setAttribute('lazy', 'false');
         document.body.appendChild(el);

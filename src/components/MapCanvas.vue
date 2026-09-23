@@ -314,6 +314,12 @@ defineExpose({ focusUnit });
 .feature--outdoor  { fill: var(--color-plan-outdoor); }
 .feature--staff    { fill: var(--color-plan-staff); }
 .feature--vertical { fill: var(--color-plan-staff); }
+/* Site plans: the ground the building sits on. No hairline on the ground
+   itself, or the whole map gets an outline. */
+.feature--lawn     { fill: var(--color-plan-lawn); stroke: none; }
+.feature--road     { fill: var(--color-plan-road); stroke: none; }
+.feature--parking  { fill: var(--color-plan-parking); stroke: none; }
+.feature--building { fill: var(--color-plan-building); }
 .feature-label {
     fill: var(--color-ink-light);
     font-family: var(--font-sans);

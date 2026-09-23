@@ -83,6 +83,11 @@
     --color-plan-outdoor:  #e3efe0;
     --color-plan-staff:    #eceff1;
     --color-plan-wall:     #c3cdc9;
+    /* Site plans. */
+    --color-plan-lawn:     #dfe9d8;
+    --color-plan-road:     #d3d8d6;
+    --color-plan-parking:  #e6e9e8;
+    --color-plan-building: #ffffff;
 
     /*
      | Fonts: inherit from the host page by default.

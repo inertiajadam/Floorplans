@@ -28,7 +28,7 @@ import CommunityMap from '../components/CommunityMap.vue';
 import { normalize } from '../lib/model.js';
 
 const props = defineProps({
-    /** Public map id, e.g. "willow-creek-senior-living". */
+    /** Public map id, e.g. "the-commons-on-meridian". */
     mapId:    { type: String, required: true },
     /** Origin of the map platform's API. */
     apiBase:  { type: String, required: true },
