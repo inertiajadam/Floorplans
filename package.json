@@ -10,7 +10,7 @@
         "preview": "vite preview",
         "demo:build": "node scripts/build-demo.mjs",
         "build:embed": "vite build -c vite.embed.config.js",
-        "test": "php tests/php/run.php && node scripts/smoke.mjs && node scripts/smoke-operator.mjs && node scripts/smoke-embed.mjs",
+        "test": "php tests/php/run.php && node tests/js/floorplanner.test.mjs && node scripts/smoke.mjs && node scripts/smoke-operator.mjs && node scripts/smoke-embed.mjs",
         "demo:bundle": "vite build -c vite.showcase.config.js && node scripts/build-demo-bundle.mjs",
         "build:showcase": "vite build -c vite.showcase.config.js"
     },
