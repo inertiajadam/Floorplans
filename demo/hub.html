@@ -178,7 +178,12 @@
         gap: 16px;
     }
 
-    a.deck {
+    .deck {
+        appearance: none;
+        font: inherit;
+        text-align: left;
+        width: 100%;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -191,14 +196,14 @@
         box-shadow: var(--shadow);
         transition: border-color .15s ease, transform .15s ease;
     }
-    a.deck:hover, a.deck:focus-visible {
+    .deck:hover, .deck:focus-visible {
         border-color: var(--accent);
         transform: translateY(-2px);
     }
-    a.deck:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .deck:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     @media (prefers-reduced-motion: reduce) {
-        a.deck { transition: none; }
-        a.deck:hover, a.deck:focus-visible { transform: none; }
+        .deck { transition: none; }
+        .deck:hover, .deck:focus-visible { transform: none; }
     }
 
     .deck h3 { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
@@ -234,6 +239,31 @@
         font-weight: 500;
         color: var(--accent-ink);
         letter-spacing: .02em;
+    }
+
+    /* ----------------------------------------------------------------- stage */
+    .stage-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .stage-back {
+        appearance: none;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--accent-ink);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+    .stage-back:hover, .stage-back:focus-visible { border-color: var(--accent); }
+    .stage-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .stage-title { font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 600; }
+    .stage-host {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        overflow: hidden;
+        background: var(--surface);
     }
 
     /* ------------------------------------------------------------ verify bar */
@@ -385,13 +415,13 @@
         </p>
     </div>
 
-    <div class="rule"><span>Four demos &#183; open in a new tab</span></div>
+    <div class="rule" id="demos-rule"><span>Four demos &#183; each opens right here</span></div>
 
     <!-- Labelled by audience, because that is what actually differs between
          them &#8212; not a sequence, so no step numbering. -->
     <div class="decks">
 
-        <a class="deck" href="./map.html" target="_blank" rel="noopener">
+        <button type="button" class="deck" data-demo="map">
             <span class="eyebrow">For families</span>
             <h3>The availability map</h3>
             <p>What a family sees on a listing. Real polygons, real rent roll, three building types.</p>
@@ -402,9 +432,9 @@
                 <li>Tab into the plan and use the arrow keys: they move to the suite in that direction, not the next in the DOM</li>
             </ul>
             <span class="open">Open the map &#8594;</span>
-        </a>
+        </button>
 
-        <a class="deck" href="./client-site.html" target="_blank" rel="noopener">
+        <button type="button" class="deck" data-demo="embed">
             <span class="eyebrow">For client websites</span>
             <h3>The embed, on a hostile page</h3>
             <p>One script tag on a client's own site. The host page here is deliberately awful.</p>
@@ -415,9 +445,9 @@
                 <li>View source: the snippet is three lines and the loader is 3.4 kB</li>
             </ul>
             <span class="open">Open the client site &#8594;</span>
-        </a>
+        </button>
 
-        <a class="deck" href="./operator.html" target="_blank" rel="noopener">
+        <button type="button" class="deck" data-demo="operator">
             <span class="eyebrow">For community operators</span>
             <h3>The availability panel</h3>
             <p>How a community keeps it true. Opens on the work, not the whole roster.</p>
@@ -428,9 +458,9 @@
                 <li>Tick &#8220;Inventory syncs from a PMS&#8221; to reveal the reconciliation screen and per-field locks</li>
             </ul>
             <span class="open">Open the panel &#8594;</span>
-        </a>
+        </button>
 
-        <a class="deck" href="./editor.html" target="_blank" rel="noopener">
+        <button type="button" class="deck" data-demo="tracer">
             <span class="eyebrow">For your team</span>
             <h3>The plan tracer</h3>
             <p>Trace a floor plan once and export the geometry. Changing a map is not a support ticket.</p>
@@ -441,9 +471,18 @@
                 <li>Re-tracing a floor later keeps every suite's availability, matched by number</li>
             </ul>
             <span class="open">Open the tracer &#8594;</span>
-        </a>
+        </button>
 
     </div>
+
+    <!-- Where a chosen demo mounts, in place of the cards. -->
+    <section id="stage" hidden>
+        <div class="stage-bar">
+            <button type="button" id="stage-back" class="stage-back">&#8592; All demos</button>
+            <span id="stage-title" class="stage-title"></span>
+        </div>
+        <div id="stage-host" class="stage-host"></div>
+    </section>
 
     <div class="rule"><span>Verification</span></div>
 
@@ -515,3 +554,41 @@
     </footer>
 
 </div>
+
+<!-- The demo bundle, inlined at assembly time so nothing is fetched. -->
+<script type="module">__SHOWCASE_BUNDLE__</script>
+
+<script>
+(function () {
+    var decks = document.querySelector('.decks');
+    var rule  = document.getElementById('demos-rule');
+    var stage = document.getElementById('stage');
+    var host  = document.getElementById('stage-host');
+    var title = document.getElementById('stage-title');
+    var back  = document.getElementById('stage-back');
+
+    function open(name) {
+        var go = function () {
+            var t = window.Showcase.mount(name, host);
+            title.textContent = t || name;
+            decks.hidden = true;
+            stage.hidden = false;
+            rule.scrollIntoView({ block: 'start', behavior: 'smooth' });
+            back.focus({ preventScroll: true });
+        };
+        if (window.Showcase) go();
+        else window.addEventListener('showcase:ready', go, { once: true });
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('.deck[data-demo]'), function (b) {
+        b.addEventListener('click', function () { open(b.getAttribute('data-demo')); });
+    });
+
+    back.addEventListener('click', function () {
+        if (window.Showcase) window.Showcase.unmount();
+        stage.hidden = true;
+        decks.hidden = false;
+        rule.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+})();
+</script>

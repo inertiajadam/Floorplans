@@ -22,6 +22,7 @@
  */
 import { computed, nextTick, ref, watch } from 'vue';
 import { money } from '../lib/pricing.js';
+import { activeElementDeep, trapTab } from '../lib/dom.js';
 
 const props = defineProps({
     unit:      { type: Object, default: null },
@@ -82,7 +83,7 @@ watch(() => props.unit?.id, async (id) => {
     if (!id) return;
     form.value = blank();
     touched.value = false;
-    restoreTo = document.activeElement;
+    restoreTo = activeElementDeep(dialog.value?.getRootNode?.() ?? document);
     await nextTick();
     firstField.value?.focus();
 });
@@ -110,12 +111,7 @@ function close() {
 
 function onKeydown(e) {
     if (e.key === 'Escape') { e.stopPropagation(); close(); return; }
-    if (e.key !== 'Tab' || !dialog.value) return;
-    const f = dialog.value.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])');
-    if (!f.length) return;
-    const [first, last] = [f[0], f[f.length - 1]];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    trapTab(e, dialog.value);
 }
 
 function submit() {

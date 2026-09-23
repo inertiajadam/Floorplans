@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath, URL } from 'node:url';
 import { readFileSync } from 'node:fs';
+import { inlineStylesheet } from './scripts/vite-inline-css.mjs';
 
 /*
  | The embeddable build.
@@ -26,56 +27,8 @@ import { readFileSync } from 'node:fs';
 
 const version = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')).version;
 
-/**
- * Fold the compiled stylesheet into the runtime chunk.
- *
- * The alternative — shipping style.css and fetching it — costs a second
- * request and, worse, lets the map render unstyled while that request is in
- * flight. On someone else's website a flash of unstyled map looks broken.
- */
-function inlineStylesheet() {
-    return {
-        name: 'inline-embed-stylesheet',
-        apply: 'build',
-        enforce: 'post',
-        generateBundle(_options, bundle) {
-            const cssFiles = Object.keys(bundle).filter((f) => f.endsWith('.css'));
-            const css = cssFiles.map((f) => bundle[f].source ?? '').join('\n');
-
-            let injected = false;
-            for (const file of Object.keys(bundle)) {
-                const chunk = bundle[file];
-                if (chunk.type !== 'chunk' || !chunk.code.includes('__EMBED_CSS__')) continue;
-
-                /* Backticks matter: the minifier rewrites short string
-                   literals as template literals, so matching only ' and "
-                   silently leaves the placeholder in the bundle and ships an
-                   unstyled map. */
-                chunk.code = chunk.code
-                    .replace(/["'`]__EMBED_CSS__["'`]/g, JSON.stringify(css))
-                    .replace(/__EMBED_VERSION__/g, version);
-                injected = true;
-            }
-
-            /* Fail the build rather than shipping an unstyled embed. This has
-               already gone wrong once (quote style), and the failure mode is
-               invisible until the map is on somebody's website. */
-            if (css && !injected) {
-                this.error('Embed stylesheet was compiled but never injected — the __EMBED_CSS__ placeholder was not found in any chunk.');
-            }
-            if (!css) {
-                this.error('No stylesheet was compiled for the embed — check that element.js still imports embed.css.');
-            }
-
-            /* Drop the standalone CSS so nobody deploys a file that is now
-               dead weight and could drift out of sync with the JS. */
-            for (const f of cssFiles) delete bundle[f];
-        },
-    };
-}
-
 export default defineConfig({
-    plugins: [vue(), tailwindcss(), inlineStylesheet()],
+    plugins: [vue(), tailwindcss(), inlineStylesheet({ version })],
     define: {
         /* Vue ships dev warnings unless this is set, and they are noise in
            someone else's console. */

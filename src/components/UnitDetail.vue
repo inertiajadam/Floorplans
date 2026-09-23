@@ -15,6 +15,7 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import StatusPill from './StatusPill.vue';
 import PricingPanel from './PricingPanel.vue';
 import { statusDetail } from '../lib/availability.js';
+import { activeElementDeep, trapTab } from '../lib/dom.js';
 
 const props = defineProps({
     unit:      { type: Object, default: null },
@@ -47,7 +48,7 @@ const specs = computed(() => {
 /* ------------------------------------------------------------ dialog plumbing */
 
 watch(() => props.unit?.id, async (id, was) => {
-    if (id && !was) restoreTo = document.activeElement;
+    if (id && !was) restoreTo = activeElementDeep(panel.value?.getRootNode?.() ?? document);
     if (id) {
         await nextTick();
         closeBtn.value?.focus();
@@ -63,17 +64,9 @@ function onKeydown(e) {
         emit('close');
         return;
     }
-    if (e.key !== 'Tab' || !panel.value) return;
-
-    const focusables = panel.value.querySelectorAll(
-        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    );
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    /* Shadow-DOM-safe: document.activeElement would stop at the host and the
+       trap would silently do nothing in the embed. */
+    trapTab(e, panel.value);
 }
 
 async function copyLink() {
