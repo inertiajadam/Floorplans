@@ -7,6 +7,7 @@ use App\Models\CommunityMapSetting;
 use App\Models\FloorPlan;
 use App\Models\Legacy\Community;
 use App\Models\MapBuilding;
+use App\Models\MapLevel;
 use App\Models\MapUnit;
 use Illuminate\Support\Collection;
 
@@ -124,6 +125,102 @@ class CommunityMaps
             ])->values()->all(),
 
             'legalNote' => $settings?->legal_note,
+
+            /*
+             | "Availability confirmed 2 days ago."
+             |
+             | Opt-in per community, because it is a strong trust signal for an
+             | operator who keeps on top of their roster and a liability for one
+             | who does not. Nothing else on a listing page tells a family
+             | whether what they are reading is current.
+             */
+            'confirmedAt' => $settings?->show_confirmed_at
+                ? MapInventory::freshness($c)['confirmedAt']
+                : null,
+        ];
+    }
+
+    /**
+     * Everything the owner's panel renders.
+     *
+     * Deliberately a different shape from payload(): the operator needs the
+     * rent roll as a flat, sortable roster with freshness on every row, not a
+     * nested tree built for drawing a floor plan.
+     *
+     * @return array<string, mixed>
+     */
+    public static function portalPayload(Community $c): array
+    {
+        $settings = self::settings($c);
+
+        /* withCount rather than a count() inside the map below — that reads
+           harmlessly and then fires one query per floor. */
+        $buildings = MapBuilding::where('community_id', $c->id)
+            ->with(['levels' => static fn ($q) => $q->withCount('units')])
+            ->orderBy('sort')->orderBy('id')
+            ->get();
+
+        return [
+            'allowed'   => self::allowed($c),
+            'published' => (bool) $settings?->is_published,
+            'live'      => self::isLive($c),
+
+            'freshness' => MapInventory::freshness($c),
+            'units'     => MapInventory::roster($c),
+
+            'buildings' => $buildings->map(static fn (MapBuilding $b) => [
+                'id'     => $b->id,
+                'name'   => $b->name,
+                'short'  => $b->short_name ?: $b->name,
+                'blurb'  => $b->blurb,
+                'levels' => $b->levels->map(static fn (MapLevel $l) => [
+                    'id'      => $l->id,
+                    'name'    => $l->name,
+                    'ordinal' => (int) $l->ordinal,
+                    'units'   => (int) $l->units_count,
+                ])->values()->all(),
+            ])->values()->all(),
+
+            /* The operator's own layouts, for the "which layout is this suite"
+               picker. Same rows the floor plans panel manages. */
+            'layouts' => FloorPlan::where('community_id', $c->id)
+                ->orderBy('sort')->orderBy('id')
+                ->get(['id', 'name', 'room_type', 'sqft', 'starting_price'])
+                ->map(static fn (FloorPlan $p) => [
+                    'id'        => $p->id,
+                    'name'      => $p->name,
+                    'typeLabel' => FloorPlans::roomTypeLabel($p->room_type),
+                    'sqft'      => $p->sqft,
+                    'rate'      => $p->starting_price,
+                ])->values()->all(),
+
+            'tiers' => CareTier::where('community_id', $c->id)
+                ->orderBy('sort')->orderBy('monthly')
+                ->get()
+                ->map(static fn (CareTier $t) => [
+                    'key'         => $t->key,
+                    'label'       => $t->label,
+                    'monthly'     => (int) $t->monthly,
+                    'care_levels' => $t->care_levels ?? [],
+                    'description' => $t->description,
+                ])->values()->all(),
+
+            'settings' => [
+                'community_fee'     => $settings?->community_fee,
+                'second_person_fee' => $settings?->second_person_fee,
+                'pet_deposit'       => $settings?->pet_deposit,
+                'add_ons'           => $settings?->add_ons ?? [],
+                'legal_note'        => $settings?->legal_note,
+                'freshness_days'    => (int) ($settings?->freshness_days ?: 30),
+                'show_confirmed_at' => (bool) ($settings?->show_confirmed_at ?? true),
+                'inventory_source'  => $settings?->inventory_source ?? 'manual',
+                'pms_provider'      => $settings?->pms_provider,
+                'last_sync_at'      => $settings?->last_sync_at?->toIso8601String(),
+                'last_sync_status'  => $settings?->last_sync_status,
+                'last_sync_message' => $settings?->last_sync_message,
+            ],
+
+            'pricingPublic' => (bool) ($c->pricing_public ?? true),
         ];
     }
 

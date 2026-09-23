@@ -72,6 +72,11 @@ try {
     const heading = await page.locator('h2').first().textContent();
     check('headline renders', /Availability at/.test(heading ?? ''), heading?.trim());
 
+    /* The freshness trust signal — opt-in per community, and the single thing
+       on a listing page that says whether what you are reading is current. */
+    const confirmed = await page.getByText(/Availability confirmed/).first().textContent().catch(() => null);
+    check('shows when availability was last confirmed', Boolean(confirmed), confirmed?.trim());
+
     /* ---- filtering ---- */
     const before = await page.locator('.cm-results li').count();
     await page.getByRole('button', { name: 'Memory care', exact: true }).click();

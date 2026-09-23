@@ -161,8 +161,12 @@ What this build does, and where it stands:
 | Compare up to three suites | ✅ |
 | Lead capture that names the suite, into your existing CRM pipeline | ✅ |
 | Self-service geometry editing (the plan tracer) | ✅ |
-| Operator-facing availability editing | ⛔ not built — see README |
-| Real-time PMS sync | ⛔ not built — deliberate; see README |
+| Operator-facing availability editing | ✅ |
+| Freshness tracking, and a one-click "still accurate" | ✅ |
+| "Availability confirmed N days ago" on the listing | ✅ opt-in per community |
+| Operator-editable care tiers and fees | ✅ |
+| Field ownership + per-field locks, ready for a feed | ✅ |
+| A PMS adapter | ⛔ not built — deliberate; see [PMS-SYNC.md](PMS-SYNC.md) |
 | 3D / virtual tour rendering | ➖ links out when `tour_url` is set |
 
 ---

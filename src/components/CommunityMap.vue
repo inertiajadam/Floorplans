@@ -29,6 +29,7 @@ import CompareTray from './CompareTray.vue';
 import LeadForm from './LeadForm.vue';
 
 import { normalize, summarize } from '../lib/model.js';
+import { describeAge } from '../lib/availability.js';
 import { useMapView } from '../composables/useMapView.js';
 import { useUnitFilters } from '../composables/useUnitFilters.js';
 import { useCompare } from '../composables/useCompare.js';
@@ -66,6 +67,7 @@ const leadIntent = ref('tour');
 const showFiltersOnPhone = ref(false);
 
 const summary = computed(() => summarize(model.value, filters.results.value));
+const confirmedAge = computed(() => describeAge(model.value.confirmedAt));
 const totals = computed(() => summarize(model.value));
 
 const headline = computed(() => {
@@ -207,6 +209,19 @@ function resetView() {
                     <span v-if="totals.careLevels > 1" class="text-ink-light">
                         · {{ totals.careLevels }} levels of care
                     </span>
+                </p>
+
+                <!--
+                  "Availability confirmed 2 days ago."
+                  Nothing else on a listing page tells a family whether what
+                  they are reading is current, and a community that keeps on
+                  top of its roster deserves the credit. Opt-in per community
+                  (the server sends null when it is switched off), so it is
+                  never an accidental admission that a map has rotted.
+                -->
+                <p v-if="confirmedAge" class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-brand-light px-2.5 py-1 text-[12.5px] font-semibold text-brand-dark">
+                    <span aria-hidden="true">✓</span>
+                    Availability confirmed {{ confirmedAge }}
                 </p>
             </div>
 

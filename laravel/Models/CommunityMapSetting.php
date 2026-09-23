@@ -18,7 +18,16 @@ class CommunityMapSetting extends Model
         'pet_deposit'       => 'integer',
         'add_ons'           => 'array',
         'is_published'      => 'boolean',
+        'last_sync_at'      => 'datetime',
+        'freshness_days'    => 'integer',
+        'show_confirmed_at' => 'boolean',
     ];
+
+    /** True when a PMS feed is the source of truth, not the operator panel. */
+    public function isSynced(): bool
+    {
+        return $this->inventory_source === 'pms';
+    }
 
     public function community(): BelongsTo
     {

@@ -4,9 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath, URL } from 'node:url';
 
 /*
- | Two entry points, both served from the repo root:
- |   index.html   the map itself, running against demo/data/willow-creek.json
- |   editor.html  the plan tracing tool
+ | Three entry points, all served from the repo root:
+ |   index.html     the map itself, running against demo/data/willow-creek.json
+ |   operator.html  the owner portal panels
+ |   editor.html    the plan tracing tool
  |
  | This config only exists to run the demo. When the components move into
  | seniorsplaces-platform they are compiled by that app's Vite build — see
@@ -22,6 +23,7 @@ export default defineConfig({
             input: {
                 main: fileURLToPath(new URL('./index.html', import.meta.url)),
                 editor: fileURLToPath(new URL('./editor.html', import.meta.url)),
+                operator: fileURLToPath(new URL('./operator.html', import.meta.url)),
             },
         },
     },

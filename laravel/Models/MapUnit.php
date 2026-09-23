@@ -33,6 +33,9 @@ class MapUnit extends Model
         'waitlist_count'       => 'integer',
         'respite_nightly_rate' => 'integer',
         'sort'                 => 'integer',
+        'availability_confirmed_at' => 'datetime',
+        'synced_at'                 => 'datetime',
+        'locked_fields'             => 'array',
     ];
 
     /* Availability vocabulary. Mirrors src/lib/availability.js — the two must
@@ -92,5 +95,16 @@ class MapUnit extends Model
     public function isActionable(): bool
     {
         return in_array($this->status, self::ACTIONABLE, true);
+    }
+
+    /** Has the operator pinned this field against an inventory feed? */
+    public function isLocked(string $field): bool
+    {
+        return in_array($field, (array) ($this->locked_fields ?? []), true);
+    }
+
+    public function confirmedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'availability_confirmed_by');
     }
 }

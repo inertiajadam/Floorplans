@@ -76,6 +76,11 @@ export function normalize(raw) {
         fees: raw.fees ?? {},
         layouts: raw.layouts ?? [],
         legalNote: raw.legalNote ?? null,
+        /* When the operator has opted in, the server sends the most recent
+           availability confirmation across the community. Null means either
+           "switched off" or "never confirmed" — both render as nothing, which
+           is the right outcome for each. */
+        confirmedAt: raw.confirmedAt ?? null,
     };
 
     const units = [];

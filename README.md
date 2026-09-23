@@ -8,10 +8,12 @@ Not an iframe. Not a multifamily tool with "senior living" written on it.
 
 ```bash
 npm install
-npm run dev          # the map,  http://localhost:5173
-                     # the plan tracer, /editor.html
+npm run dev          # the family-facing map,  http://localhost:5173
+                     # the owner portal panels, /operator.html
+                     # the plan tracer,         /editor.html
 npm run build
-node scripts/smoke.mjs   # 28 browser checks against the built output
+node scripts/smoke.mjs           # 29 browser checks — the map
+node scripts/smoke-operator.mjs  # 27 browser checks — the operator panels
 ```
 
 The demo runs against **Willow Creek Senior Living**, a synthetic 61-unit
@@ -68,9 +70,32 @@ suite, layout, floor, availability and rate. A sales counsellor reads *"Suite
 204 — The Cedar, Magnolia Floor 2, coming available, asked for a visit on 15
 November"* instead of "someone submitted the contact form".
 
+**Operators keep it true themselves.** `/operator.html` is the owner portal.
+Availability changes weekly; geometry changes yearly; the panels are shaped
+around that gap. A suite is one dropdown saved on change, and the most common
+truth — nothing changed — is a single "everything here is still right" button.
+The roster opens on the work: suites that are bookable but unvouched-for, at
+the top.
+
+Freshness is tracked separately from `updated_at`, because `updated_at` moves
+when anyone edits anything — a typo fix would make a year-old vacancy look
+freshly checked. That one column drives the staleness nudge, the roster order,
+and an opt-in "availability confirmed 2 days ago" line on the listing that
+almost nothing else in the market can show.
+
 **You own the geometry.** `/editor.html` is a plan tracer: load a floor plan
 drawing, click to trace each suite, export JSON. Changing a map is not a
-support ticket to a vendor.
+support ticket to a vendor. Re-tracing a floor later keeps every suite's
+availability — matched by number — so fixing a mis-drawn wall never marks a
+wing vacant.
+
+**Ready for hands-off inventory sync.** No PMS adapter yet — that should be
+written against a real customer's feed, not a guess. But everything expensive
+to retrofit is in place: matching on a stable external id rather than suite
+number, an explicit split of which fields a feed may write (occupancy, dates,
+rent) versus which stay operator-owned (geometry, accessibility, layout), and
+per-field operator locks. Writing an adapter becomes a translation job against
+one seam. See [docs/PMS-SYNC.md](docs/PMS-SYNC.md).
 
 ---
 
@@ -80,12 +105,15 @@ support ticket to a vendor.
 src/lib/          domain — availability vocabulary, care pricing maths, polygon geometry,
                   and the normaliser that turns a community document into what the UI reads
 src/composables/  pan/zoom, URL-synced filters, compare tray, screen-reader announcements
-src/components/   the UI. CommunityMap.vue is the only one a host page mounts
+src/components/   the family-facing UI. CommunityMap.vue is the only one a host page mounts
+src/operator/     the owner portal: availability roster, care tiers & fees, structure
 editor/           the plan tracer
-laravel/          drop-in server side: migration, models, payload builder, lead controller
+laravel/          drop-in server side: migrations, models, payload builders, the
+                  inventory write-layer (MapInventory), lead + portal controllers
 demo/             the harness and the generated Willow Creek dataset
-docs/             INTEGRATION.md (how to land it) · DATA-MODEL.md (why it is shaped this way)
-scripts/          demo generator, browser smoke test
+docs/             INTEGRATION.md (how to land it) · DATA-MODEL.md (why it is shaped
+                  this way) · PMS-SYNC.md (the inventory sync contract)
+scripts/          demo generator, two browser smoke suites
 ```
 
 `src/` imports nothing from outside `src/`. Moving it into the platform is a
@@ -108,16 +136,25 @@ Full detail: [docs/DATA-MODEL.md](docs/DATA-MODEL.md).
 
 ## Verification
 
-`node scripts/smoke.mjs` drives real Chromium against the built output: 28
-checks covering rendering, filtering, deep-link round trips, spatial keyboard
-navigation, the care-pricing maths, the lead flow, focus management, accessible
-names and labels, mobile layout and touch-target sizes. All 28 pass.
+Two suites drive real Chromium against the built output. **56 checks, all
+passing.**
 
-It caught three real bugs during the build, which is the argument for keeping
-it: the fitted view cropped the lift core and shared rooms off the edge of the
-plan; a selected suite could land underneath the desktop drawer; and after a
-lead was sent, focus fell back to `<body>`, so Escape stopped working and a
-screen reader announced nothing.
+`smoke.mjs` (29) — rendering, filtering, deep-link round trips, spatial
+keyboard navigation, the care-pricing maths, the lead flow, focus management,
+accessible names and labels, mobile layout and touch targets.
+
+`smoke-operator.mjs` (27) — status changes posting correctly, bulk actions,
+confirm-all clearing the stale count, the pricing preview reacting live, sync
+mode affordances, adding buildings, labels and thumb-sized controls. It also
+pins down three rules that are easy to break silently: a coming-available
+suite will not save without a date, switching status clears the previous
+status's satellite fields, and confirm-all never touches availability itself.
+
+The map suite caught three real bugs during the build, which is the argument
+for keeping them: the fitted view cropped the lift core and shared rooms off
+the edge of the plan; a selected suite could land underneath the desktop
+drawer; and after a lead was sent, focus fell back to `<body>`, so Escape
+stopped working and a screen reader announced nothing.
 
 ---
 
@@ -125,36 +162,44 @@ screen reader announced nothing.
 
 Honest list, roughly in the order I would do them.
 
-1. **An operator panel for availability.** Communities cannot currently
-   maintain their own map — step 3 of "authoring a community's map" in
-   INTEGRATION.md is a paste. This is the difference between a demo and a
-   product, and it is the next thing to build.
-2. **PMS sync** (PointClickCare, Yardi Senior Living, RealPage). Deliberately
-   deferred: the payload builder is a clean seam for an adapter, and doing it
-   before a real customer's feed is in hand means building against a guess.
-3. **Server-rendered suite pages.** The URL contract is already there
+1. **PMS reconciliation screen.** The first piece of sync work, and it must
+   exist before any adapter: pairing feed units to our suites has to be
+   human-confirmed once, because auto-matching on suite number is the bug that
+   marks the wrong room vacant. See §3 of PMS-SYNC.md.
+2. **One PMS adapter**, against a real customer feed — then scheduling with an
+   alarm on *silence*, not just on errors. A feed that stops returning rows
+   looks like success while the map quietly freezes on stale data.
+3. **Serve the plan tracer behind auth.** It is linked from the operator panel
+   but is currently a public static page in this repo. A Blade view at
+   `/account/plan-tracer` mounting the same component is enough.
+4. **Server-rendered suite pages.** The URL contract is already there
    (`?unit=204`); the SEO win needs a controller that renders that suite into
    the page's meta tags and JSON-LD.
-4. **`lead_form` reporting.** Map leads are stamped `community-map`. The
+5. **`lead_form` reporting.** Map leads are stamped `community-map`. The
    backend inbox and reports filter on `lead_form`, so that value needs adding
    or map leads will be invisible there.
-5. **Analytics.** Which suites get opened, which filters get used, where people
+6. **A staleness nudge by email.** The panel shows the warning, but only to
+   someone who logs in. The operators most likely to let a map rot are the
+   ones least likely to visit the portal.
+7. **Analytics.** Which suites get opened, which filters get used, where people
    drop out. Cheap to add, and it is what tells you whether this is working.
-6. **A `tour_url` column on `floor_plans`.** The component already renders a
+8. **A `tour_url` column on `floor_plans`.** The component already renders a
    "walk through this layout in 3D" link when one is present.
 
 ---
 
 ## Two things worth deciding early
 
-**Who keeps availability current?** A map showing a suite that was let last
-week is worse than no map — it converts a trust-building tool into a
-trust-destroying one. Whatever the answer (operator portal, nightly PMS sync,
-a Seniors Places account manager), it should be decided before this goes in
-front of families, because it determines how much of item 1 and 2 above is
-actually optional.
+**What happens when an operator ignores the nudge?** The panel makes keeping
+availability current easy, and the freshness stamp makes neglect visible. It
+does not decide what to *do* about it. The options are a policy call, not a
+technical one: hide a map whose suites have all gone stale, drop the
+"confirmed" line, email the operator, or let it ride. Doing nothing is a real
+choice — it just means some listings will quietly show availability from three
+months ago.
 
 **Does the client's community have real plan drawings?** The demo generates
 its geometry. Real communities need a drawing to trace over, and the quality of
 what they can supply — a CAD export, a PDF, a photo of a laminated sheet in the
-lobby — decides how long tracing takes per building.
+lobby — decides how long tracing takes per building. This is the one thing
+still blocking a real pilot.

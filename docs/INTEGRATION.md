@@ -213,31 +213,168 @@ needs that value adding, or map leads will be invisible in those views.
 
 ---
 
-## 5. Authoring a community's map
+## 5. The operator panel
 
-1. The operator uploads their layouts as they do now (`FloorPlans` panel).
-2. Open `/editor.html` (the plan tracer), load the floor plan drawing, and
-   trace each suite. Set number, layout id, availability and rate as you go.
-3. Copy the exported JSON into a `community_map_levels` row plus its
-   `community_map_units`.
-4. Add the care tiers and fees.
-5. Flip `community_map_settings.is_published`.
+Three panels for the listing edit page, in `src/operator/`:
 
-Step 3 is a seeder or a paste today. The obvious next piece of work is an
-operator-facing panel in the portal that wraps the tracer, so communities
-maintain their own availability — see "Not built yet" in the README.
+| Component | What it does | How often it gets used |
+|---|---|---|
+| `AvailabilityPanel.vue` | The rent roll. Inline status, bulk actions, confirm-all | Weekly, sometimes daily |
+| `PricingPanel.vue` | Care tiers, fees, freshness settings | A few times a year |
+| `StructurePanel.vue` | Buildings, floors, pasting traced geometry | Once, then rarely |
+
+They are shaped around that frequency gap. Availability is one dropdown per
+suite saved on change; structure is ordinary forms.
+
+### Copying them in
+
+```
+src/operator/*.vue  →  resources/js/Components/Frontend/Portal/CommunityMap/
+```
+
+### The `submit` contract
+
+The panels post nothing themselves. They call a `submit(action, payload)` prop
+and await it; throwing surfaces an error in the panel. That keeps them
+drivable in a browser test with no Laravel behind them — which is how
+`scripts/smoke-operator.mjs` works.
+
+On `Pages/Frontend/Portal/Communities/Form.vue`:
+
+```vue
+<script setup>
+import AvailabilityPanel from '@/Components/Frontend/Portal/CommunityMap/AvailabilityPanel.vue';
+import PricingPanel from '@/Components/Frontend/Portal/CommunityMap/PricingPanel.vue';
+import StructurePanel from '@/Components/Frontend/Portal/CommunityMap/StructurePanel.vue';
+import { router } from '@inertiajs/vue3';
+
+const props = defineProps({ community: Object, communityMap: Object /* … */ });
+
+const base = `/account/communities/${props.community.id}/map`;
+
+const ROUTES = {
+    'unit.update':      (p) => [`${base}/units/${p.id}`, p],
+    'bulk.status':      (p) => [`${base}/bulk-status`, p],
+    'confirm.all':      (p) => [`${base}/confirm`, p],
+    'lock.toggle':      (p) => [`${base}/units/${p.id}/lock`, p],
+    'publish':          (p) => [`${base}/publish`, p],
+    'tiers.save':       (p) => [`${base}/tiers`, p],
+    'settings.save':    (p) => [`${base}/settings`, p],
+    'building.store':   (p) => [`${base}/buildings`, p],
+    'building.destroy': (p) => [`${base}/buildings/${p.id}`, p, 'delete'],
+    'level.store':      (p) => [`${base}/levels`, p],
+    'level.import':     (p) => [`${base}/levels/${p.id}/import`, p],
+};
+
+function submit(action, payload) {
+    const [url, data, method = 'post'] = ROUTES[action](payload);
+
+    return new Promise((resolve, reject) => {
+        router[method](url, data, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: resolve,
+            onError: (errors) => reject(new Error(Object.values(errors)[0] ?? 'That did not save.')),
+        });
+    });
+}
+</script>
+
+<template>
+    <AvailabilityPanel :map="communityMap" :community-id="community.id" :submit="submit" />
+    <PricingPanel :map="communityMap" :submit="submit" />
+    <StructurePanel :map="communityMap" :submit="submit" tracer-url="/account/plan-tracer" />
+</template>
+```
+
+`preserveState: true` matters: without it Inertia replaces the page component
+and the operator loses their scroll position and selection mid-edit.
+
+### Routes
+
+In `routes/frontend.php`, inside the existing `account.` group beside the
+floor-plan routes:
+
+```php
+use App\Http\Controllers\Frontend\Portal\CommunityMapController as MapCtl;
+
+Route::prefix('/communities/{community}/map')->whereNumber('community')->name('communities.map.')->group(function () {
+    Route::post('/units/{unit}',        [MapCtl::class, 'updateUnit'])->whereNumber('unit')->name('units.update');
+    Route::post('/units/{unit}/lock',   [MapCtl::class, 'toggleLock'])->whereNumber('unit')->name('units.lock');
+    Route::post('/bulk-status',         [MapCtl::class, 'bulkStatus'])->name('bulk-status');
+    Route::post('/confirm',             [MapCtl::class, 'confirmAll'])->name('confirm');
+    Route::post('/publish',             [MapCtl::class, 'publish'])->name('publish');
+    Route::post('/tiers',               [MapCtl::class, 'saveTiers'])->name('tiers');
+    Route::post('/settings',            [MapCtl::class, 'saveSettings'])->name('settings');
+    Route::post('/buildings',           [MapCtl::class, 'storeBuilding'])->name('buildings.store');
+    Route::delete('/buildings/{building}', [MapCtl::class, 'destroyBuilding'])->whereNumber('building')->name('buildings.destroy');
+    Route::post('/levels',              [MapCtl::class, 'storeLevel'])->name('levels.store');
+    Route::post('/levels/{level}/import', [MapCtl::class, 'importLevel'])->whereNumber('level')->name('levels.import');
+});
+```
+
+And add the payload to `OwnerCommunityController@edit`:
+
+```php
+'communityMap' => CommunityMaps::portalPayload($community),
+```
+
+### The plan tracer needs a home
+
+`StructurePanel` links to `tracerUrl` for tracing. Serve `editor.html` behind
+auth — a Blade view at `/account/plan-tracer` that mounts the same component
+is enough. It is an internal tool, so it should not be publicly reachable.
+
+### Freshness
+
+Two migrations, applied in order:
+
+1. `create_community_map_tables` — the map itself
+2. `add_inventory_sync_to_community_map` — freshness stamps and the
+   sync-readiness columns
+
+The second adds `availability_confirmed_at`, which is what the whole panel is
+built around. It is tracked separately from `updated_at` because `updated_at`
+moves when anyone edits anything — a typo fix in a description would make a
+year-old vacancy look freshly checked.
 
 ---
 
-## 6. Checks
+## 6. Authoring a community's map
+
+1. The operator uploads their layouts as they do now (`FloorPlans` panel).
+2. **Buildings &amp; floor plans** panel → add a building (it gets a ground
+   floor automatically).
+3. Open the plan tracer, trace the floor, copy the JSON.
+4. Paste it into that floor via **Paste the plan**.
+5. **Levels of care &amp; fees** panel → tiers and fees, watching the live
+   preview of the line families will read.
+6. **Publish the map.**
+
+After that, keeping it current is a dropdown per suite, or one click on
+"everything here is still right".
+
+Re-tracing a floor later is safe: suites are matched by number and keep their
+availability, dates and rates. Only the shapes change. That is enforced in
+`CommunityMapController::importLevel` and is worth not breaking — an operator
+fixing a mis-drawn wall should never discover they have marked a wing vacant.
+
+---
+
+## 7. Checks
 
 ```bash
-npm run build          # compiles clean
-node scripts/smoke.mjs # 28 browser checks: rendering, filtering, deep links,
-                       # keyboard nav, pricing maths, lead flow, a11y, mobile
+npm run build                    # compiles clean
+node scripts/smoke.mjs           # 29 checks: the family-facing map
+node scripts/smoke-operator.mjs  # 27 checks: the operator panels
 ```
 
-`scripts/smoke.mjs` drives a real Chromium against the built output. It is
-worth keeping pointed at the platform's own build once the components move —
-the accessibility and touch-target checks in particular are the kind of thing
-that regresses silently.
+Both drive a real Chromium against the built output. Worth keeping pointed at
+the platform's own build once the components move — the accessibility and
+touch-target checks in particular are the kind of thing that regresses
+silently.
+
+The operator suite encodes several rules that are easy to break by accident:
+a coming-available suite will not save without a date, switching status clears
+the previous status's satellite fields, and confirm-all clears the stale count
+without touching availability.

@@ -342,6 +342,14 @@ const community = {
     buildings: [magnolia, grove, cottages],
 
     legalNote: 'Rates shown are current as of today and are a starting point. The care charge is set by a nurse assessment before move-in. Availability changes daily.',
+
+    /* Most recent availability confirmation, sent when the operator has the
+       "show families when this was last confirmed" switch on. Fixed two days
+       back so the demo shows the trust line rather than a moving target. */
+    confirmedAt: (() => {
+        const d = new Date(2026, 8, 21);
+        return d.toISOString();
+    })(),
 };
 
 forceVariety(community);

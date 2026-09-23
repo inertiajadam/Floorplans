@@ -191,3 +191,33 @@ export function availableBy(unit, date) {
     }
     return false;
 }
+
+/**
+ * How long ago something was confirmed, in words.
+ *
+ * Mirrors App\Support\MapInventory::describeAge so the operator panel, the
+ * roster and the public "availability confirmed …" line all phrase it the same
+ * way. Deliberately vague past a fortnight: "3 weeks ago" is the honest
+ * resolution, and "confirmed 23 days ago" invites arithmetic nobody wants.
+ */
+export function describeAge(value) {
+    const at = parseDate(value);
+    if (!at) return null;
+
+    const days = daysBetween(at, new Date());
+    if (days <= 0) return 'today';
+    if (days === 1) return 'yesterday';
+    if (days < 14) return `${days} days ago`;
+    if (days < 60) return `${Math.round(days / 7)} weeks ago`;
+    return `${Math.round(days / 30)} months ago`;
+}
+
+/** Freshness bucket for one confirmation stamp, against a community's window. */
+export function freshnessOf(confirmedAt, windowDays = 30) {
+    const at = parseDate(confirmedAt);
+    if (!at) return 'never';
+    const days = daysBetween(at, new Date());
+    if (days <= Math.max(2, Math.round(windowDays * 0.25))) return 'fresh';
+    if (days <= windowDays) return 'ageing';
+    return 'stale';
+}
