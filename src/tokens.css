@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@source "./**/*.vue";
+@source "./**/*.js";
+@source "../demo/**/*.vue";
+@source "../editor/**/*.vue";
+
+/*
+ |-----------------------------------------------------------------------------
+ | Design tokens
+ |-----------------------------------------------------------------------------
+ | The brand block below is copied verbatim from seniorsplaces-platform's
+ | resources/css/app.css so this repo renders identically to the live site.
+ | When these components move into that app, DELETE this block — the host app
+ | already defines every one of these tokens and the components will simply
+ | pick them up. Only the "Community map" block underneath is new, and that is
+ | the part that needs adding to the host app's @theme. See docs/INTEGRATION.md.
+ */
+@theme {
+    /* ---- copied from the platform (do not port) ---- */
+    --color-green-dark:  #2b4c40;
+    --color-green:       #3d6d5c;
+    --color-green-light: #4f8e78;
+    --color-gold-dark:   #dda526;
+    --color-gold:        #e4b752;
+    --color-gold-light:  #ebc97e;
+
+    --color-brand:       #3d6d5c;
+    --color-brand-dark:  #2b4c40;
+    --color-brand-light: #e9f1ee;
+    --color-brand-mid:   #b9d3c9;
+
+    --color-warm:      #f5f7f6;
+    --color-warm-dark: #e6ebe9;
+    --color-warm-2:    #eef2f0;
+    --color-warm-3:    #dfe6e3;
+
+    --color-ink:       #1f2a33;
+    --color-ink-mid:   #53636f;
+    --color-ink-light: #616f7a;
+
+    --color-hairline: #dfe6e3;
+    --color-danger:   #a13030;
+
+    --color-navy:       #2b4c40;
+    --color-navy-light: #e6efe9;
+    --color-plum:       #6e530c;
+    --color-plum-light: #f7ecd0;
+    --color-forest:       #3d6d5c;
+    --color-forest-light: #e9f1ee;
+    --color-terra:       #4f8e78;
+    --color-terra-light: #e6f2ed;
+
+    --font-sans:  "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-serif: "Recoleta", Georgia, "Times New Roman", serif;
+
+    --radius-brand: 10px;
+    --radius-card:  20px;
+
+    /* ---- Community map: NEW, port these into the host app's @theme ---- */
+
+    /*
+     | Status colours. Every one of these is checked to at least 4.5:1 against
+     | white for its text tone, and each fill is paired with a distinct SVG
+     | hatch pattern in MapCanvas — colour is never the only signal, because a
+     | meaningful share of this audience has reduced colour discrimination and
+     | roughly 1 in 12 men are colour blind.
+     */
+    --color-status-available:      #2f6d55;
+    --color-status-available-fill: #cfe4da;
+    --color-status-coming:         #8a6410;
+    --color-status-coming-fill:    #f6e6c2;
+    --color-status-waitlist:       #6e530c;
+    --color-status-waitlist-fill:  #f2e6cb;
+    --color-status-respite:        #3f6f86;
+    --color-status-respite-fill:   #d6e6ee;
+    --color-status-held:           #7a5b3f;
+    --color-status-held-fill:      #ece0d4;
+    --color-status-model:          #5b5470;
+    --color-status-model-fill:     #e2dfea;
+    --color-status-occupied:       #8d9aa3;
+    --color-status-occupied-fill:  #eef1f3;
+
+    /* Non-unit areas on the plan. */
+    --color-plan-corridor: #f1f4f3;
+    --color-plan-amenity:  #e4ece8;
+    --color-plan-outdoor:  #e3efe0;
+    --color-plan-staff:    #eceff1;
+    --color-plan-wall:     #c3cdc9;
+
+    --shadow-map-panel: 0 8px 40px rgba(31, 42, 51, 0.14);
+}
+
+/*
+ |-----------------------------------------------------------------------------
+ | Base
+ |-----------------------------------------------------------------------------
+ | Two rules earn their place globally.
+ |
+ | The focus ring is thick and offset because keyboard navigation is a primary
+ | path here, not a fallback — the whole map is operable from the keyboard and
+ | a 1px default outline is invisible on a busy floor plan.
+ |
+ | The reduced-motion block disables the fly-to animation. Vestibular disorders
+ | are common in this age group and a map that lurches when you pick a suite is
+ | actively unpleasant.
+ */
+@layer base {
+    :where(a, button, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 3px solid var(--color-brand-dark);
+        outline-offset: 2px;
+        border-radius: 3px;
+    }
+
+    /* SVG shapes need the ring drawn inside, where an outline would be clipped. */
+    svg :where([tabindex]):focus-visible {
+        outline: none;
+        stroke: var(--color-brand-dark);
+        stroke-width: 4;
+        paint-order: stroke fill;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    /* Touch targets. WCAG 2.2 asks for 24px; we use 44px, because the people
+       using this are often on a phone, often with arthritis. */
+    .tap-safe {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}

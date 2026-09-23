@@ -1,0 +1,2348 @@
+{
+ "id": 1,
+ "slug": "willow-creek-senior-living",
+ "name": "Willow Creek Senior Living",
+ "city": "Richmond",
+ "state": "VA",
+ "pricingPublic": true,
+ "careLevels": [
+  {
+   "key": "il"
+  },
+  {
+   "key": "al"
+  },
+  {
+   "key": "mc"
+  }
+ ],
+ "careTiers": [
+  {
+   "key": "none",
+   "label": "No care package",
+   "monthly": 0,
+   "careLevels": [
+    "il"
+   ],
+   "description": "Independent, with meals and housekeeping included."
+  },
+  {
+   "key": "al-1",
+   "label": "Level 1",
+   "monthly": 625,
+   "careLevels": [
+    "al"
+   ],
+   "description": "A hand with medication and one or two daily tasks."
+  },
+  {
+   "key": "al-2",
+   "label": "Level 2",
+   "monthly": 1150,
+   "careLevels": [
+    "al"
+   ],
+   "description": "Daily help with dressing, bathing and getting about."
+  },
+  {
+   "key": "al-3",
+   "label": "Level 3",
+   "monthly": 1780,
+   "careLevels": [
+    "al"
+   ],
+   "description": "Substantial help with most activities, several times a day."
+  },
+  {
+   "key": "al-4",
+   "label": "Level 4",
+   "monthly": 2450,
+   "careLevels": [
+    "al"
+   ],
+   "description": "Two-person assistance and full support with daily living."
+  },
+  {
+   "key": "mc-all",
+   "label": "All-inclusive",
+   "monthly": 0,
+   "careLevels": [
+    "mc"
+   ],
+   "description": "Memory care is priced all-in — no separate care levels."
+  }
+ ],
+ "addOns": [
+  {
+   "key": "pet",
+   "label": "Pet rent",
+   "monthly": 45
+  },
+  {
+   "key": "parking",
+   "label": "Covered parking",
+   "monthly": 75
+  },
+  {
+   "key": "salon",
+   "label": "Salon plan",
+   "monthly": 60
+  },
+  {
+   "key": "transport",
+   "label": "Extra transport",
+   "monthly": 95
+  }
+ ],
+ "fees": {
+  "community": 3500,
+  "secondPerson": 1150,
+  "petDeposit": 400
+ },
+ "layouts": [
+  {
+   "id": "studio-a",
+   "name": "The Aspen",
+   "roomType": "studio",
+   "typeLabel": "Studio",
+   "sqft": 385,
+   "bedrooms": 0,
+   "bathrooms": 1,
+   "description": "A bright single room with a kitchenette and a full walk-in shower.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "studio-b",
+   "name": "The Birch",
+   "roomType": "studio",
+   "typeLabel": "Studio deluxe",
+   "sqft": 440,
+   "bedrooms": 0,
+   "bathrooms": 1,
+   "description": "A larger studio with a separate sitting alcove by the window.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "one-bed-a",
+   "name": "The Cedar",
+   "roomType": "one-bedroom",
+   "typeLabel": "One bedroom",
+   "sqft": 610,
+   "bedrooms": 1,
+   "bathrooms": 1,
+   "description": "A proper bedroom door, a full kitchen and room for your own furniture.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "one-bed-b",
+   "name": "The Dogwood",
+   "roomType": "one-bedroom-deluxe",
+   "typeLabel": "One bedroom deluxe",
+   "sqft": 705,
+   "bedrooms": 1,
+   "bathrooms": 1.5,
+   "description": "Corner exposure on two sides, a guest powder room and a wider hall.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "two-bed",
+   "name": "The Elm",
+   "roomType": "two-bedroom",
+   "typeLabel": "Two bedroom",
+   "sqft": 940,
+   "bedrooms": 2,
+   "bathrooms": 2,
+   "description": "Two bedrooms at opposite ends — the layout couples and siblings ask for.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "companion",
+   "name": "The Fern",
+   "roomType": "companion-suite",
+   "typeLabel": "Companion suite",
+   "sqft": 480,
+   "bedrooms": 2,
+   "bathrooms": 1,
+   "description": "A shared suite with two private sleeping areas and one bathroom.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "mc-private",
+   "name": "Hearth Room",
+   "roomType": "memory-care-suite",
+   "typeLabel": "Memory care suite",
+   "sqft": 320,
+   "bedrooms": 1,
+   "bathrooms": 1,
+   "description": "A private room off the household hearth, with a memory box at the door.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "mc-shared",
+   "name": "Hearth Shared",
+   "roomType": "semi-private-room",
+   "typeLabel": "Shared suite",
+   "sqft": 400,
+   "bedrooms": 2,
+   "bathrooms": 1,
+   "description": "Two private beds with a curtain divider and a shared bathroom.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  },
+  {
+   "id": "cottage-2",
+   "name": "Garden Home",
+   "roomType": "cottage",
+   "typeLabel": "Cottage",
+   "sqft": 1180,
+   "bedrooms": 2,
+   "bathrooms": 2,
+   "description": "A free-standing home with a garage, a patio and no stairs.",
+   "image2d": null,
+   "image3d": null,
+   "tourUrl": null
+  }
+ ],
+ "buildings": [
+  {
+   "id": "magnolia",
+   "name": "Magnolia House",
+   "shortName": "Magnolia",
+   "blurb": "Assisted living over three floors, with the dining room and living room on the ground floor.",
+   "levels": [
+    {
+     "id": "mag-l1",
+     "name": "Ground floor",
+     "ordinal": 1,
+     "plan": {
+      "image": null,
+      "width": 1240,
+      "height": 820
+     },
+     "units": [
+      {
+       "id": "u-2",
+       "number": "102",
+       "layoutId": "one-bed-a",
+       "shape": [
+        300,
+        150,
+        490,
+        150,
+        490,
+        392,
+        300,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 4950,
+       "sqft": 611,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Kitchenette",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-3",
+       "number": "103",
+       "layoutId": "studio-b",
+       "shape": [
+        490,
+        150,
+        655,
+        150,
+        655,
+        392,
+        490,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "coming_available",
+       "baseRate": 4250,
+       "sqft": 445,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Bay window",
+        "Extra storage"
+       ],
+       "availableOn": "2026-10-31"
+      },
+      {
+       "id": "u-4",
+       "number": "104",
+       "layoutId": "one-bed-b",
+       "shape": [
+        655,
+        150,
+        850,
+        150,
+        850,
+        392,
+        655,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5600,
+       "sqft": 707,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-5",
+       "number": "105",
+       "layoutId": "studio-a",
+       "shape": [
+        850,
+        150,
+        1000,
+        150,
+        1000,
+        392,
+        850,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 3850,
+       "sqft": 379,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-6",
+       "number": "106",
+       "layoutId": "two-bed",
+       "shape": [
+        1000,
+        150,
+        1134,
+        150,
+        1134,
+        208,
+        1180,
+        208,
+        1180,
+        392,
+        1000,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "coming_available",
+       "baseRate": 7050,
+       "sqft": 935,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Full kitchen",
+        "Emergency pendant"
+       ],
+       "availableOn": "2026-10-15"
+      },
+      {
+       "id": "u-8",
+       "number": "108",
+       "layoutId": "studio-a",
+       "shape": [
+        340,
+        448,
+        490,
+        448,
+        490,
+        690,
+        340,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 3850,
+       "sqft": 400,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Kitchenette",
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-9",
+       "number": "109",
+       "layoutId": "companion",
+       "shape": [
+        490,
+        448,
+        660,
+        448,
+        660,
+        690,
+        490,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "coming_available",
+       "baseRate": 3200,
+       "sqft": 480,
+       "accessible": true,
+       "view": "Woodland",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window",
+        "Emergency pendant"
+       ],
+       "availableOn": "2026-11-09"
+      },
+      {
+       "id": "u-10",
+       "number": "110",
+       "layoutId": "one-bed-a",
+       "shape": [
+        660,
+        448,
+        850,
+        448,
+        850,
+        690,
+        660,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 5100,
+       "sqft": 625,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-11",
+       "number": "111",
+       "layoutId": "studio-b",
+       "shape": [
+        850,
+        448,
+        1015,
+        448,
+        1015,
+        690,
+        850,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 4250,
+       "sqft": 440,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Extra storage",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-12",
+       "number": "112",
+       "layoutId": "one-bed-b",
+       "shape": [
+        1015,
+        448,
+        1180,
+        448,
+        1180,
+        632,
+        1134,
+        632,
+        1134,
+        690,
+        1015,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5600,
+       "sqft": 707,
+       "accessible": true,
+       "view": "Woodland",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window"
+       ]
+      }
+     ],
+     "features": [
+      {
+       "id": "f-1-corridor",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        150,
+        392,
+        1180,
+        392,
+        1180,
+        448,
+        150,
+        448
+       ]
+      },
+      {
+       "id": "f-1-lift",
+       "kind": "vertical",
+       "label": "Lifts",
+       "shape": [
+        58,
+        352,
+        144,
+        352,
+        144,
+        480,
+        58,
+        480
+       ]
+      },
+      {
+       "id": "f-1-stair",
+       "kind": "vertical",
+       "label": "Stairs",
+       "shape": [
+        58,
+        200,
+        144,
+        200,
+        144,
+        310,
+        58,
+        310
+       ]
+      },
+      {
+       "id": "f-lounge",
+       "kind": "amenity",
+       "label": "Living room",
+       "shape": [
+        150,
+        150,
+        300,
+        150,
+        300,
+        392,
+        150,
+        392
+       ]
+      },
+      {
+       "id": "f-dining",
+       "kind": "amenity",
+       "label": "Dining room",
+       "shape": [
+        150,
+        448,
+        340,
+        448,
+        340,
+        690,
+        150,
+        690
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mag-l2",
+     "name": "Floor 2",
+     "ordinal": 2,
+     "plan": {
+      "image": null,
+      "width": 1240,
+      "height": 820
+     },
+     "units": [
+      {
+       "id": "u-13",
+       "number": "201",
+       "layoutId": "studio-a",
+       "shape": [
+        150,
+        150,
+        300,
+        150,
+        300,
+        392,
+        150,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 3975,
+       "sqft": 380,
+       "accessible": true,
+       "view": "Woodland",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Bay window",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-14",
+       "number": "202",
+       "layoutId": "one-bed-a",
+       "shape": [
+        300,
+        150,
+        490,
+        150,
+        490,
+        392,
+        300,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 5225,
+       "sqft": 608,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Extra storage",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-15",
+       "number": "203",
+       "layoutId": "studio-b",
+       "shape": [
+        490,
+        150,
+        655,
+        150,
+        655,
+        392,
+        490,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "coming_available",
+       "baseRate": 4375,
+       "sqft": 444,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Kitchenette",
+        "Bay window",
+        "Extra storage"
+       ],
+       "availableOn": "2026-11-15"
+      },
+      {
+       "id": "u-16",
+       "number": "204",
+       "layoutId": "one-bed-b",
+       "shape": [
+        655,
+        150,
+        850,
+        150,
+        850,
+        392,
+        655,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5875,
+       "sqft": 702,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Full kitchen",
+        "Bay window",
+        "Extra storage",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-17",
+       "number": "205",
+       "layoutId": "studio-a",
+       "shape": [
+        850,
+        150,
+        1000,
+        150,
+        1000,
+        392,
+        850,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 3975,
+       "sqft": 391,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-18",
+       "number": "206",
+       "layoutId": "two-bed",
+       "shape": [
+        1000,
+        150,
+        1134,
+        150,
+        1134,
+        208,
+        1180,
+        208,
+        1180,
+        392,
+        1000,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "waitlist",
+       "baseRate": 7025,
+       "sqft": 936,
+       "accessible": true,
+       "view": "Garden",
+       "features": [],
+       "waitlistCount": 3
+      },
+      {
+       "id": "u-19",
+       "number": "207",
+       "layoutId": "one-bed-a",
+       "shape": [
+        150,
+        448,
+        340,
+        448,
+        340,
+        690,
+        150,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5075,
+       "sqft": 610,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Bay window"
+       ]
+      },
+      {
+       "id": "u-20",
+       "number": "208",
+       "layoutId": "studio-a",
+       "shape": [
+        340,
+        448,
+        490,
+        448,
+        490,
+        690,
+        340,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 3975,
+       "sqft": 383,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Balcony",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-21",
+       "number": "209",
+       "layoutId": "companion",
+       "shape": [
+        490,
+        448,
+        660,
+        448,
+        660,
+        690,
+        490,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 3325,
+       "sqft": 468,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": []
+      },
+      {
+       "id": "u-22",
+       "number": "210",
+       "layoutId": "one-bed-a",
+       "shape": [
+        660,
+        448,
+        850,
+        448,
+        850,
+        690,
+        660,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "respite",
+       "baseRate": 5075,
+       "sqft": 614,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Bay window",
+        "Extra storage"
+       ],
+       "respiteNightlyRate": 215
+      },
+      {
+       "id": "u-23",
+       "number": "211",
+       "layoutId": "studio-b",
+       "shape": [
+        850,
+        448,
+        1015,
+        448,
+        1015,
+        690,
+        850,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "respite",
+       "baseRate": 4375,
+       "sqft": 453,
+       "accessible": true,
+       "view": "Woodland",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Extra storage",
+        "Emergency pendant"
+       ],
+       "respiteNightlyRate": 234
+      },
+      {
+       "id": "u-24",
+       "number": "212",
+       "layoutId": "one-bed-b",
+       "shape": [
+        1015,
+        448,
+        1180,
+        448,
+        1180,
+        632,
+        1134,
+        632,
+        1134,
+        690,
+        1015,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 5875,
+       "sqft": 699,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Emergency pendant"
+       ]
+      }
+     ],
+     "features": [
+      {
+       "id": "f-2-corridor",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        150,
+        392,
+        1180,
+        392,
+        1180,
+        448,
+        150,
+        448
+       ]
+      },
+      {
+       "id": "f-2-lift",
+       "kind": "vertical",
+       "label": "Lifts",
+       "shape": [
+        58,
+        352,
+        144,
+        352,
+        144,
+        480,
+        58,
+        480
+       ]
+      },
+      {
+       "id": "f-2-stair",
+       "kind": "vertical",
+       "label": "Stairs",
+       "shape": [
+        58,
+        200,
+        144,
+        200,
+        144,
+        310,
+        58,
+        310
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mag-l3",
+     "name": "Floor 3",
+     "ordinal": 3,
+     "plan": {
+      "image": null,
+      "width": 1240,
+      "height": 820
+     },
+     "units": [
+      {
+       "id": "u-25",
+       "number": "301",
+       "layoutId": "studio-a",
+       "shape": [
+        150,
+        150,
+        300,
+        150,
+        300,
+        392,
+        150,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 4100,
+       "sqft": 370,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Full kitchen",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-26",
+       "number": "302",
+       "layoutId": "one-bed-a",
+       "shape": [
+        300,
+        150,
+        490,
+        150,
+        490,
+        392,
+        300,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5350,
+       "sqft": 598,
+       "accessible": true,
+       "view": "Garden",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Heated floor",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-27",
+       "number": "303",
+       "layoutId": "studio-b",
+       "shape": [
+        490,
+        150,
+        655,
+        150,
+        655,
+        392,
+        490,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "waitlist",
+       "baseRate": 4500,
+       "sqft": 446,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Kitchenette",
+        "Extra storage",
+        "Heated floor"
+       ],
+       "waitlistCount": 1
+      },
+      {
+       "id": "u-28",
+       "number": "304",
+       "layoutId": "one-bed-b",
+       "shape": [
+        655,
+        150,
+        850,
+        150,
+        850,
+        392,
+        655,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "held",
+       "baseRate": 5850,
+       "sqft": 701,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-29",
+       "number": "305",
+       "layoutId": "studio-a",
+       "shape": [
+        850,
+        150,
+        1000,
+        150,
+        1000,
+        392,
+        850,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "held",
+       "baseRate": 4100,
+       "sqft": 395,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Extra storage",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-30",
+       "number": "306",
+       "layoutId": "two-bed",
+       "shape": [
+        1000,
+        150,
+        1134,
+        150,
+        1134,
+        208,
+        1180,
+        208,
+        1180,
+        392,
+        1000,
+        392
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 7150,
+       "sqft": 930,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette"
+       ]
+      },
+      {
+       "id": "u-31",
+       "number": "307",
+       "layoutId": "one-bed-a",
+       "shape": [
+        150,
+        448,
+        340,
+        448,
+        340,
+        690,
+        150,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "occupied",
+       "baseRate": 5200,
+       "sqft": 619,
+       "accessible": true,
+       "view": "Pond",
+       "features": [
+        "Full kitchen",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-32",
+       "number": "308",
+       "layoutId": "studio-a",
+       "shape": [
+        340,
+        448,
+        490,
+        448,
+        490,
+        690,
+        340,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 4100,
+       "sqft": 399,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Kitchenette",
+        "Bay window"
+       ]
+      },
+      {
+       "id": "u-33",
+       "number": "309",
+       "layoutId": "companion",
+       "shape": [
+        490,
+        448,
+        660,
+        448,
+        660,
+        690,
+        490,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "respite",
+       "baseRate": 3450,
+       "sqft": 494,
+       "accessible": true,
+       "view": "Garden",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Emergency pendant"
+       ],
+       "respiteNightlyRate": 233
+      },
+      {
+       "id": "u-34",
+       "number": "310",
+       "layoutId": "one-bed-a",
+       "shape": [
+        660,
+        448,
+        850,
+        448,
+        850,
+        690,
+        660,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "coming_available",
+       "baseRate": 5350,
+       "sqft": 602,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Walk-in shower",
+        "Balcony",
+        "Heated floor"
+       ],
+       "availableOn": "2026-11-14"
+      },
+      {
+       "id": "u-35",
+       "number": "311",
+       "layoutId": "studio-b",
+       "shape": [
+        850,
+        448,
+        1015,
+        448,
+        1015,
+        690,
+        850,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "model",
+       "baseRate": 4500,
+       "sqft": 449,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Bay window"
+       ]
+      },
+      {
+       "id": "u-36",
+       "number": "312",
+       "layoutId": "one-bed-b",
+       "shape": [
+        1015,
+        448,
+        1180,
+        448,
+        1180,
+        632,
+        1134,
+        632,
+        1134,
+        690,
+        1015,
+        690
+       ],
+       "careLevels": [
+        "al"
+       ],
+       "status": "available",
+       "baseRate": 5850,
+       "sqft": 712,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Walk-in shower",
+        "Bay window",
+        "Extra storage",
+        "Heated floor"
+       ]
+      }
+     ],
+     "features": [
+      {
+       "id": "f-3-corridor",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        150,
+        392,
+        1180,
+        392,
+        1180,
+        448,
+        150,
+        448
+       ]
+      },
+      {
+       "id": "f-3-lift",
+       "kind": "vertical",
+       "label": "Lifts",
+       "shape": [
+        58,
+        352,
+        144,
+        352,
+        144,
+        480,
+        58,
+        480
+       ]
+      },
+      {
+       "id": "f-3-stair",
+       "kind": "vertical",
+       "label": "Stairs",
+       "shape": [
+        58,
+        200,
+        144,
+        200,
+        144,
+        310,
+        58,
+        310
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grove",
+   "name": "The Grove",
+   "shortName": "The Grove",
+   "blurb": "A secured memory care household of sixteen rooms around a shared hearth.",
+   "levels": [
+    {
+     "id": "grove-l1",
+     "name": "The household",
+     "ordinal": 1,
+     "plan": {
+      "image": null,
+      "width": 1000,
+      "height": 1000
+     },
+     "units": [
+      {
+       "id": "u-37",
+       "number": "G101",
+       "layoutId": "mc-private",
+       "shape": [
+        113,
+        95,
+        263,
+        95,
+        263,
+        270,
+        113,
+        270
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 314,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Full kitchen",
+        "Balcony",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-38",
+       "number": "G102",
+       "layoutId": "mc-private",
+       "shape": [
+        263,
+        95,
+        413,
+        95,
+        413,
+        270,
+        263,
+        270
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 312,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-39",
+       "number": "G103",
+       "layoutId": "mc-shared",
+       "shape": [
+        413,
+        95,
+        588,
+        95,
+        588,
+        270,
+        413,
+        270
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "available",
+       "baseRate": 5200,
+       "sqft": 411,
+       "accessible": true,
+       "view": "Pond",
+       "features": [
+        "Full kitchen",
+        "Bay window",
+        "Extra storage",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-40",
+       "number": "G104",
+       "layoutId": "mc-private",
+       "shape": [
+        588,
+        95,
+        738,
+        95,
+        738,
+        270,
+        588,
+        270
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 334,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-41",
+       "number": "G105",
+       "layoutId": "mc-private",
+       "shape": [
+        738,
+        95,
+        888,
+        95,
+        888,
+        270,
+        738,
+        270
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 315,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Full kitchen",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-42",
+       "number": "G201",
+       "layoutId": "mc-private",
+       "shape": [
+        113,
+        730,
+        263,
+        730,
+        263,
+        905,
+        113,
+        905
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "available",
+       "baseRate": 6550,
+       "sqft": 330,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Balcony",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-43",
+       "number": "G202",
+       "layoutId": "mc-shared",
+       "shape": [
+        263,
+        730,
+        438,
+        730,
+        438,
+        905,
+        263,
+        905
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 5200,
+       "sqft": 393,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window"
+       ]
+      },
+      {
+       "id": "u-44",
+       "number": "G203",
+       "layoutId": "mc-private",
+       "shape": [
+        438,
+        730,
+        588,
+        730,
+        588,
+        905,
+        438,
+        905
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 319,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Bay window",
+        "Balcony"
+       ]
+      },
+      {
+       "id": "u-45",
+       "number": "G204",
+       "layoutId": "mc-private",
+       "shape": [
+        588,
+        730,
+        738,
+        730,
+        738,
+        905,
+        588,
+        905
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 324,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-46",
+       "number": "G205",
+       "layoutId": "mc-private",
+       "shape": [
+        738,
+        730,
+        888,
+        730,
+        888,
+        905,
+        738,
+        905
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "waitlist",
+       "baseRate": 6550,
+       "sqft": 333,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Bay window",
+        "Emergency pendant"
+       ],
+       "waitlistCount": 1
+      },
+      {
+       "id": "u-47",
+       "number": "G301",
+       "layoutId": "mc-private",
+       "shape": [
+        95,
+        285,
+        270,
+        285,
+        270,
+        435,
+        95,
+        435
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6550,
+       "sqft": 324,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Full kitchen",
+        "Bay window"
+       ]
+      },
+      {
+       "id": "u-48",
+       "number": "G302",
+       "layoutId": "mc-private",
+       "shape": [
+        95,
+        435,
+        270,
+        435,
+        270,
+        595,
+        95,
+        595
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "held",
+       "baseRate": 6550,
+       "sqft": 335,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Kitchenette",
+        "Balcony",
+        "Extra storage",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-49",
+       "number": "G303",
+       "layoutId": "mc-private",
+       "shape": [
+        95,
+        595,
+        270,
+        595,
+        270,
+        745,
+        95,
+        745
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "waitlist",
+       "baseRate": 6400,
+       "sqft": 312,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Walk-in shower",
+        "Extra storage",
+        "Heated floor",
+        "Emergency pendant"
+       ],
+       "waitlistCount": 1
+      },
+      {
+       "id": "u-50",
+       "number": "G401",
+       "layoutId": "mc-private",
+       "shape": [
+        730,
+        285,
+        905,
+        285,
+        905,
+        435,
+        730,
+        435
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "occupied",
+       "baseRate": 6400,
+       "sqft": 308,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower"
+       ]
+      },
+      {
+       "id": "u-51",
+       "number": "G402",
+       "layoutId": "mc-private",
+       "shape": [
+        730,
+        435,
+        905,
+        435,
+        905,
+        595,
+        730,
+        595
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "available",
+       "baseRate": 6400,
+       "sqft": 333,
+       "accessible": false,
+       "view": "Garden",
+       "features": [
+        "Kitchenette",
+        "Balcony",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-52",
+       "number": "G403",
+       "layoutId": "mc-private",
+       "shape": [
+        730,
+        595,
+        905,
+        595,
+        905,
+        745,
+        730,
+        745
+       ],
+       "careLevels": [
+        "mc"
+       ],
+       "status": "available",
+       "baseRate": 6400,
+       "sqft": 325,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Kitchenette",
+        "Bay window",
+        "Extra storage",
+        "Heated floor"
+       ]
+      }
+     ],
+     "features": [
+      {
+       "id": "g-corridor",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        270,
+        270,
+        730,
+        270,
+        730,
+        730,
+        270,
+        730
+       ]
+      },
+      {
+       "id": "g-hearth",
+       "kind": "amenity",
+       "label": "Hearth room",
+       "shape": [
+        330,
+        330,
+        530,
+        330,
+        530,
+        510,
+        330,
+        510
+       ]
+      },
+      {
+       "id": "g-dining",
+       "kind": "amenity",
+       "label": "Family table",
+       "shape": [
+        330,
+        530,
+        530,
+        530,
+        530,
+        670,
+        330,
+        670
+       ]
+      },
+      {
+       "id": "g-nurse",
+       "kind": "staff",
+       "label": "Care team",
+       "shape": [
+        550,
+        330,
+        680,
+        330,
+        680,
+        450,
+        550,
+        450
+       ]
+      },
+      {
+       "id": "g-garden",
+       "kind": "outdoor",
+       "label": "Secured garden",
+       "shape": [
+        550,
+        480,
+        680,
+        480,
+        680,
+        670,
+        550,
+        670
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cottages",
+   "name": "The Cottages",
+   "shortName": "Cottages",
+   "blurb": "Eleven free-standing garden homes for independent living, with a village green in the middle.",
+   "levels": [
+    {
+     "id": "cottages-site",
+     "name": "Site plan",
+     "ordinal": 1,
+     "plan": {
+      "image": null,
+      "width": 1120,
+      "height": 880
+     },
+     "units": [
+      {
+       "id": "u-53",
+       "number": "C01",
+       "layoutId": "cottage-2",
+       "shape": [
+        110,
+        120,
+        295,
+        120,
+        295,
+        270,
+        110,
+        270
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1188,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Walk-in shower",
+        "Extra storage",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-54",
+       "number": "C02",
+       "layoutId": "cottage-2",
+       "shape": [
+        350,
+        120,
+        535,
+        120,
+        535,
+        270,
+        350,
+        270
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "available",
+       "baseRate": 4400,
+       "sqft": 1193,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Bay window",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-55",
+       "number": "C03",
+       "layoutId": "cottage-2",
+       "shape": [
+        590,
+        120,
+        775,
+        120,
+        775,
+        270,
+        590,
+        270
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1172,
+       "accessible": false,
+       "view": "Pond",
+       "features": [
+        "Walk-in shower",
+        "Balcony",
+        "Heated floor",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-56",
+       "number": "C04",
+       "layoutId": "cottage-2",
+       "shape": [
+        830,
+        120,
+        1015,
+        120,
+        1015,
+        270,
+        830,
+        270
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1173,
+       "accessible": false,
+       "view": "Woodland",
+       "features": [
+        "Walk-in shower",
+        "Full kitchen",
+        "Bay window",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-57",
+       "number": "C05",
+       "layoutId": "cottage-2",
+       "shape": [
+        110,
+        400,
+        295,
+        400,
+        295,
+        550,
+        110,
+        550
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1179,
+       "accessible": true,
+       "view": "Pond",
+       "features": [
+        "Walk-in shower",
+        "Bay window",
+        "Balcony",
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-58",
+       "number": "C06",
+       "layoutId": "cottage-2",
+       "shape": [
+        350,
+        400,
+        535,
+        400,
+        535,
+        550,
+        350,
+        550
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "respite",
+       "baseRate": 4400,
+       "sqft": 1174,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Bay window",
+        "Extra storage"
+       ],
+       "respiteNightlyRate": 201
+      },
+      {
+       "id": "u-59",
+       "number": "C07",
+       "layoutId": "cottage-2",
+       "shape": [
+        590,
+        400,
+        775,
+        400,
+        775,
+        550,
+        590,
+        550
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1174,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Walk-in shower",
+        "Kitchenette",
+        "Full kitchen"
+       ]
+      },
+      {
+       "id": "u-60",
+       "number": "C08",
+       "layoutId": "cottage-2",
+       "shape": [
+        830,
+        400,
+        1015,
+        400,
+        1015,
+        550,
+        830,
+        550
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "available",
+       "baseRate": 4400,
+       "sqft": 1174,
+       "accessible": false,
+       "view": "Courtyard",
+       "features": [
+        "Extra storage"
+       ]
+      },
+      {
+       "id": "u-61",
+       "number": "C09",
+       "layoutId": "cottage-2",
+       "shape": [
+        230,
+        660,
+        415,
+        660,
+        415,
+        810,
+        230,
+        810
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4550,
+       "sqft": 1179,
+       "accessible": true,
+       "view": "Courtyard",
+       "features": [
+        "Kitchenette",
+        "Heated floor"
+       ]
+      },
+      {
+       "id": "u-62",
+       "number": "C10",
+       "layoutId": "cottage-2",
+       "shape": [
+        470,
+        660,
+        655,
+        660,
+        655,
+        810,
+        470,
+        810
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1189,
+       "accessible": true,
+       "view": "Garden",
+       "features": [
+        "Full kitchen",
+        "Bay window",
+        "Emergency pendant"
+       ]
+      },
+      {
+       "id": "u-63",
+       "number": "C11",
+       "layoutId": "cottage-2",
+       "shape": [
+        710,
+        660,
+        895,
+        660,
+        895,
+        810,
+        710,
+        810
+       ],
+       "careLevels": [
+        "il"
+       ],
+       "status": "occupied",
+       "baseRate": 4400,
+       "sqft": 1189,
+       "accessible": false,
+       "view": "Main street",
+       "features": [
+        "Kitchenette",
+        "Full kitchen",
+        "Heated floor"
+       ]
+      }
+     ],
+     "features": [
+      {
+       "id": "c-road",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        60,
+        300,
+        1060,
+        300,
+        1060,
+        378,
+        60,
+        378
+       ]
+      },
+      {
+       "id": "c-road-2",
+       "kind": "corridor",
+       "label": "",
+       "shape": [
+        60,
+        580,
+        1060,
+        580,
+        1060,
+        642,
+        60,
+        642
+       ]
+      },
+      {
+       "id": "c-green",
+       "kind": "outdoor",
+       "label": "Village green",
+       "shape": [
+        230,
+        400,
+        650,
+        400,
+        650,
+        570,
+        230,
+        570
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "legalNote": "Rates shown are current as of today and are a starting point. The care charge is set by a nurse assessment before move-in. Availability changes daily."
+}

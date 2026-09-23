@@ -1,0 +1,21 @@
+{
+    "name": "seniorsplaces-community-map",
+    "private": true,
+    "type": "module",
+    "version": "0.1.0",
+    "description": "Interactive senior living community map — the SightMap replacement for the Seniors Places platform.",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "demo:build": "node scripts/build-demo.mjs"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.2.2",
+        "@vitejs/plugin-vue": "^6.0.4",
+        "playwright": "^1.63.0",
+        "tailwindcss": "^4.2.2",
+        "vite": "^8.0.0",
+        "vue": "^3.5.32"
+    }
+}
