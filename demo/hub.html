@@ -99,6 +99,10 @@
 
     /* ---------------------------------------------------------------- header */
     header.masthead { display: flex; flex-direction: column; gap: 14px; }
+    .site-links { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; }
+    .site-links span { color: var(--ink-light, #6b7680); }
+    .site-links a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-links a:hover, .site-links a:focus-visible { border-bottom-color: currentColor; }
 
     h1 {
         font-size: clamp(30px, 5.2vw, 46px);
@@ -353,12 +357,13 @@
             Everything runs on real geometry and a real rent roll.
         </p>
         <p class="specline mono">
-            <span><b>61</b> suites</span>
-            <span><b>3</b> buildings</span>
-            <span><b>5</b> levels</span>
+            <span><b>89</b> suites</span>
+            <span><b>2</b> floors</span>
+            <span><b>2</b> levels of care</span>
             <span><b>7</b> availability states</span>
-            <span><b>156</b> automated checks passing</span>
+            <span><b>180</b> automated checks passing</span>
         </p>
+        <!-- __SITE_LINKS__ -->
     </header>
 
     <div class="rule"><span>Availability, as the map paints it</span></div>

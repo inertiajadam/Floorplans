@@ -4,3 +4,4 @@ dist/
 *.log
 dist-embed/
 .demo-stage/
+site/
