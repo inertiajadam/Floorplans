@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Willow Creek Senior Living — Availability</title>
+    <meta name="robots" content="noindex" />
+
+    <!--
+      A DELIBERATELY HOSTILE HOST PAGE.
+
+      This stands in for a real client's marketing site, and every rule below is
+      something found on actual websites — usually from an ageing theme, a page
+      builder, or a well-meaning developer in 2014.
+
+      The embed has to survive all of it, and must not damage any of it. Both
+      directions are asserted in scripts/smoke-embed.mjs:
+
+        their CSS must not reach in   the map keeps its own layout, type scale
+                                      and button styling
+        our CSS must not reach out    Tailwind's preflight resets margins,
+                                      list-style and heading sizes globally.
+                                      Leaked onto this page it would silently
+                                      restyle the client's site, which is how
+                                      an embed gets removed.
+    -->
+    <style>
+        /* 1. The classic box-model breaker. Wrecks any layout that assumes
+              border-box, which Tailwind does throughout. */
+        * { box-sizing: content-box !important; }
+
+        /* 2. A theme that styles bare element selectors, aggressively. */
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 22px;
+            line-height: 2.4;
+            color: #b3005e;
+            background: #fffaf3;
+        }
+        div  { margin: 18px; padding: 12px; border: 2px dashed #ffb6d5; }
+        h1, h2, h3 { font-size: 4rem !important; color: #ff0066 !important; text-transform: uppercase; }
+        p { font-size: 26px; letter-spacing: 2px; }
+        button, select, input {
+            background: hotpink !important;
+            color: #fff !important;
+            font-size: 28px !important;
+            border: 6px ridge lime !important;
+            border-radius: 0 !important;
+            padding: 20px !important;
+            text-transform: uppercase !important;
+        }
+        ul, ol { list-style: square inside; padding-left: 60px; }
+        li { margin: 14px 0; }
+        table { border: 8px double purple; }
+
+        /* 3. The one that breaks most SVG-based widgets. */
+        svg { width: 100% !important; height: auto !important; transform: rotate(0.5deg); }
+
+        /* 4. A stacking context that traps fixed positioning. */
+        .page { filter: saturate(1.1); }
+
+        /* 5. Custom properties with names that collide with ours. If tokens
+              leaked across the shadow boundary the map would turn pink. */
+        :root {
+            --color-brand: #ff0066;
+            --color-ink: #b3005e;
+            --color-warm: #ffe9f4;
+            --radius-card: 0px;
+            --font-sans: "Comic Sans MS", cursive;
+        }
+
+        .site-header { background: #ff0066; color: #fff; padding: 8px 24px; }
+        .site-header h1 { font-size: 2rem !important; }
+        .lede { max-width: 60ch; }
+        .embed-slot { border: 4px solid #ff0066; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="site-header">
+        <h1 id="site-title">Willow Creek Senior Living</h1>
+    </header>
+
+    <div class="lede">
+        <h2 id="host-heading">Find your apartment</h2>
+        <p id="host-paragraph">
+            Browse our availability below. Call us on 0800 000 000 to arrange a visit.
+        </p>
+        <ul id="host-list">
+            <li>Independent living</li>
+            <li>Assisted living</li>
+            <li>Memory care</li>
+        </ul>
+        <button id="host-button" type="button">Call us</button>
+    </div>
+
+    <!--
+      THE SNIPPET.
+
+      This is verbatim what a client pastes. `data-api` points at the platform;
+      in production the default is baked in so the snippet is one line with
+      just the map id.
+    -->
+    <div class="embed-slot">
+        <script
+            type="module"
+            src="/v1/embed.js"
+            data-map="willow-creek-senior-living"
+            data-api="/"
+            data-height="720"
+            data-lazy="false"
+        ></script>
+    </div>
+
+    <p id="host-footer">Willow Creek is a fictional community used for testing.</p>
+</div>
+</body>
+</html>

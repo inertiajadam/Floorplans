@@ -8,7 +8,9 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "demo:build": "node scripts/build-demo.mjs"
+        "demo:build": "node scripts/build-demo.mjs",
+        "build:embed": "vite build -c vite.embed.config.js",
+        "test": "php tests/php/run.php && node scripts/smoke.mjs && node scripts/smoke-operator.mjs && node scripts/smoke-embed.mjs"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.2.2",

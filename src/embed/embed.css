@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/*
+ |-----------------------------------------------------------------------------
+ | The embed stylesheet
+ |-----------------------------------------------------------------------------
+ | Compiled once and injected into the custom element's shadow root, so a host
+ | website's CSS cannot reach our markup and ours cannot leak onto their page.
+ |
+ | Narrower @source than src/tokens.css on purpose: the operator panels never
+ | ship to a client's website, and scanning them would put several kilobytes of
+ | utilities nobody uses into every embed.
+ |
+ | SHADOW DOM AND TOKENS: Tailwind v4 emits its theme layer as `:root,:host`
+ | already, so every token below resolves inside a shadow root with no build
+ | step or selector rewriting. Verified against the compiled output — there is
+ | no bare `:root` in the bundle. Per-map theming then works by setting the
+ | same custom properties on the host element at runtime (see element.js),
+ | which wins over these defaults through ordinary cascade.
+ */
+
+@source "../components/**/*.vue";
+@source "../embed/**/*.vue";
+@source "../composables/**/*.js";
+@source "../lib/**/*.js";
+
+@theme {
+    /* Brand — overridable per map. These are the platform defaults, used when
+       an operator has not set their own. */
+    --color-brand:       #3d6d5c;
+    --color-brand-dark:  #2b4c40;
+    --color-brand-light: #e9f1ee;
+    --color-brand-mid:   #b9d3c9;
+
+    --color-green-dark:  #2b4c40;
+    --color-green:       #3d6d5c;
+    --color-green-light: #4f8e78;
+    --color-gold-dark:   #dda526;
+    --color-gold:        #e4b752;
+    --color-gold-light:  #ebc97e;
+
+    --color-warm:      #f5f7f6;
+    --color-warm-dark: #e6ebe9;
+    --color-warm-2:    #eef2f0;
+    --color-warm-3:    #dfe6e3;
+
+    --color-ink:       #1f2a33;
+    --color-ink-mid:   #53636f;
+    --color-ink-light: #616f7a;
+
+    --color-hairline: #dfe6e3;
+    --color-danger:   #a13030;
+
+    --color-navy:       #2b4c40;
+    --color-navy-light: #e6efe9;
+    --color-plum:       #6e530c;
+    --color-plum-light: #f7ecd0;
+    --color-forest:       #3d6d5c;
+    --color-forest-light: #e9f1ee;
+    --color-terra:       #4f8e78;
+    --color-terra-light: #e6f2ed;
+
+    /* Availability. Pattern-coded as well as colour-coded in MapCanvas, so a
+       themed map stays readable even when an operator picks a palette with
+       poor separation. */
+    --color-status-available:      #2f6d55;
+    --color-status-available-fill: #cfe4da;
+    --color-status-coming:         #8a6410;
+    --color-status-coming-fill:    #f6e6c2;
+    --color-status-waitlist:       #6e530c;
+    --color-status-waitlist-fill:  #f2e6cb;
+    --color-status-respite:        #3f6f86;
+    --color-status-respite-fill:   #d6e6ee;
+    --color-status-held:           #7a5b3f;
+    --color-status-held-fill:      #ece0d4;
+    --color-status-model:          #5b5470;
+    --color-status-model-fill:     #e2dfea;
+    --color-status-occupied:       #8d9aa3;
+    --color-status-occupied-fill:  #eef1f3;
+
+    --color-plan-corridor: #f1f4f3;
+    --color-plan-amenity:  #e4ece8;
+    --color-plan-outdoor:  #e3efe0;
+    --color-plan-staff:    #eceff1;
+    --color-plan-wall:     #c3cdc9;
+
+    /*
+     | Fonts: inherit from the host page by default.
+     |
+     | An embed that imposes its own webfont looks pasted on, and loading one
+     | costs the host a render-blocking request they did not ask for. Operators
+     | who want our typography set `font` on the embed and bring the face
+     | themselves. `sans-serif` is the final fallback rather than a specific
+     | family so we never silently force one.
+     */
+    --font-sans:  inherit, ui-sans-serif, system-ui, sans-serif;
+    --font-serif: inherit, Georgia, "Times New Roman", serif;
+
+    --radius-brand: 10px;
+    --radius-card:  20px;
+
+    --shadow-map-panel: 0 8px 40px rgba(31, 42, 51, 0.14);
+}
+
+@layer base {
+    /*
+     | The host element.
+     |
+     | `all: initial` on the inner wrapper is deliberately NOT used: the shadow
+     | boundary already blocks the host page's selectors, and inherited
+     | properties are the ones we WANT (font family, so the map matches their
+     | site). Resetting everything would defeat the point of inheriting type.
+     */
+    :host {
+        display: block;
+        contain: layout style;
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--color-ink);
+        text-align: left;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    :host([hidden]) { display: none; }
+
+    /* Host pages commonly set `* { box-sizing: content-box }` or reset margins
+       in ways Tailwind's preflight assumes are gone. Preflight runs inside the
+       shadow root, so this is belt and braces for inherited properties, which
+       DO cross the boundary. */
+    :host * { box-sizing: border-box; }
+
+    :where(a, button, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 3px solid var(--color-brand-dark);
+        outline-offset: 2px;
+        border-radius: 3px;
+    }
+
+    svg :where([tabindex]):focus-visible {
+        outline: none;
+        stroke: var(--color-brand-dark);
+        stroke-width: 4;
+        paint-order: stroke fill;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    .tap-safe {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
