@@ -114,6 +114,8 @@ function label(unit) {
 
 function onActivate(unit) {
     if (!unit.statusMeta.selectable) return;
+    /* The click at the end of a drag is the drag ending, not a choice. */
+    if (props.view.dragged?.value) { props.view.dragged.value = false; return; }
     emit('select', unit.id);
 }
 

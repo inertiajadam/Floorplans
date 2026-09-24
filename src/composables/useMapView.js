@@ -31,6 +31,11 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
     let raf = null;
     const pointers = new Map();
     let pinchStart = null;
+    /* A pan that travelled more than a few pixels is a drag, and the click
+       the browser fires when it ends over a suite must not open that suite.
+       Set during the gesture; the canvas checks it before selecting. */
+    const dragged = ref(false);
+    let downAt = null;
 
     const zoom = computed(() => (extent.value.width || 1) / (view.value.width || 1));
     const canZoomIn = computed(() => zoom.value < maxZoom - 0.001);
@@ -148,6 +153,8 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
         }
         if (pointers.size === 1) {
             isPanning.value = true;
+            dragged.value = false;
+            downAt = { x: e.clientX, y: e.clientY };
             cancel();
             e.currentTarget.setPointerCapture?.(e.pointerId);
         }
@@ -172,6 +179,7 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
         if (!isPanning.value) return;
         const el = svgEl.value;
         if (!el) return;
+        if (downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) dragged.value = true;
         const rect = el.getBoundingClientRect();
         const v = view.value;
         const dx = ((e.clientX - prev.x) / rect.width) * v.width;
@@ -262,10 +270,13 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
     onBeforeUnmount(cancel);
 
     return {
-        svgEl, view, viewBox, extent, zoom, inverseScale, isPanning,
+        svgEl, view, viewBox, extent, zoom, inverseScale, isPanning, dragged,
         canZoomIn, canZoomOut,
         setExtent, setAspect, zoomIn, zoomOut, zoomBy, panBy, reset, flyTo, toWorld,
-        handlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel: onPointerUp, onWheel },
+        /* Bound with v-on="handlers", which takes bare event names — not
+           onPointerDown — or the listeners are attached to events that never
+           fire and the map only answers to buttons and the keyboard. */
+        handlers: { pointerdown: onPointerDown, pointermove: onPointerMove, pointerup: onPointerUp, pointercancel: onPointerUp, wheel: onWheel },
     };
 }
 

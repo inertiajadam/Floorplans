@@ -140,6 +140,8 @@ try {
     }
     check('arrow key moves between suites', Boolean(focusedBefore) && focusedBefore !== focusedAfter, `${focusedBefore} -> ${focusedAfter}`);
 
+
+
     await page.keyboard.press('Enter');
     await page.waitForTimeout(400);
     check('Enter opens the focused suite', await page.locator('[role="dialog"]').first().isVisible());
@@ -199,6 +201,31 @@ try {
         return bad;
     });
     check('every form control is labelled', unlabelledInputs.length === 0, unlabelledInputs.slice(0, 3).join(' | '));
+
+    /* ---- mouse: wheel zooms, drag pans ---- */
+    {
+        await page.keyboard.press('Escape');   // nothing in the way of the plan
+        await page.waitForTimeout(200);
+        const svg = page.locator('.map-canvas');
+        const box = await svg.boundingBox();
+        const vb = async () => svg.getAttribute('viewBox');
+        const v0 = await vb();
+        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+        await page.mouse.wheel(0, -300);
+        await page.waitForTimeout(250);
+        const v1 = await vb();
+        check('mouse wheel zooms the plan', v0 !== v1, `${v0} -> ${v1}`);
+        await page.mouse.move(box.x + 200, box.y + 200);
+        await page.mouse.down();
+        await page.mouse.move(box.x + 320, box.y + 260, { steps: 6 });
+        await page.mouse.up();
+        await page.waitForTimeout(250);
+        const v2 = await vb();
+        check('dragging pans the plan', v1 !== v2, `${v1} -> ${v2}`);
+        check('a drag that ends over a suite does not open it', !(await page.locator('[role="dialog"]').first().isVisible().catch(() => false)));
+        await page.getByRole('button', { name: 'Fit the whole floor' }).click();
+        await page.waitForTimeout(250);
+    }
 
     /* ---- mobile ---- */
     await page.setViewportSize({ width: 390, height: 780 });

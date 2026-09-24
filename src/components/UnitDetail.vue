@@ -58,9 +58,25 @@ watch(() => props.unit?.id, async (id, was) => {
     }
 });
 
+/* Escape closes the drawer from anywhere on the page, not only when focus
+   is inside it: after a deep link, or a click on the plan, focus is on the
+   map and the drawer is still the thing in the way. The lead form stops its
+   own Escape from reaching here, so it closes first. */
+function onDocumentKeydown(e) {
+    if (e.key === 'Escape' && props.unit && !e.defaultPrevented) emit('close');
+}
+watch(() => Boolean(props.unit), (open) => {
+    if (typeof document === 'undefined') return;
+    if (open) document.addEventListener('keydown', onDocumentKeydown);
+    else document.removeEventListener('keydown', onDocumentKeydown);
+}, { immediate: true });
+onBeforeUnmount(() => {
+    if (typeof document !== 'undefined') document.removeEventListener('keydown', onDocumentKeydown);
+});
+
 function onKeydown(e) {
     if (e.key === 'Escape') {
-        e.stopPropagation();
+        e.stopPropagation();   // the document listener would close it a second time
         emit('close');
         return;
     }
