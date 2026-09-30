@@ -32,8 +32,9 @@ can be opened in 3D: `src/tour/planScene.js` extrudes the real walls to
 ceiling height, cuts the doors and windows out of them, hangs a leaf in
 every doorway and glass in every window, and `src/tour/SuiteTour.vue`
 lets a visitor orbit the whole suite or step inside any room and walk
-through the doorways. No furniture or finishes — those are photos — but
-the space itself is true to the plan. three.js loads only when the 3D
+through the doorways. No furniture or finishes in the model — the
+client's furnished Floorplanner render sits beside it as a "Furnished"
+view — but the space itself is true to the plan. three.js loads only when the 3D
 view is opened (a 160 kB gzip chunk), so the map never pays for it.
 
 ## What it does

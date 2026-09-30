@@ -28,6 +28,16 @@ let bundle = await readFile(resolve(root, 'dist-showcase/showcase.js'), 'utf8');
    for "<!--", which can open a comment in a classic script context. */
 bundle = bundle.replace(/<\/script/gi, '<\\/script').replace(/<!--/g, '<\\!--');
 
+/* The layouts point at /plans/*.jpg; the artifact is one file with no
+   server behind it, so the renders ride along as data URIs. */
+const { readdirSync, readFileSync } = await import('node:fs');
+const plansDir = resolve(root, 'public/plans');
+for (const file of readdirSync(plansDir)) {
+    if (!file.endsWith('.jpg')) continue;
+    const uri = `data:image/jpeg;base64,${readFileSync(resolve(plansDir, file)).toString('base64')}`;
+    bundle = bundle.split(`/plans/${file}`).join(uri);
+}
+
 if (!hub.includes('__SHOWCASE_BUNDLE__')) {
     throw new Error('demo/hub.html has no __SHOWCASE_BUNDLE__ placeholder');
 }

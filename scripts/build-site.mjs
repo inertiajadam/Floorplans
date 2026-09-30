@@ -39,6 +39,7 @@ await mkdir(resolve(out, 'v1/maps'), { recursive: true });
    clean; their assets are referenced absolutely (/assets/…) so the move is
    free. */
 await cp(resolve(root, 'dist/assets'), resolve(out, 'assets'), { recursive: true });
+await cp(resolve(root, 'dist/plans'), resolve(out, 'plans'), { recursive: true });   // the furnished renders
 for (const [from, to] of [['index.html', 'map'], ['operator.html', 'operator'], ['editor.html', 'editor']]) {
     await mkdir(resolve(out, to), { recursive: true });
     await cp(resolve(root, 'dist', from), resolve(out, to, 'index.html'));

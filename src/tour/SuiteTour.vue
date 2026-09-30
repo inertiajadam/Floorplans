@@ -33,13 +33,15 @@ const props = defineProps({
     subtitle: { type: String, default: '' },
     /** The 2D drawing, shown when WebGL is not available. */
     image:    { type: String, default: null },
+    /** The furnished render of this layout, when the community has one. */
+    render:   { type: String, default: null },
 });
 const emit = defineEmits(['close']);
 
 const panel = ref(null);
 const stage = ref(null);
 const closeBtn = ref(null);
-const mode = ref('dollhouse');          // 'dollhouse' | 'inside'
+const mode = ref('dollhouse');          // 'dollhouse' | 'inside' | 'furnished'
 const roomIndex = ref(null);
 const hoverRoom = ref(null);
 const hotspots = ref([]);
@@ -240,7 +242,8 @@ function stepTween(now) {
 
 function enterRoom(index, from = null) {
     if (!built || index == null || isCloset(index)) return;
-    const was = roomIndex.value;
+    const wasFurnished = mode.value === 'furnished';
+    const was = wasFurnished ? null : roomIndex.value;
     roomIndex.value = index;
     mode.value = 'inside';
     controls.enabled = false;
@@ -255,8 +258,21 @@ function enterRoom(index, from = null) {
     hotspots.value = [];
 }
 
+/* The furnished render, over the model: what the room looks like lived in.
+   The model keeps rendering underneath so switching back is instant. */
+function showFurnished() {
+    mode.value = 'furnished';
+    hotspots.value = [];
+    if (controls) controls.enabled = false;
+}
+
 function showDollhouse() {
     if (!built) return;
+    if (mode.value === 'furnished') {
+        mode.value = 'dollhouse';
+        controls.enabled = true;
+        return;
+    }
     mode.value = 'dollhouse';
     hotspots.value = [];
     setFov(50);
@@ -429,6 +445,14 @@ function onKeydown(e) {
                     :aria-pressed="String(mode === 'inside')"
                     @click="enterRoom(roomIndex ?? roomList[0]?.index)"
                 >Step inside</button>
+                <button
+                    v-if="render"
+                    type="button"
+                    class="tap-safe"
+                    :class="{ 'is-on': mode === 'furnished' }"
+                    :aria-pressed="String(mode === 'furnished')"
+                    @click="showFurnished()"
+                >Furnished</button>
             </div>
 
             <button ref="closeBtn" type="button" class="tour-close tap-safe" @click="emit('close')">
@@ -443,6 +467,11 @@ function onKeydown(e) {
             </div>
 
             <template v-else>
+                <figure v-if="mode === 'furnished'" class="tour-furnished">
+                    <img :src="render" :alt="`Furnished 3D plan of ${title}`" decoding="async" />
+                    <figcaption>A furnished view of this layout. Your suite's furniture and finishes may differ.</figcaption>
+                </figure>
+
                 <button
                     v-for="h in hotspots"
                     :key="h.key"
@@ -452,7 +481,7 @@ function onKeydown(e) {
                     @click="walkThrough(h.door)"
                 >{{ h.label }}</button>
 
-                <p class="tour-hint" aria-hidden="true">
+                <p v-if="mode !== 'furnished'" class="tour-hint" aria-hidden="true">
                     <template v-if="mode === 'dollhouse'">Drag to turn · scroll to zoom · tap a room to step inside</template>
                     <template v-else>Drag or use the arrow keys to look around · tap a doorway to walk through</template>
                 </p>
@@ -545,7 +574,25 @@ function onKeydown(e) {
 /* The canvas is appended last, so it would sit over the doorway buttons:
    stack it beneath everything laid over it. */
 .tour-stage :deep(.tour-canvas) { display: block; position: absolute; inset: 0; z-index: 1; cursor: grab; }
-.tour-hotspot, .tour-hint, .tour-fallback { z-index: 2; }
+.tour-hotspot, .tour-hint, .tour-fallback, .tour-furnished { z-index: 2; }
+
+.tour-furnished {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 0.5rem;
+    padding: 1rem 1rem 0.75rem;
+    background: var(--color-warm);
+}
+.tour-furnished img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    border-radius: var(--radius-card);
+}
+.tour-furnished figcaption { text-align: center; font-size: 12.5px; color: var(--color-ink-mid); }
 .tour-stage :deep(.tour-canvas:active) { cursor: grabbing; }
 
 .tour-hotspot {

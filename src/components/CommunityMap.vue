@@ -398,6 +398,7 @@ function resetView() {
             :title="`Suite ${tourUnit.number} · ${tourUnit.layoutName}`"
             :subtitle="`${model.name} · ${tourUnit.sqft ? `about ${Number(tourUnit.sqft).toLocaleString()} sq ft` : ''}`"
             :image="tourUnit.image2d"
+            :render="tourUnit.image3d"
             @close="tourUnit = null"
         />
 

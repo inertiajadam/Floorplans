@@ -26,6 +26,8 @@
  |     commons carry a second floor
  |   - the memory care deluxe plan drawing and its square footage, from the
  |     client's Floorplanner export (demo/data/plans/tcom-mc-deluxe.plan.svg)
+ |   - the furnished 3D render of every layout (public/plans/tcom-*.jpg),
+ |     from the client's Floorplanner project
  |   - street names and that north points to the RIGHT of the plan
  |
  | What is a PLACEHOLDER until the client's rent roll arrives (each marked
@@ -489,8 +491,10 @@ const community = {
         ...l,
         sqft: l.sqft ?? DELUXE_SQFT,
         image2d: l.id === 'mc-deluxe' ? deluxeImage : null,
+        /* The client's furnished 3D renders (Floorplanner), one per layout,
+           served from /plans. The showcase bundle inlines them. */
+        image3d: `/plans/tcom-${l.id}.jpg`,
         plan3d: l.id === 'mc-deluxe' ? deluxePlan3d : null,
-        image3d: null,
         tourUrl: null,
         planSource: l.id === 'mc-deluxe' ? 'floorplanner:tcom_mc_deluxe_first_floor_first_design' : null,
     })),
