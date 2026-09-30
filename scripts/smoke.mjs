@@ -238,6 +238,21 @@ try {
         await page.waitForTimeout(400);
     }
 
+    /* ---- tapping a suite on the plan ---- */
+    {
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(200);
+        const suite = page.locator('.map-canvas .units g[role="button"]').first();
+        await suite.scrollIntoViewIfNeeded();
+        const id = await suite.getAttribute('data-unit');
+        await suite.click();
+        await page.waitForTimeout(500);
+        const dialog = page.locator('[role="dialog"]').first();
+        check('tapping a suite on the plan opens it', await dialog.isVisible() && (await dialog.textContent())?.includes('Suite'), `${id}`);
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(200);
+    }
+
     /* ---- mouse: wheel zooms, drag pans ---- */
     {
         await page.keyboard.press('Escape');   // nothing in the way of the plan

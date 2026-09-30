@@ -154,9 +154,12 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
         if (pointers.size === 1) {
             isPanning.value = true;
             dragged.value = false;
-            downAt = { x: e.clientX, y: e.clientY };
+            downAt = { x: e.clientX, y: e.clientY, target: e.currentTarget };
             cancel();
-            e.currentTarget.setPointerCapture?.(e.pointerId);
+            /* No pointer capture yet: with capture held, the browser sends
+               the click to the canvas rather than to the suite under the
+               pointer, and tapping a suite stops working. Capture starts
+               only once the pointer has actually moved (below). */
         }
     }
 
@@ -179,7 +182,10 @@ export function useMapView({ minZoom = 1, maxZoom = 9 } = {}) {
         if (!isPanning.value) return;
         const el = svgEl.value;
         if (!el) return;
-        if (downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) dragged.value = true;
+        if (downAt && !dragged.value && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) {
+            dragged.value = true;
+            downAt.target?.setPointerCapture?.(e.pointerId);   // now it is a drag: keep it even off the canvas
+        }
         const rect = el.getBoundingClientRect();
         const v = view.value;
         const dx = ((e.clientX - prev.x) / rect.width) * v.width;
