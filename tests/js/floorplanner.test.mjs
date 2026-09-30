@@ -50,6 +50,14 @@ ok('the largest room is the main living space', Math.abs(biggest.sqft - 392) < 4
 /* ---- walls ---- */
 ok('every wall segment is found', plan.walls.length === 40, `${plan.walls.length} walls`);
 
+/* ---- openings ---- */
+const kinds = plan.openings.reduce((a, o) => ({ ...a, [o.kind]: (a[o.kind] ?? 0) + 1 }), {});
+ok('every opening is found', plan.openings.length === 11, JSON.stringify(kinds));
+ok('doors, windows and cased openings are told apart', kinds.door === 7 && kinds.window === 3 && kinds.opening === 1);
+ok('a door is about 2\' 9" wide', plan.openings.filter((o) => o.kind === 'door').every((o) => Math.abs(o.width - 84.7) < 1));
+ok('doors know their hinge side', plan.openings.filter((o) => o.kind === 'door').every((o) => o.hinge === 'start' || o.hinge === 'end'));
+ok('openings sit on the plan', plan.openings.every((o) => o.x > plan.viewBox.x && o.x < plan.viewBox.x + plan.viewBox.width));
+
 /* ---- the clean drawing ---- */
 ok('clean SVG has no embedded images', !/<image/i.test(plan.cleanSvg));
 const roomParts = plan.rooms.reduce((n, r) => n + r.parts.length, 0);

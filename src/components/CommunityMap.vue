@@ -16,7 +16,7 @@
  | (lib/model.js), derives everything else, and emits when the family wants to
  | talk to somebody. Posting the lead is the host app's job.
  */
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 
 import MapPatterns from './MapPatterns.vue';
 import MapCanvas from './MapCanvas.vue';
@@ -27,6 +27,8 @@ import UnitCard from './UnitCard.vue';
 import UnitDetail from './UnitDetail.vue';
 import CompareTray from './CompareTray.vue';
 import LeadForm from './LeadForm.vue';
+/* three.js and the viewer arrive only when a suite is opened in 3D. */
+const SuiteTour = defineAsyncComponent(() => import('../tour/SuiteTour.vue'));
 
 import { normalize, summarize } from '../lib/model.js';
 import { describeAge } from '../lib/availability.js';
@@ -65,6 +67,7 @@ const compareOpen = ref(false);
 const leadFor = ref(null);
 const leadIntent = ref('tour');
 const showFiltersOnPhone = ref(false);
+const tourUnit = ref(null);          // the suite open in the 3D viewer
 const rail = ref(null);   // the horizontal strip of matching suites
 
 /* Page the strip by most of its width, so the last card seen is still
@@ -324,6 +327,7 @@ function resetView() {
                     @close="closeDetail"
                     @compare="onCompare"
                     @enquire="openLead($event, 'tour')"
+                    @tour="tourUnit = $event"
                 />
             </div>
 
@@ -386,6 +390,15 @@ function resetView() {
             @clear="compare.clear(); compareOpen = false"
             @select="select"
             @enquire="openLead($event, 'tour')"
+        />
+
+        <SuiteTour
+            v-if="tourUnit"
+            :plan="tourUnit.plan3d"
+            :title="`Suite ${tourUnit.number} · ${tourUnit.layoutName}`"
+            :subtitle="`${model.name} · ${tourUnit.sqft ? `about ${Number(tourUnit.sqft).toLocaleString()} sq ft` : ''}`"
+            :image="tourUnit.image2d"
+            @close="tourUnit = null"
         />
 
         <LeadForm

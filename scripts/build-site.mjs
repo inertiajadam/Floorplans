@@ -56,10 +56,10 @@ const links = `<nav id="site-links" class="site-links" aria-label="Full pages">
 if (!hub.includes('<!-- __SITE_LINKS__ -->')) throw new Error('demo/hub.html has no __SITE_LINKS__ placeholder');
 await writeFile(resolve(out, 'index.html'), hub.replace('<!-- __SITE_LINKS__ -->', links));
 
-/* The client site and the embed. */
+/* The client site and the embed — every file, since the runtime loads the
+   3D viewer as a chunk of its own the first time a suite is opened in 3D. */
 await cp(resolve(root, 'demo/client-site.html'), resolve(out, 'client-site.html'));
-await cp(resolve(root, 'dist-embed/embed.js'), resolve(out, 'v1/embed.js'));
-await cp(resolve(root, 'dist-embed/runtime.js'), resolve(out, 'v1/runtime.js'));
+await cp(resolve(root, 'dist-embed'), resolve(out, 'v1'), { recursive: true });
 
 /* Map payloads. Until the platform has its own API these are the JSON files
    the demos import, served as-is. */

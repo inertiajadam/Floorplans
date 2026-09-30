@@ -24,7 +24,7 @@ const props = defineProps({
     compareDisabled: { type: Boolean, default: false },
     shareUrl:  { type: String, default: '' },
 });
-const emit = defineEmits(['close', 'compare', 'enquire']);
+const emit = defineEmits(['close', 'compare', 'enquire', 'tour']);
 
 const panel = ref(null);
 const closeBtn = ref(null);
@@ -150,6 +150,16 @@ onBeforeUnmount(() => { restoreTo = null; });
                         The shape on the map is the real footprint of the suite.
                     </p>
                 </div>
+
+                <!-- The 3D floor plan, when the layout came from a vector plan. -->
+                <button
+                    v-if="unit.plan3d"
+                    type="button"
+                    class="tap-safe mt-2 inline-flex w-full items-center justify-center gap-2 rounded-brand border border-brand-mid bg-white px-4 py-2.5 text-[14px] font-semibold text-brand-dark transition-colors hover:bg-brand-light"
+                    @click="emit('tour', unit)"
+                >
+                    <span aria-hidden="true">⬡</span> Explore this suite in 3D
+                </button>
 
                 <a
                     v-if="unit.tourUrl"

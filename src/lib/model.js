@@ -165,6 +165,8 @@ function hydrateUnit(u, layout, building, level, community) {
         bathrooms: u.bathrooms ?? layout?.bathrooms ?? null,
         image: u.image ?? layout?.image3d ?? layout?.image2d ?? null,
         image2d: layout?.image2d ?? null,
+        /* Rooms, walls and openings for the 3D tour, when the layout came from a vector plan. */
+        plan3d: layout?.plan3d ?? null,
         image3d: layout?.image3d ?? null,
         tourUrl: u.tourUrl ?? layout?.tourUrl ?? null,
         description: u.description ?? layout?.description ?? null,

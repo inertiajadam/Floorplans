@@ -55,6 +55,7 @@ const SQCM_PER_SQFT = 929.0304;
  *   scale: {unitsPerFoot:number, unitsPerMetre:number, source:string},
  *   rooms: Array<{id:string, points:number[], parts:number[][], sqft:number, sqm:number, bounds:object, centroid:object, fill:string|null}>,
  *   walls: number[][],
+ *   openings: Array<{kind:'door'|'window'|'opening', x:number, y:number, angle:number, width:number, depth:number, hinge:'start'|'end'|null, flip:boolean}>,
  *   totalSqft: number,
  *   totalSqm: number,
  *   cleanSvg: string,
@@ -101,6 +102,8 @@ export function parseFloorplannerSvg(svg, { keepDimensions = false } = {}) {
         if (points.length >= 6) walls.push(points);
     }
 
+    const openings = parseOpenings(openingsGroup ?? '');
+
     const totalSqcm = rooms.reduce((s, r) => s + r.sqft * SQCM_PER_SQFT, 0);
 
     return {
@@ -108,6 +111,7 @@ export function parseFloorplannerSvg(svg, { keepDimensions = false } = {}) {
         scale: { unitsPerFoot: UNITS_PER_FOOT, unitsPerMetre: UNITS_PER_METRE, source: 'floorplanner' },
         rooms,
         walls,
+        openings,
         totalSqft: round1(totalSqcm / SQCM_PER_SQFT),
         totalSqm: round1(totalSqcm / (UNITS_PER_METRE * UNITS_PER_METRE)),
         cleanSvg: buildCleanSvg({ viewBox, rooms, walls, openingsGroup, dimensionsGroup }),
@@ -155,6 +159,75 @@ function buildCleanSvg({ viewBox, rooms, walls, openingsGroup, dimensionsGroup }
         dimensionsGroup ? `<g id="dimensions">${dimensionsGroup}</g>` : '',
         `</svg>`,
     ].join('');
+}
+
+/* ---------------------------------------------------------------- openings */
+
+/**
+ * Doors, windows and cased openings.
+ *
+ * Each is a <g transform="translate(x, y) rotate(deg) scale(1, ±1)"> holding
+ * a drawing centred on the opening's midpoint along the wall: a rect the
+ * width of the opening (and the wall's thickness), plus what tells them
+ * apart — a door has its swing arc (an A path), a window has its pane
+ * lines and no arc, and a cased opening is a lone dashed rect. The door's
+ * leaf line is pivoted at the hinge, so its sign says which end swings.
+ *
+ * These are what let the 3D model cut real holes in the walls, hang a door
+ * in each one, and know which rooms a door joins.
+ */
+export function parseOpenings(fragment) {
+    const out = [];
+    for (const child of topLevelGroups(fragment)) {
+        const t = attr(child.slice(0, child.indexOf('>') + 1), 'transform') ?? '';
+        const tr = t.match(/translate\(\s*(-?[\d.e+-]+)\s*,?\s*(-?[\d.e+-]+)\s*\)/);
+        if (!tr) continue;
+        const rot = t.match(/rotate\(\s*(-?[\d.e+-]+)/);
+        const sc = t.match(/scale\(\s*(-?[\d.e+-]+)\s*,?\s*(-?[\d.e+-]+)?/);
+        const rect = child.match(/<rect\b[^>]*\bwidth="([\d.]+)"[^>]*\bheight="([\d.]+)"/);
+        if (!rect) continue;
+
+        const hasArc = /<path\b[^>]*\bd="[^"]*\bA\b/.test(child);
+        const lines = (child.match(/<line\b/g) ?? []).length;
+        const kind = hasArc ? 'door' : lines >= 2 ? 'window' : 'opening';
+
+        let hinge = null;
+        if (kind === 'door') {
+            const pivot = child.match(/<line\b[^>]*transform="rotate\([^,]+,\s*(-?[\d.]+)/);
+            hinge = pivot ? (Number(pivot[1]) < 0 ? 'start' : 'end') : null;
+        }
+
+        out.push({
+            kind,
+            x: Number(tr[1]),
+            y: Number(tr[2]),
+            angle: rot ? Number(rot[1]) : 0,
+            width: Number(rect[1]),
+            depth: Number(rect[2]),
+            hinge,
+            flip: Boolean(sc && Number(sc[2] ?? sc[1]) < 0),
+        });
+    }
+    return out;
+}
+
+/** The direct <g> children of a fragment, as raw strings, following nesting. */
+function topLevelGroups(fragment) {
+    const out = [];
+    const token = /<g\b[^>]*?(\/?)>|<\/g\s*>/gi;
+    let depth = 0;
+    let start = -1;
+    let m;
+    while ((m = token.exec(fragment))) {
+        if (m[0].startsWith('</')) {
+            depth -= 1;
+            if (depth === 0 && start >= 0) { out.push(fragment.slice(start, m.index + m[0].length)); start = -1; }
+        } else if (m[1] !== '/') {
+            if (depth === 0) start = m.index;
+            depth += 1;
+        }
+    }
+    return out;
 }
 
 /* ---------------------------------------------------------------- scanning */

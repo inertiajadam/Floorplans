@@ -42,10 +42,12 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseFloorplannerSvg } from '../src/lib/plans/floorplanner.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = resolve(__dirname, '../demo/data/commons-on-meridian.json');
 const DELUXE_PLAN = resolve(__dirname, '../demo/data/plans/tcom-mc-deluxe.plan.svg');
+const DELUXE_EXPORT = resolve(__dirname, '../tests/fixtures/floorplanner-mc-deluxe.svg');
 
 /* Screenshot pixel → plan units. The map's top-left corner in the
    screenshot is (433, 178); everything is doubled for headroom. */
@@ -169,6 +171,20 @@ const deluxeSvg = readFileSync(DELUXE_PLAN, 'utf8');
    may belong to a different layout. */
 const DELUXE_SQFT = 1102;
 const deluxeImage = `data:image/svg+xml;base64,${Buffer.from(deluxeSvg).toString('base64')}`;
+
+/* The geometry behind the drawing, for the 3D tour: rooms, walls, doors and
+   windows in centimetres. The fixture is the real export with its furniture
+   images emptied, so this is the client's actual layout. */
+const deluxeParsed = parseFloorplannerSvg(readFileSync(DELUXE_EXPORT, 'utf8'));
+const r2 = (v) => Math.round(v * 100) / 100;
+const deluxePlan3d = {
+    viewBox: deluxeParsed.viewBox,
+    scale: deluxeParsed.scale,
+    rooms: deluxeParsed.rooms.map((r) => ({ id: r.id, sqft: r.sqft, parts: r.parts.map((pts) => pts.map(r2)) })),
+    walls: deluxeParsed.walls.map((w) => w.map(r2)),
+    openings: deluxeParsed.openings.map((o) => ({ ...o, x: r2(o.x), y: r2(o.y), angle: r2(o.angle), width: r2(o.width), depth: r2(o.depth) })),
+    wallHeight: 270,
+};
 
 /* ------------------------------------------------------------- the site */
 
@@ -473,6 +489,7 @@ const community = {
         ...l,
         sqft: l.sqft ?? DELUXE_SQFT,
         image2d: l.id === 'mc-deluxe' ? deluxeImage : null,
+        plan3d: l.id === 'mc-deluxe' ? deluxePlan3d : null,
         image3d: null,
         tourUrl: null,
         planSource: l.id === 'mc-deluxe' ? 'floorplanner:tcom_mc_deluxe_first_floor_first_design' : null,

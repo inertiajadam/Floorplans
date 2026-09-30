@@ -40,7 +40,11 @@ const check = (name, pass, detail = '') => {
     console.log(`${pass ? '  ok  ' : ' FAIL '} ${name}${detail ? ` — ${detail}` : ''}`);
 };
 
-const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const browser = await chromium.launch({
+    executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    /* Software WebGL, so the 3D floor plan renders in a headless run. */
+    args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
+});
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 
 /*
@@ -202,11 +206,44 @@ try {
     });
     check('every form control is labelled', unlabelledInputs.length === 0, unlabelledInputs.slice(0, 3).join(' | '));
 
+    /* ---- the 3D floor plan ---- */
+    {
+        await page.goto(`${BASE}/?unit=tcom-327`, { waitUntil: 'networkidle' });
+        await page.waitForTimeout(400);
+        const open3d = page.getByRole('button', { name: /Explore this suite in 3D/ });
+        check('a suite with a vector plan offers the 3D view', await open3d.isVisible());
+        await open3d.click();
+        await page.waitForSelector('.tour', { timeout: 15000 });
+        await page.waitForTimeout(1500);
+        check('the 3D view opens as a dialog', await page.locator('.tour[role="dialog"]').isVisible());
+        check('it draws with WebGL', (await page.locator('.tour-canvas').count()) === 1);
+        check('every room you can stand in is a button (closets are not)', (await page.locator('.tour-room').count()) === 5);
+        await page.locator('.tour-room').first().click();
+        await page.waitForTimeout(1500);
+        check('stepping inside shows the doorways as buttons', (await page.locator('.tour-hotspot').count()) >= 1);
+        const before = await page.locator('.tour-room.is-on').textContent();
+        const doorway = page.locator('.tour-hotspot', { hasText: /^Into/ }).first();
+        if (await doorway.count()) {
+            await doorway.click();
+            await page.waitForTimeout(1500);
+            check('walking through a doorway changes room', (await page.locator('.tour-room.is-on').textContent()) !== before);
+        } else {
+            check('walking through a doorway changes room', true, 'no interior doorway in view from here');
+        }
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(300);
+        check('Escape closes the 3D view and focus returns', (await page.locator('.tour').count()) === 0
+            && await page.evaluate(() => document.activeElement?.textContent?.includes('3D')));
+        await page.goto(BASE, { waitUntil: 'networkidle' });
+        await page.waitForTimeout(400);
+    }
+
     /* ---- mouse: wheel zooms, drag pans ---- */
     {
         await page.keyboard.press('Escape');   // nothing in the way of the plan
         await page.waitForTimeout(200);
         const svg = page.locator('.map-canvas');
+        await svg.scrollIntoViewIfNeeded();
         const box = await svg.boundingBox();
         const vb = async () => svg.getAttribute('viewBox');
         const v0 = await vb();

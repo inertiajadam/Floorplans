@@ -21,6 +21,7 @@
 
 @source "../components/**/*.vue";
 @source "../embed/**/*.vue";
+@source "../tour/**/*.vue";
 @source "../composables/**/*.js";
 @source "../lib/**/*.js";
 
